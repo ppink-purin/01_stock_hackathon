@@ -32,23 +32,23 @@ function ApiInfoModal({ onClose }: { onClose: () => void }) {
               </li>
               <li className="flex items-start gap-2">
                 <span className="shrink-0">📊</span>
-                <span><strong>시세 조회</strong> — 다음 금융 API (finance.daum.net)</span>
+                <span><strong>시세 조회</strong> — 다음 금융 API (finance.daum.net/api/quotes)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="shrink-0">📰</span>
-                <span><strong>뉴스 조회</strong> — 네이버 금융 뉴스 API (m.stock.naver.com)</span>
+                <span><strong>뉴스 조회</strong> — 네이버 금융 API (m.stock.naver.com)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="shrink-0">📈</span>
-                <span><strong>시장 현황</strong> — 다음 금융 API (코스피/코스닥 지수 + 시총 랭킹)</span>
+                <span><strong>시장 현황</strong> — 시총 랭킹: 다음 금융 / 지수: 네이버 금융</span>
               </li>
             </ul>
           </div>
           <div className="border-t-2 border-dashed border-[#E8D5A3] pt-3">
             <p className="font-bold mb-1">📝 데이터 출처</p>
             <p className="text-xs text-[#5D4E37] leading-relaxed">
-              시세/시장현황은 <strong>다음 금융(finance.daum.net)</strong> API를,
-              뉴스는 <strong>네이버 금융(m.stock.naver.com)</strong> API를 사용합니다.
+              시세·시총 랭킹은 <strong>다음 금융(finance.daum.net)</strong>,
+              지수·뉴스는 <strong>네이버 금융(m.stock.naver.com)</strong>을 사용합니다.
               AI 엔진은 <strong>Claude Haiku 4.5</strong>입니다.
             </p>
           </div>

@@ -5,8 +5,14 @@ import { type FormEvent, useRef } from "react";
 const EXAMPLE_QUESTIONS = [
   "삼성전자 현재 주가",
   "코스피 현황",
-  "카카오 관련 뉴스",
-  "현대차 투자자 의견",
+  "키움증권 주가 알려줘",
+  "다우기술 관련 뉴스",
+  "카카오 최신 뉴스",
+  "현대차 시세 조회",
+  "코스닥 시장 현황",
+  "SK하이닉스 주가",
+  "네이버 주가 어때?",
+  "한화에어로스페이스 시세",
 ];
 
 interface ChatInputProps {

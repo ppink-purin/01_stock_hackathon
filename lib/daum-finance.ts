@@ -81,6 +81,9 @@ const MAJOR_STOCKS = [
   { name: "롯데케미칼", code: "011170", market: "KOSPI" },
   { name: "SK케미칼", code: "285130", market: "KOSPI" },
   { name: "한온시스템", code: "018880", market: "KOSPI" },
+  { name: "키움증권", code: "039490", market: "KOSPI" },
+  { name: "다우기술", code: "023590", market: "KOSDAQ" },
+  { name: "다우데이타", code: "032190", market: "KOSDAQ" },
   // KOSDAQ 대형주
   { name: "에코프로비엠", code: "247540", market: "KOSDAQ" },
   { name: "에코프로", code: "086520", market: "KOSDAQ" },

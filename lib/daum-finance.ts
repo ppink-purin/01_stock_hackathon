@@ -1,5 +1,27 @@
+// ── 다음 금융 API (시세, 시장현황) ──
+const DAUM_API = "https://finance.daum.net";
+const DAUM_HEADERS: HeadersInit = {
+  Referer: "https://finance.daum.net/",
+  "User-Agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+};
+
+async function fetchDaum(path: string) {
+  const res = await fetch(`${DAUM_API}${path}`, {
+    headers: DAUM_HEADERS,
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error(
+      `Daum Finance API error: ${res.status} ${res.statusText}`
+    );
+  }
+  return res.json();
+}
+
+// ── 네이버 금융 API (뉴스 전용) ──
 const NAVER_STOCK_API = "https://m.stock.naver.com/api";
-const NAVER_HEADERS = {
+const NAVER_HEADERS: HeadersInit = {
   "User-Agent":
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
 };
@@ -17,7 +39,7 @@ async function fetchNaver(path: string) {
   return res.json();
 }
 
-// 주요 종목 로컬 매핑 (네이버 금융에 종목 검색 API가 없어 로컬 매핑 사용)
+// ── 주요 종목 로컬 매핑 ──
 const MAJOR_STOCKS = [
   // KOSPI 대형주
   { name: "삼성전자", code: "005930", market: "KOSPI" },
@@ -99,6 +121,7 @@ const MAJOR_STOCKS = [
   { name: "카카오게임즈", code: "293490", market: "KOSDAQ" },
 ];
 
+// ── 종목 검색 (로컬 매핑) ──
 export async function searchStock(query: string) {
   try {
     const q = query.trim().toLowerCase();
@@ -106,7 +129,6 @@ export async function searchStock(query: string) {
       (s) => s.name.toLowerCase().includes(q) || s.code === q
     );
 
-    // 종목코드 기준 중복 제거
     const seen = new Set<string>();
     const unique = matches.filter((s) => {
       if (seen.has(s.code)) return false;
@@ -132,46 +154,41 @@ export async function searchStock(query: string) {
   }
 }
 
+// ── 시세 조회 — 다음 금융 API ──
 export async function getStockQuote(code: string) {
   try {
-    const [basic, integration] = await Promise.all([
-      fetchNaver(`/stock/${code}/basic`),
-      fetchNaver(`/stock/${code}/integration`),
-    ]);
-
-    const infoMap: Record<string, string> = {};
-    if (Array.isArray(integration.totalInfos)) {
-      for (const item of integration.totalInfos as {
-        code: string;
-        value: string;
-      }[]) {
-        infoMap[item.code] = item.value;
-      }
-    }
+    const symbolCode = `A${code}`;
+    const data = await fetchDaum(`/api/quotes/${symbolCode}`) as Record<string, unknown>;
 
     return {
       success: true,
       data: {
-        name: basic.stockName,
-        code: basic.itemCode,
-        tradePrice: basic.closePrice,
-        change: basic.compareToPreviousPrice?.text,
-        changePrice: basic.compareToPreviousClosePrice,
-        changeRate: basic.fluctuationsRatio + "%",
-        openingPrice: infoMap.openPrice,
-        highPrice: infoMap.highPrice,
-        lowPrice: infoMap.lowPrice,
-        accTradeVolume: infoMap.accumulatedTradingVolume,
-        accTradePrice: infoMap.accumulatedTradingValue,
-        marketCap: infoMap.marketValue,
-        foreignRatio: infoMap.foreignRate,
-        per: infoMap.per,
-        pbr: infoMap.pbr,
-        eps: infoMap.eps,
-        bps: infoMap.bps,
-        dividendYield: infoMap.dividendYieldRatio,
+        name: data.name,
+        code: data.symbolCode,
+        market: data.market,
+        tradePrice: data.tradePrice,
+        change: data.change,
+        changePrice: data.changePrice,
+        changeRate: data.changeRate,
+        openingPrice: data.openingPrice,
+        highPrice: data.highPrice,
+        lowPrice: data.lowPrice,
+        prevClosingPrice: data.prevClosingPrice,
+        accTradeVolume: data.accTradeVolume,
+        accTradePrice: data.accTradePrice,
+        marketCap: data.marketCap,
+        foreignRatio: data.foreignRatio,
+        per: data.per,
+        pbr: data.pbr,
+        eps: data.eps,
+        bps: data.bps,
+        dividendYield: data.dividendYield,
+        high52wPrice: data.high52wPrice,
+        low52wPrice: data.low52wPrice,
+        marketCapRank: data.marketCapRank,
+        companySummary: data.companySummary,
       },
-      source: "네이버 금융(m.stock.naver.com)",
+      source: "다음 금융(finance.daum.net)",
     };
   } catch (error) {
     return {
@@ -181,6 +198,7 @@ export async function getStockQuote(code: string) {
   }
 }
 
+// ── 뉴스 조회 — 네이버 금융 API (유지) ──
 export async function getStockNews(code: string) {
   try {
     const data = await fetchNaver(
@@ -222,32 +240,62 @@ export async function getStockNews(code: string) {
   }
 }
 
+// ── 시장 현황 — 다음 금융 API ──
 export async function getMarketOverview() {
   try {
-    const [kospi, kosdaq] = await Promise.all([
-      fetchNaver("/index/KOSPI/basic"),
-      fetchNaver("/index/KOSDAQ/basic"),
-    ]);
+    const data = await fetchDaum("/api/domestic/trend/market_capitalization") as Record<string, unknown>;
 
-    const format = (m: Record<string, unknown>) => ({
-      name: m.stockName,
-      tradePrice: m.closePrice,
-      change: (m.compareToPreviousPrice as Record<string, unknown>)?.text,
-      changePrice: m.compareToPreviousClosePrice,
-      changeRate: m.fluctuationsRatio + "%",
-      marketStatus: m.marketStatus,
-    });
+    const formatTop = (stocks: unknown[], marketName: string) => {
+      const list = (stocks as Record<string, unknown>[]).slice(0, 5).map((s) => ({
+        name: s.name,
+        code: s.symbolCode,
+        tradePrice: s.tradePrice,
+        changeRate: s.changeRate,
+        marketCap: s.marketCap,
+        rank: s.rank,
+      }));
+      return { market: marketName, topStocks: list };
+    };
+
+    const kospiStocks = data.KOSPI as unknown[] | undefined;
+    const kosdaqStocks = data.KOSDAQ as unknown[] | undefined;
+
+    // 코스피/코스닥 지수도 함께 조회
+    const [kospiIdx, kosdaqIdx] = await Promise.all([
+      fetchDaum("/api/quotes/KOSPI") as Promise<Record<string, unknown>>,
+      fetchDaum("/api/quotes/KOSDAQ") as Promise<Record<string, unknown>>,
+    ]);
 
     return {
       success: true,
-      markets: [format(kospi), format(kosdaq)],
-      source: "네이버 금융(m.stock.naver.com)",
+      indices: [
+        {
+          name: "코스피",
+          tradePrice: kospiIdx.tradePrice,
+          change: kospiIdx.change,
+          changePrice: kospiIdx.changePrice,
+          changeRate: kospiIdx.changeRate,
+        },
+        {
+          name: "코스닥",
+          tradePrice: kosdaqIdx.tradePrice,
+          change: kosdaqIdx.change,
+          changePrice: kosdaqIdx.changePrice,
+          changeRate: kosdaqIdx.changeRate,
+        },
+      ],
+      marketCap: [
+        ...(kospiStocks ? [formatTop(kospiStocks, "KOSPI")] : []),
+        ...(kosdaqStocks ? [formatTop(kosdaqStocks, "KOSDAQ")] : []),
+      ],
+      source: "다음 금융(finance.daum.net)",
     };
   } catch (error) {
     return {
       success: false,
       error: `시장 현황 조회 실패: ${error instanceof Error ? error.message : "알 수 없는 오류"}`,
-      markets: [],
+      indices: [],
+      marketCap: [],
     };
   }
 }

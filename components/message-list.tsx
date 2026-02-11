@@ -32,24 +32,24 @@ function ApiInfoModal({ onClose }: { onClose: () => void }) {
               </li>
               <li className="flex items-start gap-2">
                 <span className="shrink-0">📊</span>
-                <span><strong>시세 조회</strong> — 네이버 금융 API (m.stock.naver.com)</span>
+                <span><strong>시세 조회</strong> — 다음 금융 API (finance.daum.net)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="shrink-0">📰</span>
-                <span><strong>뉴스 조회</strong> — 네이버 금융 뉴스 API</span>
+                <span><strong>뉴스 조회</strong> — 네이버 금융 뉴스 API (m.stock.naver.com)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="shrink-0">📈</span>
-                <span><strong>시장 현황</strong> — 네이버 금융 지수 API (코스피/코스닥)</span>
+                <span><strong>시장 현황</strong> — 다음 금융 API (코스피/코스닥 지수 + 시총 랭킹)</span>
               </li>
             </ul>
           </div>
           <div className="border-t-2 border-dashed border-[#E8D5A3] pt-3">
             <p className="font-bold mb-1">📝 데이터 출처</p>
             <p className="text-xs text-[#5D4E37] leading-relaxed">
-              본 서비스는 <strong>다음 금융(finance.daum.net)</strong> 해커톤 출품작이나,
-              다음 금융 API 접근 제한으로 <strong>네이버 금융(m.stock.naver.com)</strong>
-              대체 API를 사용합니다. AI 엔진은 <strong>Claude Haiku 4.5</strong>입니다.
+              시세/시장현황은 <strong>다음 금융(finance.daum.net)</strong> API를,
+              뉴스는 <strong>네이버 금융(m.stock.naver.com)</strong> API를 사용합니다.
+              AI 엔진은 <strong>Claude Haiku 4.5</strong>입니다.
             </p>
           </div>
           <p className="text-[10px] text-center text-[#A0906B] pt-1">🥜 이스터 에그를 찾으셨군요!</p>

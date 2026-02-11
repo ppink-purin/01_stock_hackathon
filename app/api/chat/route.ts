@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { toolDefinitions, executeTool } from "@/lib/tools";
+import { appendEvent } from "@/lib/analytics/logger";
 
 export const runtime = "nodejs";
 export const maxDuration = 120;
@@ -34,7 +35,7 @@ const systemPrompt = `당신은 '주식도령 키우Me'입니다. 주식 초보 
 [추천질문: 질문1 | 질문2 | 질문3]`;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  const { messages, sessionId } = await req.json();
 
   const encoder = new TextEncoder();
 
@@ -45,6 +46,9 @@ export async function POST(req: Request) {
           encoder.encode(`data: ${JSON.stringify(data)}\n\n`)
         );
       };
+
+      const responseStart = Date.now();
+      let totalToolCalls = 0;
 
       try {
         // Build conversation messages for Anthropic API
@@ -97,9 +101,23 @@ export async function POST(req: Request) {
 
           // If no tool calls, we're done
           if (toolUseBlocks.length === 0 || response.stop_reason === "end_turn") {
+            const followupMatch = /\[추천질문:\s*(.+?)\]\s*$/.exec(fullText);
+            const followupCount = followupMatch
+              ? followupMatch[1].split("|").filter(Boolean).length
+              : 0;
+            appendEvent({
+              event: "response_complete",
+              sessionId: sessionId || "",
+              timestamp: new Date().toISOString(),
+              durationMs: Date.now() - responseStart,
+              toolCallCount: totalToolCalls,
+              followupCount,
+            });
             send({ type: "done", text: fullText });
             break;
           }
+
+          totalToolCalls += toolUseBlocks.length;
 
           // Execute tools and build tool results
           send({
@@ -117,7 +135,31 @@ export async function POST(req: Request) {
           // Execute all tool calls and add results
           const toolResults: Anthropic.ToolResultBlockParam[] = [];
           for (const tool of toolUseBlocks) {
-            const result = await executeTool(tool.name, tool.input);
+            const toolStart = Date.now();
+            let success = true;
+            let toolError: string | undefined;
+            let result: string;
+            try {
+              result = await executeTool(tool.name, tool.input);
+              const parsed = JSON.parse(result);
+              if (parsed.success === false) {
+                success = false;
+                toolError = parsed.error;
+              }
+            } catch (e) {
+              success = false;
+              toolError = e instanceof Error ? e.message : "unknown";
+              result = JSON.stringify({ error: toolError });
+            }
+            appendEvent({
+              event: "tool_call",
+              sessionId: sessionId || "",
+              timestamp: new Date().toISOString(),
+              toolName: tool.name,
+              success,
+              durationMs: Date.now() - toolStart,
+              ...(toolError ? { error: toolError } : {}),
+            });
             toolResults.push({
               type: "tool_result",
               tool_use_id: tool.id,
@@ -134,12 +176,18 @@ export async function POST(req: Request) {
           toolUseBlocks.length = 0;
         }
       } catch (error) {
+        const errorMsg = error instanceof Error
+          ? error.message
+          : "알 수 없는 오류가 발생했습니다";
+        appendEvent({
+          event: "response_error",
+          sessionId: sessionId || "",
+          timestamp: new Date().toISOString(),
+          error: errorMsg,
+        });
         send({
           type: "error",
-          message:
-            error instanceof Error
-              ? error.message
-              : "알 수 없는 오류가 발생했습니다",
+          message: errorMsg,
         });
       }
 

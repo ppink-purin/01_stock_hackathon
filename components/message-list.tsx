@@ -8,6 +8,7 @@ interface MessageListProps {
   messages: ChatMessage[];
   isLoading: boolean;
   onFollowUpClick?: (question: string) => void;
+  onEasterEggClick?: () => void;
 }
 
 function ApiInfoModal({ onClose }: { onClose: () => void }) {
@@ -59,7 +60,7 @@ function ApiInfoModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-export function MessageList({ messages, isLoading, onFollowUpClick }: MessageListProps) {
+export function MessageList({ messages, isLoading, onFollowUpClick, onEasterEggClick }: MessageListProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const [showApiInfo, setShowApiInfo] = useState(false);
 
@@ -78,7 +79,7 @@ export function MessageList({ messages, isLoading, onFollowUpClick }: MessageLis
           AI 주식 길잡이에게 무엇이든 물어보세요!
         </p>
         <button
-          onClick={() => setShowApiInfo(true)}
+          onClick={() => { setShowApiInfo(true); onEasterEggClick?.(); }}
           className="text-xs text-[#A0906B] comic-bubble-ai inline-block px-4 py-2 mt-2 cursor-pointer hover:bg-[#FFF3CD] active:bg-[#FFDD44] transition-colors"
           style={{ fontSize: '0.75rem' }}
         >

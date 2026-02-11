@@ -4,8 +4,9 @@ import { useState, useCallback, useRef } from "react";
 import type { ChatMessage } from "@/lib/types";
 import { MessageList } from "./message-list";
 import { ChatInput } from "./chat-input";
+import { useAnalytics } from "@/lib/analytics/tracker";
 
-function useAgentChat() {
+function useAgentChat(sessionId: string, onResponseComplete?: (durationMs: number, toolCallCount: number, followupCount: number) => void, onResponseError?: (error: string) => void) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState("");
@@ -27,6 +28,8 @@ function useAgentChat() {
     ]);
     setIsLoading(true);
 
+    const responseStart = Date.now();
+
     try {
       const allMessages = [...messagesRef.current, userMessage];
 
@@ -38,6 +41,7 @@ function useAgentChat() {
             role: m.role,
             content: m.content,
           })),
+          sessionId,
         }),
       });
 
@@ -48,6 +52,7 @@ function useAgentChat() {
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffer = "";
+      let toolCallCount = 0;
 
       while (true) {
         const { done, value } = await reader.read();
@@ -73,6 +78,7 @@ function useAgentChat() {
                 return updated;
               });
             } else if (data.type === "tool_call") {
+              toolCallCount++;
               setMessages((prev) => {
                 const updated = [...prev];
                 const last = updated[updated.length - 1];
@@ -97,6 +103,13 @@ function useAgentChat() {
                 }
                 return updated;
               });
+              // Count followup questions from final text
+              const finalText = data.text || "";
+              const followupMatch = /\[추천질문:\s*(.+?)\]\s*$/.exec(finalText);
+              const followupCount = followupMatch
+                ? followupMatch[1].split("|").filter(Boolean).length
+                : 0;
+              onResponseComplete?.(Date.now() - responseStart, toolCallCount, followupCount);
             } else if (data.type === "error") {
               setMessages((prev) => {
                 const updated = [...prev];
@@ -109,6 +122,7 @@ function useAgentChat() {
                 };
                 return updated;
               });
+              onResponseError?.(data.message || "unknown error");
             }
           } catch {
             // Skip malformed JSON lines
@@ -116,19 +130,21 @@ function useAgentChat() {
         }
       }
     } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : "알 수 없는 오류";
       setMessages((prev) => {
         const updated = [...prev];
         const last = updated[updated.length - 1];
         updated[updated.length - 1] = {
           ...last,
-          content: `연결 오류: ${error instanceof Error ? error.message : "알 수 없는 오류"}`,
+          content: `연결 오류: ${errorMsg}`,
         };
         return updated;
       });
+      onResponseError?.(errorMsg);
     }
 
     setIsLoading(false);
-  }, []);
+  }, [sessionId, onResponseComplete, onResponseError]);
 
   const resetChat = useCallback(() => {
     setMessages([]);
@@ -139,18 +155,39 @@ function useAgentChat() {
 }
 
 export function Chat() {
-  const { messages, isLoading, input, setInput, sendMessage, resetChat } = useAgentChat();
+  const analytics = useAnalytics();
+
+  const { messages, isLoading, input, setInput, sendMessage, resetChat } =
+    useAgentChat(
+      analytics.sessionId,
+      analytics.trackResponseComplete,
+      analytics.trackResponseError
+    );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
-    sendMessage(input.trim());
+    const text = input.trim();
+    analytics.trackMessageSend(text.length, messages.length === 0);
+    sendMessage(text);
     setInput("");
   };
 
   const handleExampleClick = (question: string) => {
     if (isLoading) return;
+    analytics.trackExampleClick(question);
     sendMessage(question);
+  };
+
+  const handleFollowUpClick = (question: string) => {
+    if (isLoading) return;
+    analytics.trackFollowupClick(question);
+    sendMessage(question);
+  };
+
+  const handleReset = () => {
+    analytics.trackChatReset();
+    resetChat();
   };
 
   return (
@@ -168,7 +205,12 @@ export function Chat() {
       </header>
 
       {/* Messages */}
-      <MessageList messages={messages} isLoading={isLoading} onFollowUpClick={handleExampleClick} />
+      <MessageList
+        messages={messages}
+        isLoading={isLoading}
+        onFollowUpClick={handleFollowUpClick}
+        onEasterEggClick={analytics.trackEasterEggClick}
+      />
 
       {/* Input */}
       <ChatInput
@@ -178,7 +220,7 @@ export function Chat() {
         isLoading={isLoading}
         onExampleClick={handleExampleClick}
         showExamples={messages.length === 0}
-        onReset={resetChat}
+        onReset={handleReset}
         showReset={messages.length > 0}
       />
     </div>

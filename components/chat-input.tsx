@@ -1,19 +1,80 @@
 "use client";
 
-import { type FormEvent, useRef } from "react";
+import { type FormEvent, useRef, useMemo } from "react";
 
-const EXAMPLE_QUESTIONS = [
-  "삼성전자 현재 주가",
-  "코스피 현황",
-  "키움증권 주가 알려줘",
-  "다우기술 관련 뉴스",
-  "카카오 최신 뉴스",
-  "현대차 시세 조회",
-  "코스닥 시장 현황",
-  "SK하이닉스 주가",
-  "네이버 주가 어때?",
-  "한화에어로스페이스 시세",
+// 종목 풀 — MAJOR_STOCKS에서 대표 종목 추출
+const STOCKS = [
+  "삼성전자", "SK하이닉스", "현대차", "기아", "카카오", "네이버",
+  "LG에너지솔루션", "셀트리온", "삼성SDI", "LG화학", "KB금융",
+  "한화에어로스페이스", "크래프톤", "하이브", "카카오뱅크",
+  "키움증권", "다우기술", "삼성바이오로직스", "포스코홀딩스",
+  "현대모비스", "한국전력", "SK텔레콤", "LG전자", "엔씨소프트",
+  "대한항공", "에코프로", "알테오젠", "HD현대중공업", "한화오션",
+  "삼성물산", "삼성전기", "두산에너빌리티", "아모레퍼시픽",
+  "한미반도체", "카카오페이", "CJ제일제당",
 ];
+
+// 질문 템플릿 — API 4종(검색, 시세, 뉴스, 시장현황)에 맞는 다양한 패턴
+const TEMPLATES = {
+  quote: [
+    (s: string) => `${s} 현재 주가`,
+    (s: string) => `${s} 시세 조회`,
+    (s: string) => `${s} 주가 알려줘`,
+    (s: string) => `${s} 오늘 주가 어때?`,
+    (s: string) => `${s} PER이랑 PBR 알려줘`,
+    (s: string) => `${s} 시가총액 얼마야?`,
+    (s: string) => `${s} 52주 최고가는?`,
+    (s: string) => `${s} 외국인 보유 비율`,
+  ],
+  news: [
+    (s: string) => `${s} 최신 뉴스`,
+    (s: string) => `${s} 관련 뉴스`,
+    (s: string) => `${s} 무슨 일 있어?`,
+    (s: string) => `${s} 요즘 소식`,
+  ],
+  market: [
+    () => "코스피 현황",
+    () => "코스닥 시장 현황",
+    () => "오늘 시장 어때?",
+    () => "코스피 코스닥 지수",
+    () => "시총 상위 종목은?",
+    () => "오늘 주식시장 분위기",
+  ],
+};
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function generateExamples(): string[] {
+  const shuffledStocks = shuffle(STOCKS);
+  const questions: string[] = [];
+
+  // 시세 질문 4개 (서로 다른 종목 + 서로 다른 템플릿)
+  const quoteTemplates = shuffle(TEMPLATES.quote);
+  for (let i = 0; i < 4; i++) {
+    questions.push(quoteTemplates[i](shuffledStocks[i]));
+  }
+
+  // 뉴스 질문 3개
+  const newsTemplates = shuffle(TEMPLATES.news);
+  for (let i = 0; i < 3; i++) {
+    questions.push(newsTemplates[i](shuffledStocks[4 + i]));
+  }
+
+  // 시장 현황 질문 3개
+  const marketTemplates = shuffle(TEMPLATES.market);
+  for (let i = 0; i < 3; i++) {
+    questions.push(marketTemplates[i]());
+  }
+
+  return shuffle(questions);
+}
 
 interface ChatInputProps {
   input: string;
@@ -38,11 +99,14 @@ export function ChatInput({
 }: ChatInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // showExamples가 true로 바뀔 때마다 (초기화 포함) 새로 생성
+  const examples = useMemo(() => generateExamples(), [showExamples]);
+
   return (
     <div className="shrink-0 border-t-[3px] border-[#222] bg-[#FFF8E7] pb-[env(safe-area-inset-bottom)]">
       {showExamples && (
         <div className="flex gap-2 overflow-x-auto px-4 pt-3 pb-1 scrollbar-hide">
-          {EXAMPLE_QUESTIONS.map((q) => (
+          {examples.map((q) => (
             <button
               key={q}
               onClick={() => onExampleClick(q)}

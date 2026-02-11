@@ -240,10 +240,11 @@ export async function getStockNews(code: string) {
   }
 }
 
-// ── 시장 현황 — 다음 금융 API ──
+// ── 시장 현황 — 다음 금융(시총) + 네이버(지수) ──
 export async function getMarketOverview() {
   try {
-    const data = await fetchDaum("/api/domestic/trend/market_capitalization") as Record<string, unknown>;
+    // 시총 랭킹: 다음 금융 API
+    const capData = await fetchDaum("/api/domestic/trend/market_capitalization") as Record<string, unknown>;
 
     const formatTop = (stocks: unknown[], marketName: string) => {
       const list = (stocks as Record<string, unknown>[]).slice(0, 5).map((s) => ({
@@ -257,38 +258,32 @@ export async function getMarketOverview() {
       return { market: marketName, topStocks: list };
     };
 
-    const kospiStocks = data.KOSPI as unknown[] | undefined;
-    const kosdaqStocks = data.KOSDAQ as unknown[] | undefined;
+    const kospiStocks = capData.KOSPI as unknown[] | undefined;
+    const kosdaqStocks = capData.KOSDAQ as unknown[] | undefined;
 
-    // 코스피/코스닥 지수도 함께 조회
+    // 코스피/코스닥 지수: 네이버 금융 API (다음 지수 API가 500 에러)
     const [kospiIdx, kosdaqIdx] = await Promise.all([
-      fetchDaum("/api/quotes/KOSPI") as Promise<Record<string, unknown>>,
-      fetchDaum("/api/quotes/KOSDAQ") as Promise<Record<string, unknown>>,
+      fetchNaver("/index/KOSPI/basic") as Promise<Record<string, unknown>>,
+      fetchNaver("/index/KOSDAQ/basic") as Promise<Record<string, unknown>>,
     ]);
+
+    const formatIndex = (m: Record<string, unknown>) => ({
+      name: m.stockName,
+      tradePrice: m.closePrice,
+      change: (m.compareToPreviousPrice as Record<string, unknown>)?.text,
+      changePrice: m.compareToPreviousClosePrice,
+      changeRate: m.fluctuationsRatio + "%",
+      marketStatus: m.marketStatus,
+    });
 
     return {
       success: true,
-      indices: [
-        {
-          name: "코스피",
-          tradePrice: kospiIdx.tradePrice,
-          change: kospiIdx.change,
-          changePrice: kospiIdx.changePrice,
-          changeRate: kospiIdx.changeRate,
-        },
-        {
-          name: "코스닥",
-          tradePrice: kosdaqIdx.tradePrice,
-          change: kosdaqIdx.change,
-          changePrice: kosdaqIdx.changePrice,
-          changeRate: kosdaqIdx.changeRate,
-        },
-      ],
+      indices: [formatIndex(kospiIdx), formatIndex(kosdaqIdx)],
       marketCap: [
         ...(kospiStocks ? [formatTop(kospiStocks, "KOSPI")] : []),
         ...(kosdaqStocks ? [formatTop(kosdaqStocks, "KOSDAQ")] : []),
       ],
-      source: "다음 금융(finance.daum.net)",
+      source: "지수: 네이버 금융, 시총: 다음 금융(finance.daum.net)",
     };
   } catch (error) {
     return {

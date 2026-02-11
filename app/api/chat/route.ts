@@ -1,8 +1,10 @@
-import { query } from "@anthropic-ai/claude-agent-sdk";
-import { stockMcpServer } from "@/lib/tools";
+import Anthropic from "@anthropic-ai/sdk";
+import { toolDefinitions, executeTool } from "@/lib/tools";
 
 export const runtime = "nodejs";
 export const maxDuration = 120;
+
+const anthropic = new Anthropic();
 
 const systemPrompt = `당신은 '주식도령 키우Me'입니다. 주식 초보 투자자의 질문에 친절하고 이해하기 쉽게 답변합니다.
 네이버 금융(m.stock.naver.com) 데이터를 활용하여 실시간 정보를 제공합니다.
@@ -31,27 +33,8 @@ const systemPrompt = `당신은 '주식도령 키우Me'입니다. 주식 초보 
 - 최종 답변의 맨 마지막에 반드시 아래 형식으로 사용자가 이어서 물어볼 만한 후속 질문 3개를 추가하세요. 질문은 한 문장(15자 내외)으로 짧게, 우리 도구(종목검색, 시세조회, 뉴스조회, 시장현황)로 답변 가능한 수준이어야 합니다:
 [추천질문: 질문1 | 질문2 | 질문3]`;
 
-function formatPrompt(
-  messages: { role: string; content: string }[]
-): string {
-  if (messages.length === 0) return "";
-  if (messages.length === 1) return messages[0].content;
-
-  const history = messages
-    .slice(0, -1)
-    .map(
-      (m) =>
-        `${m.role === "user" ? "사용자" : "주식도령"}: ${m.content}`
-    )
-    .join("\n\n");
-
-  const current = messages[messages.length - 1].content;
-  return `이전 대화:\n${history}\n\n현재 질문: ${current}`;
-}
-
 export async function POST(req: Request) {
   const { messages } = await req.json();
-  const prompt = formatPrompt(messages);
 
   const encoder = new TextEncoder();
 
@@ -64,89 +47,91 @@ export async function POST(req: Request) {
       };
 
       try {
-        const conversation = query({
-          prompt,
-          options: {
-            systemPrompt,
+        // Build conversation messages for Anthropic API
+        const apiMessages: Anthropic.MessageParam[] = messages.map(
+          (m: { role: string; content: string }) => ({
+            role: m.role as "user" | "assistant",
+            content: m.content,
+          })
+        );
+
+        let turnCount = 0;
+        const maxTurns = 10;
+
+        while (turnCount < maxTurns) {
+          turnCount++;
+
+          // Stream the response
+          const stream = anthropic.messages.stream({
             model: "claude-sonnet-4-5-20250929",
-            mcpServers: { "stock-tools": stockMcpServer },
-            tools: [],
-            includePartialMessages: true,
-            permissionMode: "bypassPermissions",
-            maxTurns: 10,
-          },
-        });
+            max_tokens: 4096,
+            system: systemPrompt,
+            messages: apiMessages,
+            tools: toolDefinitions,
+          });
 
-        let fullText = "";
-        const sentToolCalls = new Set<string>();
+          let fullText = "";
+          const toolUseBlocks: {
+            id: string;
+            name: string;
+            input: Record<string, string>;
+          }[] = [];
+          stream.on("text", (text) => {
+            fullText += text;
+            send({ type: "text_delta", text });
+          });
 
-        for await (const message of conversation) {
-          // Real-time text streaming via stream events
-          if (message.type === "stream_event") {
-            const event = (message as Record<string, unknown>).event as
-              | Record<string, unknown>
-              | undefined;
-            if (event?.type === "content_block_delta") {
-              const delta = event.delta as
-                | Record<string, unknown>
-                | undefined;
-              if (delta?.type === "text_delta" && typeof delta.text === "string") {
-                fullText += delta.text;
-                send({ type: "text_delta", text: delta.text });
-              }
-            }
-          }
+          // Wait for the full message
+          const response = await stream.finalMessage();
 
-          // Complete assistant message - extract tool calls
-          if (message.type === "assistant") {
-            const msg = message as Record<string, unknown>;
-            const content = (msg.message as Record<string, unknown>)
-              ?.content as Array<Record<string, unknown>> | undefined;
-            if (Array.isArray(content)) {
-              for (const block of content) {
-                if (
-                  block.type === "tool_use" &&
-                  typeof block.id === "string" &&
-                  !sentToolCalls.has(block.id)
-                ) {
-                  sentToolCalls.add(block.id);
-                  send({
-                    type: "tool_call",
-                    name: block.name,
-                    input: block.input,
-                  });
-                }
-              }
-
-              // Fallback: if no stream_event delivered text, extract from assistant
-              const msgText = content
-                .filter((b) => b.type === "text" && typeof b.text === "string")
-                .map((b) => b.text as string)
-                .join("");
-              if (msgText && msgText.length > fullText.length) {
-                const delta = msgText.slice(fullText.length);
-                send({ type: "text_delta", text: delta });
-                fullText = msgText;
-              }
-            }
-          }
-
-          // Completion
-          if (message.type === "result") {
-            const result = message as Record<string, unknown>;
-            if (result.is_error) {
-              const errors = result.errors as string[] | undefined;
-              send({
-                type: "error",
-                message: errors?.join(", ") ?? "Unknown error",
-              });
-            } else {
-              send({
-                type: "done",
-                text: (result.result as string) ?? fullText,
+          // Collect tool_use blocks from the final message
+          for (const block of response.content) {
+            if (block.type === "tool_use") {
+              toolUseBlocks.push({
+                id: block.id,
+                name: block.name,
+                input: block.input as Record<string, string>,
               });
             }
           }
+
+          // If no tool calls, we're done
+          if (toolUseBlocks.length === 0 || response.stop_reason === "end_turn") {
+            send({ type: "done", text: fullText });
+            break;
+          }
+
+          // Execute tools and build tool results
+          send({
+            type: "tool_call",
+            name: toolUseBlocks[0].name,
+            input: toolUseBlocks[0].input,
+          });
+
+          // Add assistant message to conversation
+          apiMessages.push({
+            role: "assistant",
+            content: response.content,
+          });
+
+          // Execute all tool calls and add results
+          const toolResults: Anthropic.ToolResultBlockParam[] = [];
+          for (const tool of toolUseBlocks) {
+            const result = await executeTool(tool.name, tool.input);
+            toolResults.push({
+              type: "tool_result",
+              tool_use_id: tool.id,
+              content: result,
+            });
+          }
+
+          apiMessages.push({
+            role: "user",
+            content: toolResults,
+          });
+
+          // Reset for next iteration
+          toolUseBlocks.length = 0;
         }
       } catch (error) {
         send({

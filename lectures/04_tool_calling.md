@@ -2,34 +2,36 @@
 marp: true
 theme: default
 paginate: true
-backgroundColor: "#FFF8E7"
+backgroundColor: "#1a1a2e"
 style: |
   @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
   section {
-    font-family: 'Comic Neue', 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
-    font-size: 26px;
-    padding: 40px 60px;
-    color: #2D2926;
+    font-family: 'Comic Neue', 'Apple SD Gothic Neo', 'Malgun Gothic', cursive, sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-size: 28px;
   }
-  h1 { color: #2D2926; font-size: 42px; font-weight: 700; }
-  h2 { color: #2D2926; font-size: 34px; border-bottom: 3px solid #E8452E; padding-bottom: 8px; }
-  h3 { color: #E8452E; font-size: 28px; }
-  code { background: #FFF0E0; padding: 2px 8px; border-radius: 4px; font-size: 22px; color: #E8452E; }
-  pre { font-size: 17px; border-radius: 10px; }
-  pre code { background: #2D2926; color: #FFF8E7; padding: 16px; display: block; }
-  blockquote { border-left: 5px solid #E8452E; padding-left: 16px; color: #6B5B4E; font-style: italic; background: #FFF0E0; border-radius: 0 8px 8px 0; padding: 12px 16px; }
-  table { font-size: 22px; border-collapse: collapse; width: 100%; }
-  th { background: #E8452E; color: white; padding: 8px 12px; }
-  td { padding: 8px 12px; border-bottom: 1px solid #E8D5C4; }
-  tr:nth-child(even) { background: #FFF0E0; }
-  em { color: #E8452E; font-style: normal; font-weight: bold; }
-  strong { color: #2D2926; }
+  h1 { color: #FF6B6B; border-bottom: 3px solid #4ECDC4; padding-bottom: 8px; font-size: 1.6em; }
+  h2 { color: #c8c8d4; font-size: 1.25em; }
+  h3 { color: #4ECDC4; font-size: 1.05em; }
+  code { background: #2d2d44; border: 1px solid #444466; border-radius: 4px; padding: 2px 6px; font-size: 0.82em; color: #FF6B6B; }
+  pre { background: #0d0d1a !important; border-radius: 12px; border: 2px solid #333355; box-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+  pre code { background: transparent !important; border: none !important; color: #d4d4d4 !important; font-size: 0.78em; }
+  a { color: #4ECDC4; text-decoration: underline; }
+  table { font-size: 0.82em; border-collapse: collapse; }
+  th { background: #2d2d44; color: #4ECDC4; border: 2px solid #444466; padding: 6px 10px; }
+  td { border: 2px solid #333355; padding: 6px 10px; color: #d0d0d0; }
+  blockquote { border-left: 4px solid #FF6B6B; background: #16162a; padding: 8px 16px; font-size: 0.92em; border-radius: 0 8px 8px 0; color: #c8c8d4; }
+  section.lead { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #16213e; color: #e0e0e0; }
+  section.lead h1 { color: #FF6B6B; border-bottom: 3px solid #4ECDC4; font-size: 2em; }
+  section.lead h2 { color: #e0e0e0; font-size: 1.3em; }
+  section.lead h3 { color: #4ECDC4; font-size: 1.1em; }
+  section.lead blockquote { border-left-color: #4ECDC4; background: rgba(255,255,255,0.05); color: #e0e0e0; }
   .columns { display: flex; gap: 24px; }
-  .col { flex: 1; }
-  a { color: #E8452E; }
-  section.lead { text-align: center; }
-  section.lead h1 { font-size: 52px; }
-  section.lead h2 { border-bottom: none; font-size: 38px; }
+  .columns > * { flex: 1; }
+  footer { color: #666680; font-size: 0.55em; }
+  strong { color: #FF6B6B; }
+  em { color: #4ECDC4; }
 ---
 
 <!-- _class: lead -->
@@ -44,8 +46,6 @@ style: |
 
 **주식내비 키우Me** 프로젝트로 배우는
 도구 정의 · JSON Schema · executeTool · 오케스트레이션
-
-<br>
 
 xStudio Hackathon Lecture Series **#4**
 
@@ -80,21 +80,15 @@ xStudio Hackathon Lecture Series **#4**
 
 회사에서 이런 경험 있으시죠?
 
-<br>
-
 > 📞 "김비서님, **회의실 3층 A** 내일 오후 2시에 **예약**해주세요"
 
 > 📦 "이비서님, 제 **택배** 어디쯤 왔는지 **조회**해주세요"
 
 > 📰 "박비서님, 오늘 **조간 신문** 주요 기사 **요약**해주세요"
 
-<br>
-
 ### 이것이 바로 Tool Calling입니다! 🎉
 
-여러분(사람) = **Claude(AI)**
-비서 = **외부 도구(함수)**
-업무 지시 = **도구 호출 요청**
+여러분(사람) = **Claude(AI)** / 비서 = **외부 도구(함수)** / 업무 지시 = **도구 호출 요청**
 
 ---
 
@@ -107,8 +101,6 @@ xStudio Hackathon Lecture Series **#4**
 | 비서가 해당 부서에 연락합니다 | 서버가 외부 API를 호출합니다 |
 | 비서가 결과를 보고합니다 | 도구 결과가 Claude에게 전달됩니다 |
 | 여러분이 보고를 듣습니다 | 사용자가 최종 답변을 받습니다 |
-
-<br>
 
 > 💡 Tool Calling = AI가 **"이 업무를 이 정보로 처리해주세요"** 라고 요청하고,
 > 서버가 실제로 처리한 결과를 다시 AI에게 돌려주는 패턴
@@ -134,8 +126,7 @@ xStudio Hackathon Lecture Series **#4**
 🤖 📞 비서에게: "삼성전자 종목코드 찾아줘" → 005930
    📊 비서에게: "005930 시세 알려줘"   → 72,400원, +1.2%
          ↓
-🤖 "삼성전자(005930)의 현재 주가는 72,400원이며,
-     전일 대비 +1.2% 상승했습니다!" 🎉
+🤖 "삼성전자(005930) 현재 주가는 72,400원, +1.2% 상승!" 🎉
 ```
 
 ---
@@ -151,11 +142,8 @@ Claude(AI)는 아무리 똑똑해도 **혼자서는 못 하는 일**이 있어�
 | 계산기 사용 | 텍스트 생성만 가능 | 계산기 없는 회계사 |
 | API 호출 | 외부 시스템 접근 불가 | 밖에 못 나가는 직원 |
 
-<br>
-
-### Tool Calling이 해결합니다! ✅
-
-비서(도구)를 붙여주면, Claude는 **비서를 통해** 바깥 세계의 정보를 가져올 수 있어요!
+> 💡 Tool Calling이 해결합니다! 비서(도구)를 붙여주면,
+> Claude는 **비서를 통해** 바깥 세계의 정보를 가져올 수 있어요!
 
 ---
 
@@ -178,8 +166,6 @@ Claude(AI)는 아무리 똑똑해도 **혼자서는 못 하는 일**이 있어�
 | 📚 사내 위키 찾아보기 | 이미 정리된 문서 검색 | RAG |
 | 🎓 전문가 교육 받기 | 내가 직접 배워서 알기 | Fine-tuning |
 
-<br>
-
 | 방법 | 정보 시점 | 적합한 경우 |
 |------|----------|------------|
 | *Tool Calling* 📞 | **실시간!** | 주가, 날씨, 뉴스 |
@@ -199,8 +185,6 @@ Claude(AI)는 아무리 똑똑해도 **혼자서는 못 하는 일**이 있어�
 | 🔎 종목 검색 | 사용자가 "삼성" 하면 "삼성전자? 삼성SDI?" 찾아야 해요 |
 | 🌐 시장 현황 | 여러 API를 **조합**해서 브리핑을 만들어야 해요 |
 
-<br>
-
 > 💡 모두 **실시간 데이터**가 필요한 기능들이에요.
 > 비서(Tool)가 바깥에서 최신 정보를 가져다 주는 거죠!
 
@@ -214,7 +198,6 @@ Claude(AI)는 아무리 똑똑해도 **혼자서는 못 하는 일**이 있어�
 👤 사장님: "삼성전자 주가 알려줘"
      ↓
 🤖 AI비서: (업무 매뉴얼을 펼칩니다 📖)
-            "종목 검색 업무가 있네! 먼저 이걸 해야겠다"
      ↓
 📞 AI비서 → 종목검색부서: "삼성전자 코드 찾아주세요"
                          → "네, 005930입니다!"
@@ -222,9 +205,7 @@ Claude(AI)는 아무리 똑똑해도 **혼자서는 못 하는 일**이 있어�
 📊 AI비서 → 시세조회부서: "005930 시세 알려주세요"
                          → "72,400원, +1.2%입니다!"
      ↓
-🤖 AI비서: "사장님, 삼성전자 현재가 72,400원이고 1.2% 올랐습니다!"
-     ↓
-👤 사장님: "고마워요~" 😊
+🤖 AI비서: "사장님, 삼성전자 현재가 72,400원, 1.2% 올랐습니다!"
 ```
 
 ---
@@ -233,17 +214,11 @@ Claude(AI)는 아무리 똑똑해도 **혼자서는 못 하는 일**이 있어�
 
 ```
 [1] 👤 사용자 → 서버: "삼성전자 주가 알려줘"
-         ↓
 [2] 🖥️ 서버 → Claude API: 메시지 + 📖 업무 매뉴얼(4개 도구 정의)
-         ↓
 [3] 🤖 Claude 응답: "searchStock 부서에 연락해주세요!"
-         ↓
 [4] 🖥️ 서버: 📞 searchStock("삼성전자") 실행 → 005930
-         ↓
-[5] 🖥️ 서버 → Claude API: 📋 "결과 나왔어요, 005930이래요"
-         ↓
+[5] 🖥️ 서버 → Claude API: 📋 "결과: 005930이래요"
 [6] 🤖 Claude: 추가 업무 지시 or 최종 보고
-         ↓
 [7] 🖥️ 서버 → 👤 사용자: 실시간 스트리밍으로 답변 전달!
 ```
 
@@ -253,17 +228,12 @@ Claude(AI)는 아무리 똑똑해도 **혼자서는 못 하는 일**이 있어�
 
 비서 시스템에 꼭 필요한 3가지를 생각해 볼까요?
 
-### 1️⃣ 업무 매뉴얼 = Tool Definition (도구 정의)
-비서가 **할 수 있는 업무 목록** + 각 업무에 **필요한 정보**
-"종목 검색: 종목명이 필요함" / "시세 조회: 종목코드가 필요함"
-
-### 2️⃣ 주문서 = tool_use Block (도구 호출 요청)
-Claude가 "이 업무를 해주세요!"라고 보내는 **공식 주문서** 📝
-주문번호(`id`) + 업무명(`name`) + 필요한 정보(`input`)
-
-### 3️⃣ 영수증 = tool_result Block (도구 실행 결과)
-비서가 "다 했습니다! 결과는 이겁니다"라고 보내는 **영수증** 🧾
-주문번호(`tool_use_id`) + 결과(`content`)
+- **1️⃣ 업무 매뉴얼 = Tool Definition (도구 정의)**
+  비서가 **할 수 있는 업무 목록** + 각 업무에 **필요한 정보**
+- **2️⃣ 주문서 = tool_use Block (도구 호출 요청)**
+  Claude가 보내는 **공식 주문서** — 주문번호(`id`) + 업무명(`name`) + 정보(`input`)
+- **3️⃣ 영수증 = tool_result Block (도구 실행 결과)**
+  비서가 보내는 **영수증** — 주문번호(`tool_use_id`) + 결과(`content`)
 
 ---
 
@@ -308,8 +278,6 @@ B) "삼성전자 현재 주가 알려줘" 📊
 C) "영어로 이메일 번역해줘"
 D) "파이썬이란 무엇인지 알려줘"
 
-<br>
-
 ### 정답은...
 
 **B)** 🎉 실시간 주가는 Claude가 혼자 알 수 없어요!
@@ -323,8 +291,6 @@ D) "파이썬이란 무엇인지 알려줘"
 
 택배를 보내려면 **정해진 양식**에 맞춰 적어야 하죠! 📦
 
-### 택배 송장 양식
-
 | 항목 | 필수? | 예시 |
 |------|------|------|
 | 보내는 사람 | ✅ 필수 | 홍길동 |
@@ -333,14 +299,12 @@ D) "파이썬이란 무엇인지 알려줘"
 | 연락처 | ✅ 필수 | 010-1234-5678 |
 | 배송 메모 | ❌ 선택 | "문 앞에 놔주세요" |
 
-빈칸에 아무거나 쓰면 안 돼요!
-**정해진 칸에 맞는 정보**만 써야 택배가 제대로 갑니다! 📮
+> 💡 빈칸에 아무거나 쓰면 안 돼요!
+> **정해진 칸에 맞는 정보**만 써야 택배가 제대로 갑니다! 📮
 
 ---
 
-## 🔗 이것이 Tool Calling에서는...
-
-### JSON Schema = 도구에 보내는 "송장 양식"
+## 🔗 JSON Schema = 도구에 보내는 "송장 양식"
 
 ```
 도구의 입력 양식 (input_schema):
@@ -351,7 +315,6 @@ D) "파이썬이란 무엇인지 알려줘"
   │    ├── query (종목명)               │
   │    │     타입: "string" (글자)       │
   │    │     설명: "검색할 종목명"        │
-  │    │                               │
   │ ⭐ 필수 항목 (required):            │
   │    └── ["query"]  ← 꼭 써야 해요!   │
   └─────────────────────────────────────┘
@@ -362,7 +325,7 @@ D) "파이썬이란 무엇인지 알려줘"
 
 ---
 
-## 💻 JSON Schema 실제 코드
+## 💻 JSON Schema 실제 코드 — 입력 있는 도구
 
 ```typescript
 // 📦 택배 송장처럼, 정해진 양식에 맞춰 작성!
@@ -378,6 +341,10 @@ input_schema: {
 }
 ```
 
+---
+
+## 💻 JSON Schema 실제 코드 — 입력 없는 도구
+
 ### 양식이 비어있는 도구도 있어요!
 
 ```typescript
@@ -388,6 +355,9 @@ input_schema: {
   required: [],       // 필수 항목 없음!
 }
 ```
+
+> 📌 **JSON Schema** = 택배 송장 양식!
+> `properties` = 기입 항목 / `required` = 필수 항목 / `description` = 항목 설명
 
 ---
 
@@ -422,8 +392,6 @@ input_schema: {
 | 2 | 📊 `getStockQuote` | 은행 전광판 보기 (현재 환율/주가) | 종목코드 |
 | 3 | 📰 `getStockNews` | 비서가 신문 스크랩해 오기 | 종목코드 |
 | 4 | 🌐 `getMarketOverview` | 아침 뉴스 브리핑 (오늘 시장 전체 요약) | 없음! |
-
-<br>
 
 > 💡 비서에게 업무 매뉴얼을 주면, 비서가 **스스로 판단**해서 필요한 업무를 수행해요!
 
@@ -464,9 +432,7 @@ searchStock("삼성전자")
 Claude: "좋아, 코드를 알았으니 시세를 조회하자!"
 ```
 
-### 업무 매뉴얼의 핵심 한 줄 ⭐
-
-> "종목코드를 모를 때 **먼저** 이 도구를 사용하세요"
+> ⭐ "종목코드를 모를 때 **먼저** 이 도구를 사용하세요"
 > → 이 한 문장이 Claude의 **호출 순서**를 결정합니다!
 
 ---
@@ -493,8 +459,6 @@ Claude: "좋아, 코드를 알았으니 시세를 조회하자!"
 }
 ```
 
-> 📁 파일: `lib/tools.ts`
-
 ---
 
 ## 🎯 도구 2: getStockQuote 📊
@@ -511,7 +475,6 @@ Claude: "좋아, 코드를 알았으니 시세를 조회하자!"
   │ 현재가: 72,400원  📈 +1.2%          │
   │ 거래량: 12,345,678주                 │
   │ 시가총액: 432조원                     │
-  │ PER: 12.5  PBR: 1.3                 │
   └─────────────────────────────────────┘
 ```
 
@@ -527,12 +490,8 @@ Claude: "005930 종목코드를 알았으니, 시세를 봐야지!"
 📊 전광판 보기: getStockQuote("005930")
              ↓
 결과: {
-  이름: "삼성전자",
-  현재가: 72,400원,
-  변동: +1.2%,
-  거래량: 12,345,678,
-  시가총액: 432조,
-  PER: 12.5 ...
+  이름: "삼성전자", 현재가: 72,400원,
+  변동: +1.2%, 거래량: 12,345,678
 }
 ```
 
@@ -540,10 +499,6 @@ Claude: "005930 종목코드를 알았으니, 시세를 봐야지!"
 
 입력이 **종목코드(005930)**이에요!
 사용자가 "삼성전자"라고 물으면, **반드시 searchStock을 먼저** 거쳐야 해요!
-
-```
-사용자: "삼성전자" → 🔍 searchStock → "005930" → 📊 getStockQuote
-```
 
 ---
 
@@ -569,8 +524,6 @@ Claude: "005930 종목코드를 알았으니, 시세를 봐야지!"
 }
 ```
 
-> 📁 파일: `lib/tools.ts`
-
 ---
 
 ## 🎯 도구 3: getStockNews 📰
@@ -581,7 +534,6 @@ Claude: "005930 종목코드를 알았으니, 시세를 봐야지!"
 
 ```
 📰 오늘의 삼성전자 뉴스 스크랩:
-
   1. "삼성전자, AI반도체 투자 확대" — 한국경제
   2. "갤럭시 S26 출시 임박" — 매일경제
   3. "삼성전자 실적 전망 긍정적" — 조선비즈
@@ -626,21 +578,16 @@ Claude: "005930 종목코드를 알았으니, 시세를 봐야지!"
 
 ```
 🌐 오늘의 시장 브리핑:
-
   📈 코스피: 2,650 (+0.8%)
   📉 코스닥: 850 (-0.3%)
-
   🏆 시총 TOP 5 (KOSPI):
      1. 삼성전자  432조원
      2. SK하이닉스 180조원
      3. LG에너지솔루션 100조원
-     ...
 ```
 
-### 특별한 점! ⭐
-
-이 도구는 **필요한 정보가 없어요!**
-그냥 "시장 어때?"라고 물으면 자동으로 전체 브리핑을 해줘요!
+> ⭐ 이 도구는 **필요한 정보가 없어요!**
+> 그냥 "시장 어때?"라고 물으면 자동으로 전체 브리핑을 해줘요!
 
 ---
 
@@ -674,14 +621,8 @@ Claude: "005930 종목코드를 알았으니, 시세를 봐야지!"
 | 📰 `getStockNews` | 신문 스크랩 | 종목코드 | 🔍 먼저! |
 | 🌐 `getMarketOverview` | 아침 브리핑 | 없음 | 없음 (독립!) |
 
-```
-"삼성전자 주가와 뉴스 알려줘" 일 때:
-
-  🔍 searchStock("삼성전자")  →  코드: "005930"
-       ↓                           ↓
-       📊 getStockQuote("005930")  |
-       📰 getStockNews("005930")   ← 동시에 가능!
-```
+> 💡 "삼성전자 주가와 뉴스 알려줘" 일 때:
+> 🔍 searchStock → 코드 → 📊 getStockQuote + 📰 getStockNews 동시에!
 
 ---
 
@@ -693,8 +634,6 @@ A) getStockQuote("카카오") 바로 호출
 B) searchStock("카카오") → getStockQuote("035720")
 C) getMarketOverview() 호출
 D) getStockNews("카카오") 호출
-
-<br>
 
 ### 정답은...
 
@@ -758,7 +697,6 @@ D) getStockNews("카카오") 호출
 ```
 
 > 💡 모든 업무가 이 **한 곳(데스크)**을 거쳐요!
-> 어떤 업무든 접수 → 해당 부서 연결 → 결과 반환!
 
 ---
 
@@ -776,7 +714,6 @@ D) getStockNews("카카오") 호출
       │  "getStockNews"? │ → 📰 뉴스조회부서
       │  "getMarket..."? │ → 🌐 시장현황부서
       │  그 외?          │ → ❌ "그런 업무 없습니다"
-      │                  │
       └──────────────────┘
 ```
 
@@ -789,9 +726,8 @@ D) getStockNews("카카오") 호출
 ```typescript
 // 🖥️ 비서의 업무 처리 데스크 — 모든 요청이 여기로!
 export async function executeTool(
-  name: string,                        // 어떤 업무?
-  input: Record<string, string>        // 필요한 정보
-): Promise<string> {                   // 결과는 항상 문자열!
+  name: string, input: Record<string, string>
+): Promise<string> {
   switch (name) {
     case "searchStock":
       return JSON.stringify(await searchStock(input.query));
@@ -806,8 +742,6 @@ export async function executeTool(
   }
 }
 ```
-
-> 📁 파일: `lib/tools.ts`
 
 ---
 
@@ -836,9 +770,7 @@ export async function executeTool(
    📋 봉투에 적는 정보:
       보낸 사람 (Referer): finance.daum.net
       신분증 (User-Agent): Chrome 브라우저
-
    ⏳ 답장 기다리기...
-
    📬 답장 도착! (Response):
       { 종목명: "삼성전자", 현재가: 72400, ... }
 ```
@@ -848,9 +780,7 @@ export async function executeTool(
 
 ---
 
-## 🔗 HTTP 클라이언트가 코드에서는...
-
-### 우리 프로젝트는 2개의 우체통을 사용해요! 📮
+## 🔗 HTTP 클라이언트 — 2개의 우체통 📮
 
 | 우체통 📮 | 받는 곳 | 어떤 편지? |
 |----------|---------|----------|
@@ -861,9 +791,9 @@ export async function executeTool(
 
 | 항목 | 비유 | 왜 필요한가요? |
 |------|------|-------------|
-| `Referer` 📍 | "다음 금융에서 왔어요" | 출처 확인 (다음만 필요) |
+| `Referer` 📍 | "다음 금융에서 왔어요" | 출처 확인 |
 | `User-Agent` 🪪 | "저 Chrome이에요" | 봇이 아님을 증명 |
-| `cache: "no-store"` 🔄 | "항상 새 답장 줘" | 주가는 실시간! 캐시 X |
+| `cache: "no-store"` 🔄 | "항상 새 답장 줘" | 주가는 실시간! |
 
 ---
 
@@ -871,25 +801,21 @@ export async function executeTool(
 
 ```typescript
 // ✉️ 다음 금융에 편지 보내기
-const DAUM_API = "https://finance.daum.net";     // 📬 받는 주소
+const DAUM_API = "https://finance.daum.net";
 const DAUM_HEADERS = {
-  Referer: "https://finance.daum.net/",          // 📍 출처 적기
-  "User-Agent": "Mozilla/5.0 (Macintosh...)",    // 🪪 신분증
+  Referer: "https://finance.daum.net/",
+  "User-Agent": "Mozilla/5.0 (Macintosh...)",
 };
 
 async function fetchDaum(path: string) {
   const res = await fetch(`${DAUM_API}${path}`, {
-    headers: DAUM_HEADERS,   // 📋 봉투에 정보 적기
-    cache: "no-store",       // 🔄 항상 최신 정보!
+    headers: DAUM_HEADERS,
+    cache: "no-store",
   });
-  if (!res.ok) {             // ❌ 답장이 안 왔으면?
-    throw new Error(`Daum API error: ${res.status}`);
-  }
-  return res.json();         // 📬 답장 내용 읽기
+  if (!res.ok) throw new Error(`Daum API error: ${res.status}`);
+  return res.json();
 }
 ```
-
-> 📁 파일: `lib/daum-finance.ts`
 
 ---
 
@@ -899,16 +825,14 @@ async function fetchDaum(path: string) {
 
 ```
 📞 종목 전화번호부 (MAJOR_STOCKS):
-
   삼성전자     → 005930 (KOSPI)
   SK하이닉스   → 000660 (KOSPI)
   현대자동차   → 005380 (KOSPI)
-  현대차       → 005380 (KOSPI)  ← 같은 번호! (별칭)
+  현대차       → 005380 (KOSPI)  ← 별칭!
   네이버       → 035420 (KOSPI)
-  NAVER       → 035420 (KOSPI)  ← 같은 번호! (영문명)
+  NAVER       → 035420 (KOSPI)  ← 영문명!
   한국전력     → 015760 (KOSPI)
-  한전         → 015760 (KOSPI)  ← 같은 번호! (약칭)
-  ...약 70개 종목
+  한전         → 015760 (KOSPI)  ← 약칭!
 ```
 
 > 💡 사람들이 같은 종목을 다양하게 부르니까,
@@ -922,17 +846,13 @@ async function fetchDaum(path: string) {
 
 | 검색어 | 결과 🔍 |
 |--------|---------|
-| "삼성" | 삼성전자, 삼성SDI, 삼성바이오로직스, 삼성물산, 삼성전기 |
+| "삼성" | 삼성전자, 삼성SDI, 삼성바이오로직스 등 |
 | "현대차" | 현대자동차 (코드: 005380, 중복 제거됨) |
 | "005930" | 삼성전자 (코드로도 검색 가능!) |
-| "카카오" | 카카오, 카카오뱅크, 카카오페이, 카카오게임즈 |
-| "테슬라" | ❌ 못 찾음 (해외 종목은 전화번호부에 없어요) |
+| "카카오" | 카카오, 카카오뱅크, 카카오페이 등 |
+| "테슬라" | ❌ 못 찾음 (해외 종목은 없어요) |
 
-### 검색의 3가지 똑똑한 기능
-
-- 🔤 대소문자 무시 — "naver"도 "NAVER"도 OK!
-- 📝 부분 일치 — "삼성"으로 "삼성전자" 찾기
-- 🚫 중복 제거 — "현대차"와 "현대자동차"는 같은 코드!
+> 💡 🔤 대소문자 무시 · 📝 부분 일치 · 🚫 중복 제거 — 3가지 똑똑한 기능!
 
 ---
 
@@ -948,15 +868,8 @@ async function fetchDaum(path: string) {
 📬 편지 보내기: /api/quotes/A005930
                   ↓
 📊 답장:
-  { 종목명: "삼성전자",
-    현재가: 72,400,
-    변동률: +1.2%,
-    거래량: 12,345,678,
-    시가총액: 432조,
-    PER: 12.5,
-    PBR: 1.3,
-    출처: "다음 금융(finance.daum.net)" ← 데이터 출처도 함께!
-  }
+  { 종목명: "삼성전자", 현재가: 72,400,
+    변동률: +1.2%, 거래량: 12,345,678 }
 ```
 
 > 💡 `source` 필드를 포함해서, Claude가 "출처: 다음 금융"이라고 답변에 적을 수 있게 해요!
@@ -969,10 +882,9 @@ async function fetchDaum(path: string) {
 
 ```
 📰 네이버 뉴스 API 응답:
-
   [그룹1]
-    ├── 기사1: "삼성전자 AI반도체 투자" (한국경제, 09:30)
-    ├── 기사2: "갤럭시 S26 출시" (매일경제, 10:15)
+    ├── 기사1: "삼성전자 AI반도체 투자" (한국경제)
+    ├── 기사2: "갤럭시 S26 출시" (매일경제)
     └── 기사3: ...
   [그룹2]
     ├── 기사4: ...
@@ -981,9 +893,9 @@ async function fetchDaum(path: string) {
 
 ### 비서의 스크랩 방법 ✂️
 
-1. 📂 각 그룹 열기 — "기사가 있나 확인!"
-2. ✂️ 기사 5건만 스크랩 — "너무 많으면 사장님이 힘드시니까"
-3. 📋 정리해서 보고 — 제목, 요약, 날짜, 출처
+- 📂 각 그룹 열기 — "기사가 있나 확인!"
+- ✂️ 기사 5건만 스크랩 — "너무 많으면 사장님이 힘드시니까"
+- 📋 정리해서 보고 — 제목, 요약, 날짜, 출처
 
 ---
 
@@ -993,22 +905,16 @@ async function fetchDaum(path: string) {
 
 ```
 🌐 아침 브리핑 만들기:
-
   📺 다음 금융 채널         📺 네이버 금융 채널
    └── 시총 TOP 5 정보       └── 코스피/코스닥 지수
         ↓                         ↓
         +────────+────────────────+
                  ↓
          🗞️ 통합 브리핑 완성!
-
-  "코스피 2,650 (+0.8%), 코스닥 850 (-0.3%)
-   시총 1위: 삼성전자 432조원..."
 ```
 
-### 똑똑한 설계! ⭐
-
-두 채널을 **동시에**(Promise.all) 확인해서 시간을 절약해요!
-마치 TV 두 대를 동시에 보는 것과 같아요! 📺📺
+> ⭐ 두 채널을 **동시에**(Promise.all) 확인해서 시간을 절약해요!
+> 마치 TV 두 대를 동시에 보는 것과 같아요! 📺📺
 
 ---
 
@@ -1046,9 +952,7 @@ async function fetchDaum(path: string) {
    🎹 피아노  = getMarketOverview
 
 🎵 지휘자 (route.ts):
-   "자, 바이올린부터 시작! 🎻"
-   "좋아, 이제 트럼펫과 드럼 동시에! 🎺🥁"
-   "완벽해, 마무리합시다! 🎵"
+   "자, 바이올린부터! 🎻 → 트럼펫과 드럼 동시에! 🎺🥁"
 ```
 
 > 💡 **오케스트레이션** = 여러 도구를 **적절한 순서와 타이밍**으로
@@ -1062,7 +966,6 @@ async function fetchDaum(path: string) {
 
 ```
 📋 route.ts의 역할:
-
   1. 👤 사용자 요청 접수
   2. 🤖 Claude에게 전달 (+ 업무 매뉴얼 첨부)
   3. 📝 Claude의 주문서(tool_use) 접수
@@ -1081,11 +984,11 @@ async function fetchDaum(path: string) {
 ```typescript
 // 🤖 Claude에게 업무 매뉴얼과 함께 메시지 전달!
 const stream = anthropic.messages.stream({
-  model: "claude-haiku-4-5-20251001",    // 어떤 AI 비서?
-  max_tokens: 4096,                      // 최대 보고서 길이
-  system: systemPrompt,                  // 업무 지침서
-  messages: apiMessages,                 // 대화 내용
-  tools: toolDefinitions,               // 📖 업무 매뉴얼 4개!
+  model: "claude-haiku-4-5-20251001",
+  max_tokens: 4096,
+  system: systemPrompt,
+  messages: apiMessages,
+  tools: toolDefinitions,  // 📖 업무 매뉴얼 4개!
 });
 ```
 
@@ -1096,8 +999,6 @@ const stream = anthropic.messages.stream({
 | `messages` | 지금까지의 대화 기록 |
 | *`tools`* | *📖 업무 매뉴얼 (4개 도구 정의)* |
 
-> 💡 `tools`를 전달하면 Claude가 **필요할 때 업무를 지시**할 수 있어요!
-
 ---
 
 ## 🎯 주문서(tool_use) 접수하기
@@ -1106,7 +1007,6 @@ Claude가 보내는 응답에는 **2가지**가 섞여 있어요!
 
 ```
 🤖 Claude의 응답 (content 배열):
-
   [
     📝 "삼성전자의 주가를 확인해 보겠습니다."  (말하기)
     📋 주문서: searchStock("삼성전자")          (업무 지시)
@@ -1120,7 +1020,7 @@ Claude가 보내는 응답에는 **2가지**가 섞여 있어요!
 
 ---
 
-## 🔗 tool_use 블록 수집 코드
+## 🔗 tool_use 블록 수집 코드 (1/2)
 
 ```typescript
 // 📋 Claude의 응답에서 주문서(tool_use)만 골라내기!
@@ -1130,9 +1030,17 @@ const toolUseBlocks = [];  // 📝 주문서 모음
 // 🗣️ Claude가 말하는 부분 → 사용자에게 실시간 전달
 stream.on("text", (text) => {
   fullText += text;
-  send({ type: "text_delta", text });  // 실시간 전달!
+  send({ type: "text_delta", text });
 });
+```
 
+> 💡 텍스트 부분은 실시간으로 사용자에게 스트리밍!
+
+---
+
+## 🔗 tool_use 블록 수집 코드 (2/2)
+
+```typescript
 // 📋 최종 응답에서 주문서 수집
 const response = await stream.finalMessage();
 for (const block of response.content) {
@@ -1146,6 +1054,8 @@ for (const block of response.content) {
 }
 ```
 
+> 💡 `tool_use` 타입의 블록만 골라서 주문서 배열에 모아요!
+
 ---
 
 ## 🎯 tool_use_id = 진동벨 번호 📟
@@ -1154,7 +1064,6 @@ for (const block of response.content) {
 
 ```
 📟 카페 주문 시스템:
-
   주문: "아이스 아메리카노"
   진동벨 번호: #073
        ↓
@@ -1164,16 +1073,8 @@ for (const block of response.content) {
   → 번호로 내 음료를 정확히 찾음!
 ```
 
-### Tool Calling에서도 똑같아요!
-
-```
-📝 주문서 (tool_use):
-   주문번호: "toolu_01ABC"  ← 자동 생성!
-   업무: searchStock
-       ↕ 번호로 매칭!
-🧾 영수증 (tool_result):
-   주문번호: "toolu_01ABC"  ← 같은 번호!
-```
+> 💡 Tool Calling에서도 **주문번호(tool_use_id)**로 1:1 매칭!
+> `toolu_01ABC` ← 주문서와 영수증이 같은 번호!
 
 ---
 
@@ -1183,13 +1084,11 @@ for (const block of response.content) {
 📝 Claude가 보내는 주문서:          🧾 서버가 보내는 영수증:
 ┌─────────────────────┐        ┌─────────────────────┐
 │ type: "tool_use"    │        │ type: "tool_result"  │
-│ id: "toolu_01ABC"  ─┼────────┼─ tool_use_id: "toolu_01ABC"
+│ id: "toolu_01ABC"  ─┼────────┼─ tool_use_id         │
 │ name: "searchStock" │        │ content: "결과..."    │
 │ input: {query:...}  │        │                      │
 └─────────────────────┘        └─────────────────────┘
 ```
-
-### 매칭 규칙 4가지
 
 - 🏷️ 모든 주문서에는 **고유 번호**(id)가 자동 부여
 - 🔗 모든 영수증에는 **대응하는 번호**(tool_use_id)가 필수
@@ -1208,15 +1107,11 @@ for (const block of response.content) {
 🖥️ executeTool 데스크:
      "searchStock이군! 종목검색부서에 연락!"
      ↓
-📞 종목검색부서:
-     "삼성전자? 코드는 005930이에요!"
+📞 종목검색부서: "코드는 005930이에요!"
      ↓
-📦 결과를 JSON 문자열로 포장:
-     '{"success":true,"results":[{"name":"삼성전자","code":"005930"}]}'
+📦 결과를 JSON 문자열로 포장
      ↓
-🧾 영수증 발행:
-     주문번호: "toolu_01ABC"
-     결과: (위의 JSON 문자열)
+🧾 영수증 발행: 주문번호 + 결과
 ```
 
 ---
@@ -1230,13 +1125,10 @@ const toolResults = [];
 for (const tool of toolUseBlocks) {
   let result;
   try {
-    // 🖥️ 업무 처리 데스크에서 실행
     result = await executeTool(tool.name, tool.input);
   } catch (e) {
-    // ❌ 에러 발생 시에도 결과를 보고
     result = JSON.stringify({ error: e.message });
   }
-
   // 🧾 영수증 발행 — 주문번호로 매칭!
   toolResults.push({
     type: "tool_result",
@@ -1246,8 +1138,6 @@ for (const tool of toolUseBlocks) {
 }
 ```
 
-> 📁 파일: `app/api/chat/route.ts`
-
 ---
 
 ## 🎯 결과를 Claude에게 돌려주기
@@ -1256,20 +1146,14 @@ for (const tool of toolUseBlocks) {
 
 ```
 📋 대화 기록에 추가:
-
   [대화 1] 👤 사용자: "삼성전자 주가 알려줘"
-
-  [대화 2] 🤖 Claude: "확인해 볼게요" + 📝 주문서(searchStock)
-
-  [대화 3] 👤 (도구 결과): 🧾 영수증 "005930 찾았습니다"
+  [대화 2] 🤖 Claude: "확인해 볼게요" + 📝 주문서
+  [대화 3] 👤 (도구 결과): 🧾 영수증
            ↑ 이것을 사용자(user) 메시지로 추가!
-
   [대화 4] 🤖 Claude: (결과를 보고 다음 행동 결정...)
 ```
 
-### 핵심 규칙! ⭐
-
-> 🧾 영수증(tool_result)은 반드시 **`role: "user"` 메시지**로 전달!
+> ⭐ 영수증(tool_result)은 반드시 **`role: "user"` 메시지**로 전달!
 > Claude 입장에서 도구 결과는 **"사용자로부터 받은 정보"**예요!
 
 ---
@@ -1277,20 +1161,17 @@ for (const tool of toolUseBlocks) {
 ## 💻 tool_result 주입 코드
 
 ```typescript
-// 1️⃣ Claude의 응답을 대화 기록에 추가 (주문서 포함!)
+// 1️⃣ Claude의 응답을 대화 기록에 추가
 apiMessages.push({
-  role: "assistant",            // 🤖 Claude가 한 말
-  content: response.content,    // 텍스트 + 주문서 전체!
+  role: "assistant",
+  content: response.content,  // 텍스트 + 주문서 전체!
 });
-
 // 2️⃣ 업무 결과를 대화 기록에 추가
 apiMessages.push({
-  role: "user",                 // 👤 사용자 역할로!
-  content: toolResults,         // 🧾 영수증 배열
+  role: "user",               // 👤 사용자 역할로!
+  content: toolResults,       // 🧾 영수증 배열
 });
-
 // 3️⃣ 다음 루프에서 Claude API 다시 호출!
-// → Claude가 영수증을 보고 다음 행동을 결정합니다
 ```
 
 > 💡 이 과정이 **while 루프** 안에서 반복돼요!
@@ -1307,8 +1188,6 @@ B) `role: "user"` — 사용자 역할로 보내기
 C) `role: "tool"` — 도구 역할로 보내기
 D) `role: "system"` — 시스템 메시지로 보내기
 
-<br>
-
 ### 정답은...
 
 **B)** 🎉 `role: "user"`로 보내야 해요!
@@ -1324,20 +1203,13 @@ Claude 입장에서 도구 결과는 "사용자로부터 받은 정보"입니다
 
 ```
 대화 기록 (apiMessages):
-
   [1] 👤 user:      "삼성전자 주가 알려줘"
-
   [2] 🤖 assistant: "확인해 볼게요~"
                      + 📝 searchStock("삼성전자")
-
   [3] 👤 user:      🧾 "005930 찾았습니다"
-
   [4] 🤖 assistant: 📝 getStockQuote("005930")
-
   [5] 👤 user:      🧾 "72,400원, +1.2%"
-
-  [6] 🤖 assistant: "삼성전자 현재가 72,400원이고
-                      전일 대비 +1.2% 상승했습니다!" ✅
+  [6] 🤖 assistant: "삼성전자 현재가 72,400원, +1.2%!" ✅
 ```
 
 > 💡 user와 assistant가 **번갈아** 나타나요!
@@ -1353,13 +1225,10 @@ Claude 입장에서 도구 결과는 "사용자로부터 받은 정보"입니다
 👤 "삼성전자 주가와 뉴스 알려줘"
 
 🤖 Claude (코드를 이미 알고 있을 때):
-   📝 주문서 1: getStockQuote("005930")  ← 시세 조회
-   📝 주문서 2: getStockNews("005930")   ← 뉴스 조회
-
+   📝 주문서 1: getStockQuote("005930")
+   📝 주문서 2: getStockNews("005930")
    (두 주문서를 한 번에 보냄!)
 ```
-
-### 비유로 말하면...
 
 > 🏃 비서 A에게: "삼성전자 시세 알려줘!"
 > 🏃 비서 B에게: "삼성전자 뉴스 스크랩해줘!"
@@ -1393,11 +1262,10 @@ Claude 입장에서 도구 결과는 "사용자로부터 받은 정보"입니다
 
 비서가 일을 마치면 2가지 중 하나를 말해요!
 
-### 🔄 "아직 더 할 일이 있어요!" (stop_reason = `"tool_use"`)
-→ 도구를 더 호출해야 해요! 루프 계속!
-
-### ✅ "다 했습니다, 사장님!" (stop_reason = `"end_turn"`)
-→ 최종 답변 완성! 루프 종료!
+- 🔄 **"아직 더 할 일이 있어요!"** (stop_reason = `"tool_use"`)
+  → 도구를 더 호출해야 해요! 루프 계속!
+- ✅ **"다 했습니다, 사장님!"** (stop_reason = `"end_turn"`)
+  → 최종 답변 완성! 루프 종료!
 
 ```
 while (계속 일하나?) {
@@ -1415,21 +1283,19 @@ while (계속 일하나?) {
 ```typescript
 // ✅ 일이 끝났는지 확인!
 if (
-  toolUseBlocks.length === 0 ||        // 주문서가 없거나
-  response.stop_reason === "end_turn"  // Claude가 "다 했어요!"
+  toolUseBlocks.length === 0 ||
+  response.stop_reason === "end_turn"
 ) {
   send({ type: "done", text: fullText });
   break;    // 🛑 루프 종료!
 }
 ```
 
-### stop_reason 종류 총정리
-
 | stop_reason | 비유 🏢 | 의미 |
 |-------------|---------|------|
-| `"end_turn"` | ✅ "보고 완료합니다!" | 최종 답변, 루프 종료 |
-| `"tool_use"` | 📝 "업무 지시서 있습니다" | 도구 실행 필요, 루프 계속 |
-| `"max_tokens"` | ⚠️ "보고서 칸이 부족해요" | 응답이 잘림 (비정상) |
+| `"end_turn"` | ✅ "보고 완료!" | 최종 답변, 루프 종료 |
+| `"tool_use"` | 📝 "업무 지시서 있음" | 도구 실행 필요, 루프 계속 |
+| `"max_tokens"` | ⚠️ "보고서 칸 부족" | 응답이 잘림 (비정상) |
 
 ---
 
@@ -1439,11 +1305,9 @@ if (
 
 ```
 😱 위험한 시나리오:
-
   Claude: searchStock("삼전") → 결과 없음
   Claude: searchStock("삼성전자주식") → 결과 없음
   Claude: searchStock("Samsung") → 결과 없음
-  Claude: searchStock("삼성전자 보통주") → 결과 없음
   ... (영원히 반복! 💸 비용 폭탄!)
 ```
 
@@ -1451,12 +1315,8 @@ if (
 
 ```typescript
 let turnCount = 0;
-const maxTurns = 10;      // 🛡️ 최대 10번까지만!
-
-while (turnCount < maxTurns) {
-  turnCount++;
-  // ... 업무 실행 ...
-}
+const maxTurns = 10;  // 🛡️ 최대 10번까지만!
+while (turnCount < maxTurns) { turnCount++; }
 ```
 
 > 💡 마치 "업무 시간 제한: 10번 시도 후 자동 종료!"
@@ -1469,16 +1329,12 @@ while (turnCount < maxTurns) {
 
 ```
 📦 택배 배송 추적:
-
   ✅ 정상: 택배 도착! → 사장님께 전달
-
   ❌ 분실 시:
      [1단계] 📬 배송사에서 확인 → "배송 실패입니다"
      [2단계] 📋 비서가 정리 → "택배 분실, 재배송 요청 가능"
-     [3단계] 🗣️ 사장님께 보고 → "죄송합니다, 현재 배송에 문제가..."
+     [3단계] 🗣️ 사장님께 보고 → "죄송합니다, 현재 배송에..."
 ```
-
-### 코드의 3단계 에러 처리도 똑같아요!
 
 | 단계 | 위치 | 비유 |
 |------|------|------|
@@ -1494,20 +1350,15 @@ while (turnCount < maxTurns) {
 
 ```
 📦 시세 조회 실패:
-
   1. getStockQuote("005930") → 💥 HTTP 500 에러!
   2. result = { success: false, error: "시세 조회 실패" }
   3. 🧾 영수증으로 Claude에게 전달 (에러 내용 포함!)
   4. 🤖 Claude: "죄송합니다. 현재 시세 정보를 가져오는 데
-                 일시적인 문제가 있습니다.
-                 잠시 후 다시 시도해 주세요." 😊
+                 일시적인 문제가 있습니다." 😊
 ```
 
-### 에러를 무시하면?
-
-- 🤖 Claude가 결과 없이 혼란스러워해요
-- 😵 부정확한 정보를 제공할 수 있어요
-- ⚠️ **에러도 정보!** Claude가 적절히 안내할 수 있게 해주세요!
+- ⚠️ 에러를 무시하면 Claude가 혼란스러워해요
+- 🤖 **에러도 정보!** Claude가 적절히 안내할 수 있게 해주세요!
 
 ---
 
@@ -1527,7 +1378,6 @@ while (turnCount < maxTurns) {
 
 ```
 🔄 에이전트 루프 (while):
-
   ┌──→ 🤖 Claude API 호출 (메시지 + 업무 매뉴얼)
   │              ↓
   │     🗣️ 텍스트 → 사용자에게 실시간 전달
@@ -1535,14 +1385,10 @@ while (turnCount < maxTurns) {
   │              ↓
   │     📝 주문서가 있나요?
   │      ╱          ╲
-  │    Yes            No
-  │    ╱                ╲
-  │   ↓                  ↓
-  │  🖥️ executeTool    ✅ 최종 답변!
-  │   ↓                  ↓
-  │  🧾 영수증 생성     break (루프 종료)
+  │    Yes            No → ✅ break
+  │    ╱
+  │  🖥️ executeTool → 🧾 영수증
   │   ↓
-  │  📋 대화 기록에 추가
   └──┘ (최대 10턴!)
 ```
 
@@ -1554,20 +1400,17 @@ while (turnCount < maxTurns) {
 
 ```
 🚕 택시 미터기 비유:
-
   Turn 1: 📋 대화 1통 → 💰 기본요금
   Turn 2: 📋 대화 2통 → 💰 기본요금 + 추가
   Turn 3: 📋 대화 3통 → 💰 기본요금 + 추가 + 추가
-
   → 턴이 늘수록 📋 대화가 길어져서 💰 비용 증가!
 ```
 
-### 실제 비용 추적 코드
+### 실제 비용 추적
 
 ```typescript
 // 💰 비용 계산 (Claude Haiku 4.5)
 // 입력: $1.00/100만 토큰, 출력: $5.00/100만 토큰
-const totalCostKRW = inputCostKRW + outputCostKRW;
 // 결과 예시: "입력 3,245토큰 + 출력 1,891토큰 = 18.49원"
 ```
 
@@ -1584,15 +1427,13 @@ B) 주문서(tool_use)가 없으면 / Claude가 end_turn을 보내면
 C) 사용자가 취소하면 / 서버가 재시작하면
 D) 10번 반복하면 / 메모리가 부족하면
 
-<br>
-
 ### 정답은...
 
 **B)** 🎉
 1. 📝 주문서가 없으면 (= 더 할 일이 없음)
 2. ✅ Claude가 `end_turn`을 보내면 (= "다 했어요!")
 
-+ D)의 10번 반복도 **안전장치**로 루프를 종료해요! (maxTurns)
+> 💡 D)의 10번 반복도 **안전장치**로 루프를 종료해요! (maxTurns)
 
 ---
 
@@ -1603,7 +1444,7 @@ D) 10번 반복하면 / 메모리가 부족하면
 > 1. 🤖 Claude에게 **업무 매뉴얼(tools)**과 함께 질문 전달
 > 2. 📝 Claude가 **주문서(tool_use)**를 보내면 실행
 > 3. 🧾 **영수증(tool_result)**을 Claude에게 돌려줌
-> 4. 🔄 Claude가 "더 할 일 있어요!" → 반복 / "다 했어요!" → 종료
+> 4. 🔄 "더 할 일 있어요!" → 반복 / "다 했어요!" → 종료
 > 5. 🛡️ **maxTurns(10턴)** 안전장치로 무한 루프 방지!
 
 ---
@@ -1625,7 +1466,6 @@ D) 10번 반복하면 / 메모리가 부족하면
 
 ```
 🎬 등장인물:
-
   👤 사용자 (사장님)
   🤖 Claude (AI 비서)
   🔍 searchStock (전화번호부 담당자)
@@ -1646,15 +1486,9 @@ D) 10번 반복하면 / 메모리가 부족하면
      ↓
 🤖 Claude: (📖 업무 매뉴얼을 확인합니다...)
            "삼성전자... 종목코드를 모르겠네.
-            매뉴얼에 'searchStock: 종목코드를 모를 때 먼저 사용'
-            이라고 적혀있어!
             🔍 전화번호부부터 찾아보자!"
      ↓
-📝 주문서 발행:
-   주문번호: toolu_01ABC
-   업무: searchStock
-   입력: {query: "삼성전자"}
-
+📝 주문서: searchStock({query: "삼성전자"})
 🤖 stop_reason: "tool_use" ← "아직 할 일이 있어요!"
 ```
 
@@ -1665,42 +1499,37 @@ D) 10번 반복하면 / 메모리가 부족하면
 ```
 🖥️ 본부: "주문서 접수! executeTool 데스크로!"
      ↓
-🖥️ executeTool: "searchStock이군! 종목검색부서로 연결!"
+🖥️ executeTool: "searchStock이군! 종목검색부서로!"
      ↓
 🔍 searchStock("삼성전자"):
      📞 전화번호부 검색...
-     "삼성전자" → 005930 (KOSPI) ✅ 찾았다!
+     "삼성전자" → 005930 (KOSPI) ✅
      ↓
 🧾 영수증 발행:
-   주문번호: toolu_01ABC ← 같은 번호!
    결과: '{"success":true,"results":[
-           {"name":"삼성전자","code":"005930","market":"KOSPI"}
-         ]}'
+     {"name":"삼성전자","code":"005930","market":"KOSPI"}
+   ]}'
      ↓
 🖥️ 본부: "결과를 Claude에게 전달합니다!"
 ```
 
 ---
 
-## 📖 Act 3: 시세 조회 지시 (Turn 2 시작)
+## 📖 Act 3: 시세 조회 지시 (Turn 2)
 
 ```
 🤖 Claude: (🧾 영수증을 읽습니다...)
            "좋아! 종목코드 005930을 찾았어!
             이제 시세를 알아봐야지!"
      ↓
-📝 주문서 발행:
-   주문번호: toolu_02DEF
-   업무: getStockQuote
-   입력: {code: "005930"}
-
-🤖 stop_reason: "tool_use" ← "아직 할 일이 있어요!"
+📝 주문서: getStockQuote({code: "005930"})
+🤖 stop_reason: "tool_use"
      ↓
 🖥️ 본부: "또 주문서가! executeTool 데스크로!"
      ↓
 📊 getStockQuote("005930"):
      ✉️ 다음 금융에 편지: /api/quotes/A005930
-     📬 답장: {현재가: 72400, 변동률: +1.2%, ...}
+     📬 답장: {현재가: 72400, 변동률: +1.2%}
 ```
 
 ---
@@ -1709,23 +1538,14 @@ D) 10번 반복하면 / 메모리가 부족하면
 
 ```
 🤖 Claude: (🧾 시세 영수증을 읽습니다...)
-           "현재가 72,400원, +1.2% 상승이네!"
      ↓
-🤖 Claude의 최종 답변:
-
-   "## 💡 최종 답변
-    삼성전자(005930)의 현재 주가는 72,400원이며,
+🤖 최종 답변:
+   "삼성전자(005930) 현재 주가는 72,400원이며,
     전일 대비 +1.2% 상승했습니다.
-
-    📊 상세 정보:
-    - 거래량: 12,345,678주
-    - 시가총액: 432조원
-    - PER(주가수익비율): 12.5
-
+    📊 거래량: 12,345,678주 / 시가총액: 432조원
     ※ 다음 금융 데이터를 활용하였습니다."
 
 🤖 stop_reason: "end_turn" ← "✅ 다 했습니다!"
-🖥️ 본부: "루프 종료! 사장님께 전달합니다!"
 👤 사장님: "고마워요~" 😊
 ```
 
@@ -1735,20 +1555,17 @@ D) 10번 반복하면 / 메모리가 부족하면
 
 ```
 Turn 1: 👤 → 🤖 → 🔍 searchStock("삼성전자") → 005930
-Turn 2: 🤖 → 📊 getStockQuote("005930") → 72,400원, +1.2%
+Turn 2: 🤖 → 📊 getStockQuote("005930") → 72,400원
 Turn 3: 🤖 → ✅ "삼성전자 현재가 72,400원, +1.2% 상승!"
 ```
-
-### 시간순 정리 ⏱️
 
 | 단계 | 누가 | 무엇을 | 비유 |
 |------|------|--------|------|
 | 1 | 👤 사용자 | 질문 | 사장님이 지시 |
-| 2 | 🤖 Claude | searchStock 지시 | 비서가 전화번호부 찾기 |
+| 2 | 🤖 Claude | searchStock 지시 | 전화번호부 찾기 |
 | 3 | 🔍 도구 | 종목코드 반환 | 전화번호 알려주기 |
-| 4 | 🤖 Claude | getStockQuote 지시 | 비서가 전광판 보기 |
+| 4 | 🤖 Claude | getStockQuote 지시 | 전광판 보기 |
 | 5 | 📊 도구 | 시세 반환 | 현재 주가 알려주기 |
-| 6 | 🤖 Claude | 최종 답변 | 비서가 보고 완료! |
 
 ---
 
@@ -1757,13 +1574,13 @@ Turn 3: 🤖 → ✅ "삼성전자 현재가 72,400원, +1.2% 상승!"
 ```
 Turn 1:
   👤 "오늘 시장 어때?"
-  🤖 Claude: "시장 전체 현황이군! getMarketOverview를 쓰자!"
+  🤖 Claude: "시장 전체 현황이군! getMarketOverview!"
      📝 getMarketOverview({})  ← 입력 없이 바로!
-  🌐 결과: 코스피 2,650(+0.8%), 코스닥 850(-0.3%)...
+  🌐 결과: 코스피 2,650(+0.8%), 코스닥 850(-0.3%)
 
 Turn 2:
   🤖 Claude: "오늘 시장 현황입니다!
-              코스피 2,650포인트(+0.8%), 코스닥 850포인트(-0.3%)..."
+    코스피 2,650포인트(+0.8%), 코스닥 850포인트(-0.3%)"
   ✅ stop_reason: "end_turn" → 2턴 만에 완료!
 ```
 
@@ -1794,14 +1611,11 @@ Turn 2:
 🌐 getMarketOverview (단독으로 바로!)
 ```
 
-> 💡 Claude가 대화 맥락을 분석하여 **스스로** 순차/병렬을 결정해요!
-> 정말 똑똑한 비서죠? 🤖✨
-
 ---
 
 ## 🎯 시스템 프롬프트와 도구의 팀워크
 
-### 시스템 프롬프트(업무 지침서)와 도구 설명(업무 매뉴얼)이 서로 강화해요!
+### 지침서와 매뉴얼이 서로 강화해요!
 
 ```
 📋 업무 지침서 (system prompt):
@@ -1826,13 +1640,12 @@ Turn 2:
 
 ```
 🔒 비서실 출입 통제:
-
   ✅ "searchStock" → 입장 허가! 📞
   ✅ "getStockQuote" → 입장 허가! 📊
   ✅ "getStockNews" → 입장 허가! 📰
   ✅ "getMarketOverview" → 입장 허가! 🌐
-  ❌ "deleteDatabase" → ⛔ 출입 금지! "그런 업무 없습니다"
-  ❌ "hackSystem" → ⛔ 출입 금지! "그런 업무 없습니다"
+  ❌ "deleteDatabase" → ⛔ 출입 금지!
+  ❌ "hackSystem" → ⛔ 출입 금지!
 ```
 
 > 💡 switch/case의 `default`가 **출입 통제 역할**!
@@ -1853,11 +1666,11 @@ Turn 2:
 
 ## 📋 파일별 역할 총정리
 
-| 파일 📁 | 역할 🏢 | 비유 |
-|---------|---------|------|
-| `lib/tools.ts` | 업무 매뉴얼 + 데스크 | 📖 비서의 업무 목록과 접수 창구 |
-| `lib/daum-finance.ts` | 실제 업무 처리 | 📞 각 부서 (검색, 시세, 뉴스, 시장) |
-| `app/api/chat/route.ts` | 업무 지시 본부 | 🎵 지휘자 (오케스트레이션) |
+| 파일 📁 | 역할 🏢 |
+|---------|---------|
+| `lib/tools.ts` | 📖 비서의 업무 목록과 접수 창구 |
+| `lib/daum-finance.ts` | 📞 각 부서 (검색, 시세, 뉴스, 시장) |
+| `app/api/chat/route.ts` | 🎵 지휘자 (오케스트레이션) |
 
 ```
 👤 사용자 → 🖥️ route.ts (본부)
@@ -1866,16 +1679,12 @@ Turn 2:
                 ↓
             📞 daum-finance.ts (실행)
                 ↓
-            🤖 Claude (결과 해석)
-                ↓
-            👤 사용자에게 답변!
+            🤖 Claude (결과 해석) → 👤 사용자에게 답변!
 ```
 
 ---
 
 ## 🎯 자주 하는 실수 TOP 5 ⚠️
-
-### 비서 업무에서 흔히 하는 실수들!
 
 ### 실수 1: 영수증을 잘못 된 사람에게 보내기
 
@@ -1883,19 +1692,13 @@ Turn 2:
 ❌ WRONG: role: "assistant"에 tool_result 넣기
 ✅ CORRECT: role: "user"에 tool_result 넣기!
 ```
-→ 영수증(결과)은 반드시 **사용자 역할**로!
 
 ### 실수 2: 진동벨 번호 빠뜨리기
 
 ```
 ❌ WRONG: { type: "tool_result", content: "..." }
-✅ CORRECT: { type: "tool_result", tool_use_id: "toolu_01", content: "..." }
+✅ CORRECT: { ..., tool_use_id: "toolu_01", content: "..." }
 ```
-→ **주문번호(tool_use_id)** 없으면 매칭 불가!
-
----
-
-## ⚠️ 자주 하는 실수 TOP 5 (계속)
 
 ### 실수 3: 주문서를 기록하지 않기
 
@@ -1903,22 +1706,26 @@ Turn 2:
 ❌ WRONG: assistant 메시지에 텍스트만 저장
 ✅ CORRECT: response.content 전체 저장 (텍스트 + 주문서)
 ```
-→ 대화 기록에 **주문서(tool_use)**도 함께!
+
+---
+
+## ⚠️ 자주 하는 실수 TOP 5 (계속)
 
 ### 실수 4: 결과를 종이가 아닌 것으로 제출
 
 ```
-❌ WRONG: return { success: true, data: {...} }   // 객체!
-✅ CORRECT: return JSON.stringify({ success: true, data: {...} })  // 문자열!
+❌ WRONG: return { success: true, data: {...} }
+✅ CORRECT: return JSON.stringify({ success: true, data: {...} })
 ```
 → 보고서는 반드시 **종이(문자열)**로!
 
 ### 실수 5: 업무 시간 제한 누락
 
 ```
-❌ WRONG: while (true) { ... }     // 영원히 반복!
-✅ CORRECT: while (turnCount < 10) { ... }  // 10번까지만!
+❌ WRONG: while (true) { ... }
+✅ CORRECT: while (turnCount < 10) { ... }
 ```
+→ 10번까지만! 무한 루프 방지!
 
 ---
 
@@ -1940,8 +1747,6 @@ apiMessages.push({ role: "user", content: toolResults });
 ```typescript
 apiMessages.push({ role: "tool", content: toolResults });
 ```
-
-<br>
 
 ### 정답은...
 
@@ -1967,8 +1772,6 @@ apiMessages.push({
 });
 ```
 
-<br>
-
 > 📌 **이 3가지가 Tool Calling의 전부입니다.**
 > 📖 도구를 정의하고, 🖥️ 실행하고, 🧾 결과를 돌려준다. 그게 전부예요!
 
@@ -1977,25 +1780,21 @@ apiMessages.push({
 ## 🎯 Tool Calling 5단계 패턴 — 최종 정리
 
 ```
-📖 1. Define (정의)     → 업무 매뉴얼 작성
-                           파일: lib/tools.ts
-
-📋 2. Invoke (호출)     → 매뉴얼과 함께 Claude에게 전달
-                           파일: app/api/chat/route.ts
-
-📝 3. Parse (파싱)      → Claude의 주문서(tool_use) 수집
-                           파일: app/api/chat/route.ts
-
-🖥️ 4. Execute (실행)   → 비서 데스크에서 업무 처리
-                           파일: lib/tools.ts → lib/daum-finance.ts
-
-🧾 5. Inject (주입)     → 영수증(tool_result)을 Claude에게 전달
-                           파일: app/api/chat/route.ts
+📖 1. Define (정의)   → 업무 매뉴얼 작성
+                         lib/tools.ts
+📋 2. Invoke (호출)   → 매뉴얼과 함께 Claude에게 전달
+                         app/api/chat/route.ts
+📝 3. Parse (파싱)    → Claude의 주문서(tool_use) 수집
+                         app/api/chat/route.ts
+🖥️ 4. Execute (실행) → 비서 데스크에서 업무 처리
+                         lib/tools.ts → lib/daum-finance.ts
+🧾 5. Inject (주입)   → 영수증을 Claude에게 전달
+                         app/api/chat/route.ts
 ```
 
 ---
 
-## 🎉 오늘의 비유 총정리
+## 🎉 오늘의 비유 총정리 (1/2)
 
 | 기술 용어 | 비유 🏢 |
 |-----------|---------|
@@ -2004,6 +1803,13 @@ apiMessages.push({
 | JSON Schema | 📦 택배 송장 양식 |
 | executeTool | 🖥️ 비서의 업무 처리 데스크 |
 | searchStock | 📞 전화번호부에서 이름으로 번호 찾기 |
+
+---
+
+## 🎉 오늘의 비유 총정리 (2/2)
+
+| 기술 용어 | 비유 🏢 |
+|-----------|---------|
 | getStockQuote | 📊 은행 전광판 보기 |
 | getStockNews | 📰 비서가 신문 스크랩해 오기 |
 | getMarketOverview | 🌐 아침 뉴스 브리핑 |
@@ -2023,9 +1829,6 @@ apiMessages.push({
 3. ✅ JSON Schema = **택배 송장 양식!**
 4. ✅ executeTool = **업무 처리 데스크!**
 5. ✅ 오케스트레이션 = **지휘자의 역할!**
-6. ✅ 에러 처리 = **택배 분실 시 대응!**
-
-<br>
 
 > 💪 이미 여러분은 회사에서 비서에게 업무를 지시하는 것처럼,
 > AI에게 도구를 사용하도록 지시하는 방법을 완벽히 이해했습니다!
@@ -2062,9 +1865,6 @@ apiMessages.push({
 
 비서에게 업무를 지시하듯이, 편하게 질문해주세요! 😊
 
-<br>
-
 **주식내비 키우Me** 프로젝트
 Tool Calling (도구 호출) 실전 강의
-
 xStudio Hackathon Lecture Series #4

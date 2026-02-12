@@ -2,41 +2,36 @@
 marp: true
 theme: default
 paginate: true
-backgroundColor: #fff
+backgroundColor: #1a1a2e
 style: |
+  @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
   section {
-    font-family: 'Comic Neue', 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
-    padding: 40px 60px;
-    background-color: #FFF8E7;
+    font-family: 'Comic Neue', 'Apple SD Gothic Neo', 'Malgun Gothic', cursive, sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-size: 28px;
   }
-  section.lead {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  section.lead h1 {
-    font-size: 2.5em;
-    color: #E8452E;
-  }
-  section.lead h2 {
-    color: #666;
-    font-weight: 400;
-  }
-  h1 { color: #E8452E; font-size: 1.8em; }
-  h2 { color: #222; font-size: 1.3em; }
-  h3 { color: #444; }
-  code { background: #f5f5f5; padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
-  pre { font-size: 0.72em; }
-  table { font-size: 0.8em; }
-  th { background: #FFF0CC; }
-  .columns { display: flex; gap: 30px; }
-  .col { flex: 1; }
-  blockquote { border-left: 4px solid #E8452E; padding-left: 16px; color: #555; }
-  strong { color: #E8452E; }
-  .small { font-size: 0.7em; color: #888; }
-  .accent { color: #E8452E; font-weight: bold; }
-  .diagram { background: #fff; border: 2px solid #ddd; border-radius: 12px; padding: 16px; font-size: 0.75em; }
+  h1 { color: #FF6B6B; border-bottom: 3px solid #4ECDC4; padding-bottom: 8px; font-size: 1.6em; }
+  h2 { color: #c8c8d4; font-size: 1.25em; }
+  h3 { color: #4ECDC4; font-size: 1.05em; }
+  code { background: #2d2d44; border: 1px solid #444466; border-radius: 4px; padding: 2px 6px; font-size: 0.82em; color: #FF6B6B; }
+  pre { background: #0d0d1a !important; border-radius: 12px; border: 2px solid #333355; box-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+  pre code { background: transparent !important; border: none !important; color: #d4d4d4 !important; font-size: 0.78em; }
+  a { color: #4ECDC4; text-decoration: underline; }
+  table { font-size: 0.82em; border-collapse: collapse; }
+  th { background: #2d2d44; color: #4ECDC4; border: 2px solid #444466; padding: 6px 10px; }
+  td { border: 2px solid #333355; padding: 6px 10px; color: #d0d0d0; }
+  blockquote { border-left: 4px solid #FF6B6B; background: #16162a; padding: 8px 16px; font-size: 0.92em; border-radius: 0 8px 8px 0; color: #c8c8d4; }
+  section.lead { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #16213e; color: #e0e0e0; }
+  section.lead h1 { color: #FF6B6B; border-bottom: 3px solid #4ECDC4; font-size: 2em; }
+  section.lead h2 { color: #e0e0e0; font-size: 1.3em; }
+  section.lead h3 { color: #4ECDC4; font-size: 1.1em; }
+  section.lead blockquote { border-left-color: #4ECDC4; background: rgba(255,255,255,0.05); color: #e0e0e0; }
+  .columns { display: flex; gap: 24px; }
+  .columns > * { flex: 1; }
+  footer { color: #666680; font-size: 0.55em; }
+  strong { color: #FF6B6B; }
+  em { color: #4ECDC4; }
 ---
 
 <!-- _class: lead -->
@@ -45,8 +40,6 @@ style: |
 ## Git, GitHub & Vercel 배포
 
 **주식내비 키우Me** 프로젝트 실전 사례
-
-<br>
 
 강의 시간: 60분
 핵심 기술: Git, GitHub, Vercel, 환경변수, CI/CD
@@ -62,8 +55,6 @@ style: |
 | **Part 3** | 환경변수 관리 | 🔐 금고 비밀번호 | 10분 |
 | **Part 4** | Vercel 배포 | 🍽️ 신메뉴 출시 | 15분 |
 | **Part 5** | CI/CD | 🏭 자동 품질검사 컨베이어 벨트 | 10분 |
-
-<br>
 
 > 🎯 **오늘의 목표**: RPG 게임 개발자가 되어, 게임을 세이브하고, 클라우드에 올리고, 전 세계에 출시하는 전체 여정을 경험합니다!
 
@@ -82,8 +73,6 @@ style: |
    └── 🌐 전 세계 사용자에게 앱을 공개하고 싶어요
 ```
 
-<br>
-
 민수의 여정을 따라가면서
 **Git → GitHub → 환경변수 → Vercel → CI/CD**
 를 하나씩 배워봅시다! 🚀
@@ -98,14 +87,9 @@ style: |
 
 ---
 
-# 🎯 비유: 게임 세이브가 없다면? 😱
+# 🎯 비유: 세이브 없는 게임 😰
 
 ## RPG 게임에서 세이브 없이 플레이한다고 상상해보세요
-
-<div class="columns">
-<div class="col">
-
-### 세이브 없는 게임 😰
 
 ```
 🎮 10시간 플레이...
@@ -121,10 +105,11 @@ style: |
 - 어디까지 했는지 **기억 안 남**
 - 친구에게 진행상황 **공유 불가**
 
-</div>
-<div class="col">
+---
 
-### 세이브 있는 게임 😎
+# 🎯 비유: 세이브 있는 게임 😎
+
+## 세이브 시스템이 있다면?
 
 ```
 🎮 마을 탈출 완료 → 💾 세이브!
@@ -137,9 +122,6 @@ style: |
 - 실수하면 **이전 세이브로 복귀**
 - 모든 **진행 기록**이 남음
 - 친구에게 **세이브 파일 공유** 가능
-
-</div>
-</div>
 
 ---
 
@@ -160,10 +142,6 @@ style: |
 📁 프로젝트_진짜마지막_v3.zip
 ```
 
-- 어떤 파일이 최신인지 모름
-- 실수로 덮어쓰면 복구 불가
-- 협업 시 충돌 해결 불가
-
 </div>
 <div class="col">
 
@@ -176,12 +154,10 @@ style: |
 💾 세이브4: "배포 설정 추가"
 ```
 
-- **모든 변경 이력**이 기록됨
-- 언제든 **이전 세이브로 복구** 가능
-- 여러 사람이 **동시 작업** 가능
+</div>
+</div>
 
-</div>
-</div>
+> 💡 Git을 쓰면 **모든 변경 이력**이 기록되고, 언제든 **이전 세이브로 복구** 가능!
 
 ---
 
@@ -197,6 +173,14 @@ style: |
         ✏️ 수정            📋 git add              💾 git commit
 ```
 
+> 💡 수정 → `git add` → `git commit` 이 3단계가 Git의 핵심!
+
+---
+
+# 💻 Git 세이브 3단계 — 명령어 정리
+
+## 게임 비유로 보는 Git 명령어
+
 | 게임 비유 | Git 명령어 | 설명 |
 |----------|-----------|------|
 | 🎮 게임 플레이 | 파일 수정 | 코드를 작성하고 편집하는 단계 |
@@ -204,12 +188,7 @@ style: |
 | 💾 세이브! | `git commit` | 현재 상태를 저장 + 메모 남기기 |
 | 📜 세이브 기록 보기 | `git log` | 지금까지의 세이브 목록 확인 |
 
----
-
-# ✅ 정리: Git = 게임 세이브 시스템
-
-> 💡 **Git은 코드의 게임 세이브 시스템입니다.**
-> 언제든 이전 세이브 포인트로 돌아갈 수 있어요!
+> 💡 **Git은 코드의 게임 세이브 시스템입니다.** 언제든 이전 세이브 포인트로 돌아갈 수 있어요!
 
 ---
 
@@ -242,6 +221,8 @@ style: |
    └── lib/analytics/tracker.ts (새 파일) → git add lib/analytics/tracker.ts ✅
 ```
 
+> 💡 **`git add`는 세이브할 아이템을 고르는 과정입니다.** 준비가 된 파일만 골라서 세이브 준비함에 담으세요!
+
 ---
 
 # 💻 실제 명령어: git add
@@ -263,13 +244,6 @@ git add .
 
 ---
 
-# ✅ 정리: git add = 인벤토리에서 골라 담기
-
-> 💡 **`git add`는 세이브할 아이템을 고르는 과정입니다.**
-> 준비가 된 파일만 골라서 세이브 준비함에 담으세요!
-
----
-
 # 🎯 비유: 게임 세이브 + 메모 남기기 💾
 
 ## 세이브할 때 항상 메모를 남기는 습관!
@@ -283,13 +257,19 @@ git add .
 
 나중에 어떤 세이브를 불러올지 **메모를 보고 판단**할 수 있어요!
 
-### ❌ 나쁜 메모 vs ✅ 좋은 메모
+---
+
+# 💻 나쁜 메모 vs 좋은 메모
+
+## 커밋 메시지 작성법
 
 | 나쁜 메모 😰 | 좋은 메모 😎 |
 |-------------|------------|
 | "세이브" | "마을 탈출 완료, 무기 업그레이드함" |
 | "작업함" | "채팅 UI 말풍선 스타일 완성" |
 | "수정" | "모바일에서 채팅 말풍선 깨지는 버그 수정" |
+
+> 💡 **좋은 메모 = 미래의 나에게 보내는 편지!** ✉️
 
 ---
 
@@ -303,15 +283,13 @@ git commit -m "채팅 UI 컴포넌트 구현"
 #              세이브에 붙이는 메모!
 ```
 
-### 좋은 커밋 메시지 작성법
-
 | 나쁜 예 😰 | 좋은 예 😎 |
 |---------|---------|
 | `수정` | `채팅 말풍선 스타일 수정: 모바일 반응형 대응` |
 | `작업 중` | `예시 질문 마키 스크롤 애니메이션 추가` |
 | `fix` | `다음 금융 API 500 에러 시 네이버 fallback 적용` |
 
-> 💡 **좋은 메모 = 미래의 나에게 보내는 편지!** ✉️
+> 💡 **`git commit`은 게임 세이브 버튼입니다.** 현재 상태가 영구 저장되고, 메모도 함께 남겨요!
 
 ---
 
@@ -336,13 +314,6 @@ git commit -m "채팅 UI 컴포넌트 구현"
 
 ---
 
-# ✅ 정리: git commit = 게임 세이브
-
-> 💡 **`git commit`은 게임 세이브 버튼입니다.**
-> 현재 상태가 영구 저장되고, 메모도 함께 남겨요!
-
----
-
 # 🎯 비유: 세이브 기록 돌아보기 📜
 
 ## 게임 세이브 목록을 열어보는 것처럼!
@@ -356,9 +327,9 @@ git commit -m "채팅 UI 컴포넌트 구현"
 💾 슬롯 7776666 — "예시 질문 랜덤 생성 시스템"
 💾 슬롯 5554444 — "다음 금융 API 연동"
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📌 어떤 세이브로 돌아갈까?
 ```
+
+> 💡 어떤 세이브로 돌아갈지 **메모를 보고 판단**할 수 있어요!
 
 ---
 
@@ -411,7 +382,7 @@ git status
 
 # 🤔 퀴즈 타임! — Git 기초
 
-### Q1. 다음 중 "세이브 준비함에 담기"에 해당하는 명령어는?
+### Q1. "세이브 준비함에 담기"에 해당하는 명령어는?
 
 ```
 A) git commit    B) git add    C) git log    D) git push
@@ -430,8 +401,6 @@ B) "채팅 말풍선 모바일 반응형 스타일 수정"
 A) git status    B) git diff    C) git log    D) git add
 ```
 
-<br>
-
 > 정답: Q1 → **B**, Q2 → **B**, Q3 → **C** 🎉
 
 ---
@@ -447,12 +416,12 @@ A) git status    B) git diff    C) git log    D) git add
    ├── 🛡️ 마법 방패           → ✅ 세이브!
    ├── 📜 퀘스트 기록          → ✅ 세이브!
    │
-   ├── 🔑 치트키 비밀번호      → 🚫 절대 세이브 금지! (노출되면 위험)
-   ├── 🗑️ 임시 버프 아이템     → 🚫 세이브 불필요 (자동 생성됨)
+   ├── 🔑 치트키 비밀번호      → 🚫 절대 세이브 금지!
+   ├── 🗑️ 임시 버프 아이템     → 🚫 세이브 불필요
    └── 📦 게임 엔진 파일       → 🚫 너무 큼 (500MB+)
 ```
 
-**비밀 정보, 자동 생성되는 것, 거대한 파일**은 세이브에서 제외해야 해요!
+> 💡 **비밀 정보, 자동 생성되는 것, 거대한 파일**은 세이브에서 제외해야 해요!
 
 ---
 
@@ -466,10 +435,12 @@ A) git status    B) git diff    C) git log    D) git add
    ├── app/page.tsx           → ✅ Git에 저장
    ├── package.json           → ✅ Git에 저장
    │
-   ├── .env.local             → 🚫 API 키 (비밀번호!) → .gitignore에 등록!
-   ├── node_modules/          → 🚫 너무 큼 (수백 MB)  → .gitignore에 등록!
-   └── .next/                 → 🚫 자동 생성 파일      → .gitignore에 등록!
+   ├── .env.local             → 🚫 API 키! → .gitignore에 등록!
+   ├── node_modules/          → 🚫 너무 큼  → .gitignore에 등록!
+   └── .next/                 → 🚫 자동 생성 → .gitignore에 등록!
 ```
+
+> 💡 **`.gitignore`는 "이건 절대 세이브하지 마!"라고 적어둔 목록입니다.**
 
 ---
 
@@ -488,24 +459,10 @@ A) git status    B) git diff    C) git log    D) git add
 
 # 🔐 환경변수 파일 — API 키 등 비밀 정보!
 .env*.local
-
-# ⚙️ Vercel 설정 — 자동 생성
-.vercel
-
-# 📝 TypeScript 캐시 — 자동 생성
-*.tsbuildinfo
-next-env.d.ts
 ```
 
 > ⚠️ **경고**: `.env.local`에 있는 `ANTHROPIC_API_KEY`가 GitHub에 올라가면,
 > 누구나 여러분의 API 키로 과금을 발생시킬 수 있어요! 💸
-
----
-
-# ✅ 정리: .gitignore = 세이브 제외 목록
-
-> 💡 **`.gitignore`는 "이건 절대 세이브하지 마!"라고 적어둔 목록입니다.**
-> 비밀번호, 거대한 폴더, 자동생성 파일을 Git에서 제외해요!
 
 ---
 
@@ -569,7 +526,13 @@ git checkout main
 git merge feature/analytics
 ```
 
-### 브랜치 이름 규칙 🏷️
+> 💡 **Branch는 평행 우주입니다.** 메인 세계를 안전하게 지키면서 실험할 수 있어요!
+
+---
+
+# 💻 브랜치 이름 규칙 🏷️
+
+## 어떤 이름을 붙여야 할까?
 
 | 브랜치 이름 | 용도 |
 |-----------|------|
@@ -577,12 +540,7 @@ git merge feature/analytics
 | `feature/기능이름` | 🌟 새 기능 개발 |
 | `fix/버그이름` | 🔧 버그 수정 |
 
----
-
-# ✅ 정리: Branch = 평행 우주
-
-> 💡 **Branch는 평행 우주입니다.**
-> 메인 세계를 안전하게 지키면서, 새로운 실험을 자유롭게 할 수 있어요!
+> 💡 브랜치 이름만 봐도 **무슨 작업인지** 알 수 있게 짓는 것이 중요해요!
 
 ---
 
@@ -594,14 +552,9 @@ git merge feature/analytics
 
 ---
 
-# 🎯 비유: 클라우드 세이브 ☁️💾
+# 🎯 비유: 로컬 세이브만 하면 위험해요! 😰
 
-## 내 컴퓨터에만 세이브하면 위험해요!
-
-<div class="columns">
-<div class="col">
-
-### 로컬 세이브만 😰
+## 내 컴퓨터에만 세이브하면...
 
 ```
 🖥️ 내 컴퓨터
@@ -613,10 +566,13 @@ git merge feature/analytics
 → 세이브 전부 소실...
 ```
 
-</div>
-<div class="col">
+> 💡 로컬 세이브만으로는 **안전하지 않아요!** 클라우드 백업이 필요합니다.
 
-### 클라우드 세이브 있으면 😎
+---
+
+# 🎯 비유: 클라우드 세이브 있으면 😎
+
+## 클라우드에 백업하면 안전!
 
 ```
 🖥️ 내 컴퓨터
@@ -631,8 +587,7 @@ git merge feature/analytics
 🧑‍🤝‍🧑 팀원 → ☁️ 같은 세이브 공유!
 ```
 
-</div>
-</div>
+> 💡 클라우드 세이브 = 안전한 백업 + 팀 공유!
 
 ---
 
@@ -648,13 +603,11 @@ git merge feature/analytics
 - 내 컴퓨터에서 실행
 - 버전 관리 **도구**
 - 오프라인에서도 작동
-- 명령어 기반 (CLI)
 
 ```
 🖥️ 내 컴퓨터
 └── .git/ (로컬 세이브 저장소)
     ├── 💾 커밋들
-    ├── 🌌 브랜치들
     └── 📜 기록
 ```
 
@@ -666,14 +619,11 @@ git merge feature/analytics
 - 클라우드 서비스
 - Git 세이브를 **온라인 저장**
 - 협업 + 코드 리뷰 기능
-- 웹 브라우저로 접속
 
 ```
 ☁️ github.com
 └── ppink-purin/01_stock_hackathon
     ├── 📂 소스 코드
-    ├── 🐛 Issues (버그 신고)
-    ├── 📋 Pull Requests (코드 리뷰)
     └── ⚙️ Actions (자동화)
 ```
 
@@ -724,19 +674,23 @@ git push
 
 # 📥 최신 변경사항 다운로드
 git pull origin main
+```
 
+> 💡 **Push는 업로드, Pull은 다운로드입니다.** `git push`로 내 작업을 클라우드에 올려요!
+
+---
+
+# 💻 Clone — 프로젝트 통째로 가져오기
+
+```bash
 # 📦 다른 컴퓨터에서 프로젝트 통째로 가져오기
 git clone https://github.com/ppink-purin/01_stock_hackathon.git
 cd 01_stock_hackathon
 npm install    # 의존성 설치 (node_modules는 .gitignore라 안 따라옴!)
 ```
 
----
-
-# ✅ 정리: Push/Pull = 업로드/다운로드
-
-> 💡 **Push는 업로드, Pull은 다운로드입니다.**
-> `git push`로 내 작업을 클라우드에 올리고, `git pull`로 팀원의 작업을 받아요!
+> 💡 `git clone`은 프로젝트 전체를 **처음** 가져올 때 사용해요.
+> 이후에는 `git pull`로 최신 변경사항만 받으면 됩니다!
 
 ---
 
@@ -749,15 +703,12 @@ npm install    # 의존성 설치 (node_modules는 .gitignore라 안 따라옴!)
 
 📋 길드 제안서 작성 (Pull Request)
    ├── 제목: "신규 전투 스킬 추가"
-   ├── 설명: "화염 마법 스킬을 추가했습니다. 데미지 100"
-   └── 변경 내용: 코드 변경 사항 첨부
+   └── 설명: "화염 마법 스킬을 추가했습니다"
 
 👀 길드장 검토 (Code Review)
-   ├── "이 부분 데미지가 너무 높은 것 같은데요?"
    └── "밸런스 조정 부탁해요"
 
 ✏️ 수정 후 재제출
-
 ✅ 길드장 승인 → 🔀 메인 게임에 적용! (Merge)
 ```
 
@@ -773,17 +724,12 @@ feature/analytics 브랜치    →     main 브랜치
       │                            │
       │   📋 Pull Request 생성     │
       │──────────────────────────>│
-      │                            │
       │   👀 팀원들이 코드 리뷰     │
-      │   "여기 수정해주세요"       │
       │<──────────────────────────│
-      │                            │
       │   ✏️ 수정 후 업데이트       │
       │──────────────────────────>│
-      │                            │
-      │   ✅ 승인!                 │
-      │         🔀 Merge!         │
-      └──────────────────────────>│ ← 메인에 합쳐짐!
+      │   ✅ 승인! 🔀 Merge!      │
+      └──────────────────────────>│
 ```
 
 > 💡 **PR = "제가 이런 변경을 했는데, 한번 봐주시고 합쳐주세요!"**
@@ -817,8 +763,6 @@ A) git pull    B) git clone    C) git push    D) git add
 A) 파일 삭제    B) 코드 검토 요청    C) 서버 재시작    D) 세이브 삭제
 ```
 
-<br>
-
 > 정답: Q1 → **B**, Q2 → **C**, Q3 → **B** 🎉
 
 ---
@@ -841,18 +785,11 @@ A) 파일 삭제    B) 코드 검토 요청    C) 서버 재시작    D) 세이�
    ├── 🔑 비밀번호: "dragon1234"
    │
    │   ❌ 이렇게 하면 안 돼요!
-   │   ┌─────────────────────────┐
-   │   │ 📋 길드 게시판에          │
-   │   │ "금고 비밀번호: dragon1234" │
-   │   │ 라고 공개 게시...         │
-   │   └─────────────────────────┘
+   │   → 📋 길드 게시판에 "금고 비밀번호: dragon1234" 공개 게시
    │   → 😱 도둑이 비밀번호를 알게 됨!
    │
    │   ✅ 이렇게 해야 해요!
-   │   ┌─────────────────────────┐
-   │   │ 🗝️ 길드장만 아는 금고    │
-   │   │ 에 비밀번호를 따로 보관   │
-   │   └─────────────────────────┘
+   │   → 🗝️ 길드장만 아는 금고에 비밀번호를 따로 보관
    │   → 🔒 권한 있는 사람만 접근!
 ```
 
@@ -875,10 +812,8 @@ const client = new Anthropic({
 });
 ```
 
-GitHub에 올라가면:
 - 🕵️ 누구나 API 키 확인 가능
 - 💸 무단 과금 발생 가능
-- 📂 데이터 유출 위험
 
 </div>
 <div class="col">
@@ -893,8 +828,7 @@ const client = new Anthropic();
 ```
 
 - 🔒 코드에 비밀 정보 없음
-- 🌐 환경별로 다른 값 사용 가능
-- 🚫 `.env.local`은 `.gitignore`로 제외
+- 🚫 `.gitignore`로 제외
 
 </div>
 </div>
@@ -914,15 +848,20 @@ UPSTASH_REDIS_REST_URL=https://flowing-emu-12345.upstash.io
 UPSTASH_REDIS_REST_TOKEN=AXfaAbcd1234...
 ```
 
-### Next.js 환경변수 규칙 📏
+> ⚠️ **원칙**: API 키에는 절대 `NEXT_PUBLIC_`을 붙이지 않아요! 붙이면 전 세계 누구나 볼 수 있게 돼요! 😱
+
+---
+
+# 💻 Next.js 환경변수 규칙 📏
+
+## 접두어에 따라 접근 범위가 달라집니다
 
 | 접두어 | 누가 볼 수 있나? | 예시 |
 |--------|--------------|------|
 | (접두어 없음) | 🔒 **서버만** (route.ts 등) | `ANTHROPIC_API_KEY` |
 | `NEXT_PUBLIC_` | 🌐 **모두** (브라우저에서도!) | `NEXT_PUBLIC_SITE_URL` |
 
-> ⚠️ **원칙**: API 키에는 절대 `NEXT_PUBLIC_`을 붙이지 않아요!
-> 붙이면 전 세계 누구나 볼 수 있게 돼요! 😱
+> ⚠️ API 키에는 절대 `NEXT_PUBLIC_`을 붙이지 마세요!
 
 ---
 
@@ -938,15 +877,10 @@ UPSTASH_REDIS_REST_TOKEN=AXfaAbcd1234...
 │  🔑 UPSTASH_REDIS_REST_URL   ← 서버만 접근!  │
 │  🔑 UPSTASH_REDIS_REST_TOKEN ← 서버만 접근!  │
 │                                              │
-│  route.ts, logger.ts에서 사용                 │
-│                                              │
 ├──────────── 🚧 보안 경계선 🚧 ───────────────┤
 │                                              │
 │  🌐 금고 바깥 (브라우저 = 사용자 컴퓨터)       │
-│                                              │
-│  NEXT_PUBLIC_* ← 여기 있는 건 누구나 볼 수 있음!│
-│  → 개발자 도구(F12)로 확인 가능                │
-│                                              │
+│  NEXT_PUBLIC_* ← 누구나 볼 수 있음!           │
 └─────────────────────────────────────────────┘
 ```
 
@@ -969,12 +903,10 @@ const anthropic = new Anthropic();
 function getRedis(): Redis | null {
   const url = process.env.UPSTASH_REDIS_REST_URL;
   const token = process.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token) return null;  // 금고가 비어있으면 조용히 넘어감
+  if (!url || !token) return null;
   return new Redis({ url, token });
 }
 ```
-
-> 💡 Redis 환경변수가 없어도 앱이 멈추지 않아요! (우아한 실패 처리)
 
 ---
 
@@ -991,17 +923,17 @@ function getRedis(): Redis | null {
 6️⃣ 수십~수백만 원의 과금 발생! 💸💸💸
 ```
 
-### 만약 실수로 올렸다면? 🆘
-
-1. **즉시** 해당 API 키를 무효화 (대시보드에서 revoke)
-2. 새 API 키를 발급
-3. `.gitignore`에 `.env.local` 추가 확인
-
 > 💡 `.gitignore` 규칙 `.env*.local`이 이 실수를 방지해줘요!
 
 ---
 
-# ✅ 정리: 환경변수 = 금고 비밀번호
+# 😱 만약 실수로 올렸다면? 🆘
+
+## 즉시 대응 방법
+
+- **즉시** 해당 API 키를 무효화 (대시보드에서 revoke)
+- 새 API 키를 발급
+- `.gitignore`에 `.env.local` 추가 확인
 
 > 💡 **환경변수는 금고 비밀번호처럼, 코드에 직접 쓰지 않고 따로 보관합니다.**
 > `.env.local` 파일에 저장하고, `.gitignore`로 GitHub 업로드를 차단해요!
@@ -1029,8 +961,6 @@ A) 네, 항상 올라갑니다    B) 아니요, .gitignore가 차단합니다
 A) SECRET_    B) PRIVATE_    C) NEXT_PUBLIC_    D) SERVER_
 ```
 
-<br>
-
 > 정답: Q1 → **B**, Q2 → **B**, Q3 → **C** 🎉
 
 ---
@@ -1057,16 +987,10 @@ A) SECRET_    B) PRIVATE_    C) NEXT_PUBLIC_    D) SERVER_
 📋 레시피 등록 (GitHub Push)
    │
    ▼
-🏭 대량 조리 준비 (빌드)
-   │
-   │ 📦 레고 조립 설명서대로 완성품 만들기!
-   │ (npm run build)
-   │
-   ▼
-🍽️ 손님에게 서빙! (배포 완료!)
-   │
-   └── 🌐 전 세계 어디서든 맛볼 수 있음!
+🏭 대량 조리 준비 (빌드) → 🍽️ 손님에게 서빙! (배포 완료!)
 ```
+
+> 💡 주방에서 개발 → 레시피 등록 → 자동 조리 → 전 세계 서빙!
 
 ---
 
@@ -1074,21 +998,19 @@ A) SECRET_    B) PRIVATE_    C) NEXT_PUBLIC_    D) SERVER_
 
 ## Vercel = 🍽️ 전 세계 체인 레스토랑
 
-<div class="columns">
-<div class="col">
-
-### Vercel의 특징 ✨
-
 - Next.js **공식** 배포 플랫폼
 - 🌐 **글로벌 CDN** (전 세계 배달)
 - GitHub 연동 → **자동 배포**
 - 🔒 HTTPS 기본 제공
 - 💰 **무료 티어** (Hobby Plan)
 
-</div>
-<div class="col">
+> 🌐 우리 프로젝트 배포 URL: **https://01stockhackathon.vercel.app**
 
-### 서버리스란? 🏪
+---
+
+# 🔗 서버리스란? 🏪
+
+## Vercel의 핵심 실행 방식
 
 ```
 🏪 기존 방식 (24시간 편의점):
@@ -1103,10 +1025,7 @@ A) SECRET_    B) PRIVATE_    C) NEXT_PUBLIC_    D) SERVER_
 우리의 `route.ts`가 바로 서버리스!
 요청이 올 때만 실행되고 끝남
 
-</div>
-</div>
-
-> 🌐 우리 프로젝트 배포 URL: **https://01stockhackathon.vercel.app**
+> 💡 서버리스 = 요청이 올 때만 실행 → 비용 절약!
 
 ---
 
@@ -1119,8 +1038,6 @@ A) SECRET_    B) PRIVATE_    C) NEXT_PUBLIC_    D) SERVER_
 | 🏗️ 빌드 시간 | 월 6,000분 | 1회 빌드 1-2분 |
 | 🔄 프리뷰 배포 | 무제한 | 마음껏 테스트 가능! |
 | 🌐 HTTPS | 자동 | 보안 걱정 없음 |
-
-<br>
 
 > 💡 학습/데모/소규모 프로젝트에는 무료 티어로 **충분합니다!** 🎉
 
@@ -1138,11 +1055,9 @@ A) SECRET_    B) PRIVATE_    C) NEXT_PUBLIC_    D) SERVER_
       │──────────────────────>│                     │
       │                        │  🔔 "새 레시피!"     │
       │                        │────────────────────>│
-      │                        │                     │
       │                        │           📦 재료 준비  │
       │                        │           🏭 대량 조리  │
       │                        │           🍽️ 서빙 개시! │
-      │                        │                     │
 ```
 
 **한번 설정하면, `git push`만 하면 자동 배포!** 🚀
@@ -1164,12 +1079,6 @@ A) SECRET_    B) PRIVATE_    C) NEXT_PUBLIC_    D) SERVER_
 5️⃣ Deploy 클릭! 🚀
 ```
 
-### 이후 배포 과정 (자동!)
-
-```
-git push → GitHub 감지 → Vercel 자동 빌드 → 배포 완료! 🎉
-```
-
 > 💡 이후부터는 `git push`만 하면 끝! 나머지는 Vercel이 알아서 해줘요!
 
 ---
@@ -1189,7 +1098,7 @@ git push → GitHub 감지 → Vercel 자동 빌드 → 배포 완료! 🎉
 📝 레고 설명서 (소스 코드)
    │
    │  🏭 조립 공정 (빌드 과정)
-   │  ├── 1️⃣ 부품 확인 (npm install — 패키지 설치)
+   │  ├── 1️⃣ 부품 확인 (npm install)
    │  ├── 2️⃣ 설명서 검증 (TypeScript 타입 체크)
    │  ├── 3️⃣ 조립 시작 (코드 변환 + 최적화)
    │  └── 4️⃣ 완성품 포장 (번들링)
@@ -1198,7 +1107,7 @@ git push → GitHub 감지 → Vercel 자동 빌드 → 배포 완료! 🎉
 🏗️ 완성된 레고 성 (배포 가능한 앱!)
 ```
 
-**빌드 = 사람이 쓴 코드를 컴퓨터가 이해할 수 있는 완성품으로 조립하는 과정**
+> 💡 **빌드 = 사람이 쓴 코드를 컴퓨터가 이해할 수 있는 완성품으로 조립하는 과정**
 
 ---
 
@@ -1211,8 +1120,6 @@ git push → GitHub 감지 → Vercel 자동 빌드 → 배포 완료! 🎉
 npm run build
 ```
 
-### 빌드가 확인하는 것들 ✅
-
 | 검증 항목 | 레고 비유 |
 |----------|---------|
 | TypeScript 타입 체크 | 🧩 부품 모양이 맞는지 확인 |
@@ -1221,14 +1128,6 @@ npm run build
 | 페이지 렌더링 | 🏗️ 설명서대로 조립 가능한지 확인 |
 
 > 💡 **원칙**: `npm run build`가 로컬에서 성공해야 Vercel에서도 성공해요!
-> 배포 전에 반드시 로컬에서 먼저 빌드해보세요! 🔨
-
----
-
-# ✅ 정리: 빌드 = 레고 조립
-
-> 💡 **빌드는 레고 설명서대로 완성품을 만드는 과정입니다.**
-> 부품이 맞는지, 설명서가 올바른지 자동으로 검증해요!
 
 ---
 
@@ -1247,7 +1146,13 @@ npm run build
    → 정식 메뉴에 영향 없이 시식 가능!
 ```
 
-### 프리뷰 배포의 장점 ✨
+> 💡 **프리뷰 배포 = 정식 서비스를 건드리지 않고 안전하게 테스트하는 환경!**
+
+---
+
+# 🔗 프리뷰 배포 워크플로우 🍴
+
+## feature 브랜치 → 시식 → 정식 출시
 
 ```
 1️⃣ feature/analytics 브랜치에서 작업
@@ -1256,27 +1161,6 @@ npm run build
 4️⃣ 문제 없으면 main에 merge
 5️⃣ main merge → 정식 메뉴로 자동 출시! 🍽️
 ```
-
----
-
-# 🔗 이것이 Vercel에서는... Preview Deployment!
-
-## 도메인 구조 이해하기
-
-```
-🍽️ 정식 메뉴 (main 브랜치 = Production):
-   https://01stockhackathon.vercel.app
-
-🍴 시식 코너 (PR / 다른 브랜치 = Preview):
-   https://01-stock-hackathon-git-feature-xxx-username.vercel.app
-   → 각 PR마다 고유한 시식 코너 URL이 자동 생성!
-```
-
-> 💡 **프리뷰 배포 = 정식 서비스를 건드리지 않고 안전하게 테스트하는 환경!**
-
----
-
-# ✅ 정리: 프리뷰 배포 = 시식 코너
 
 > 💡 **프리뷰 배포는 정식 출시 전 시식 코너입니다.**
 > 현재 서비스에 영향 없이, 새 기능을 안전하게 테스트할 수 있어요!
@@ -1289,22 +1173,15 @@ npm run build
 
 ```
 🍽️ 배포 기록 (세이브 목록)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💾 3시간 전   "Analytics 대시보드 추가"    ⬅️ 현재 (문제 발생! 😱)
-💾 1일 전     "예시 질문 마키 스크롤"      ⬅️ 이걸로 롤백! ⏪
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💾 3시간 전   "Analytics 대시보드 추가"    ⬅️ 현재 (문제!)
+💾 1일 전     "예시 질문 마키 스크롤"      ⬅️ 이걸로 롤백!
 💾 2일 전     "다음 금융 API 연동"
 💾 3일 전     "초기 배포"
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-### 롤백 방법 (3초면 끝!)
-
-```
-1️⃣ Vercel Dashboard → Deployments
-2️⃣ 정상 작동했던 배포를 클릭
-3️⃣ "..." → "Promote to Production" 클릭
-4️⃣ 즉시 이전 버전으로 복원! ⏪✅
-```
+> 💡 Vercel 대시보드에서 이전 배포를 선택하고 **"Promote to Production"** 클릭 → 즉시 복원!
 
 ---
 
@@ -1315,7 +1192,7 @@ npm run build
 ```
 🎮 게임 세이브 불러오기처럼 빠릅니다!
 
-✅ Vercel은 모든 배포를 보관함 (삭제하지 않는 한)
+✅ Vercel은 모든 배포를 보관함
 ✅ 이전 배포로 전환 = 트래픽 방향만 바꿈 (재빌드 없음!)
 ✅ 수 초 내에 복원 완료!
 ```
@@ -1325,13 +1202,6 @@ npm run build
 | 🎮 이전 세이브 불러오기 | 문제 발생 시 즉시 이전 상태로 복구 |
 | ⏱️ 로딩 시간 | 수 초 (재빌드 필요 없음!) |
 | 🛡️ 안전망 | 실패해도 언제든 돌아갈 수 있다는 안심감 |
-
----
-
-# ✅ 정리: 롤백 = 이전 세이브 불러오기
-
-> 💡 **롤백은 게임에서 이전 세이브를 불러오는 것과 같습니다.**
-> 문제가 생기면 수 초 만에 안전한 이전 버전으로 복원할 수 있어요!
 
 ---
 
@@ -1352,12 +1222,7 @@ npm run build
    └── 🧪 연습 주방 (Development) → 금고 접근 가능
 ```
 
-### Vercel 대시보드에서 환경변수 설정
-
-```
-Vercel Dashboard → Project → Settings → Environment Variables
-→ 변수명과 값을 입력하고, Production / Preview / Development 모두 체크!
-```
+> 💡 Vercel 대시보드 → Settings → Environment Variables에서 설정!
 
 ---
 
@@ -1378,13 +1243,6 @@ sk-ant-api03-...
 ```
 
 > ⚠️ **중요**: 환경변수를 변경한 후에는 **반드시 재배포**해야 반영돼요!
-
----
-
-# ✅ 정리: Vercel 환경변수 = 레스토랑 금고
-
-> 💡 **Vercel 환경변수는 레스토랑 주방에만 있는 금고입니다.**
-> 대시보드에서 설정하고, 따옴표 없이, 변경 시 재배포!
 
 ---
 
@@ -1409,8 +1267,6 @@ A) 정식 메뉴    B) 시식 코너    C) 레시피    D) 금고
 A) 컴퓨터 재시작    B) 처음부터 다시 만들기
 C) 이전 세이브 불러오기 (롤백)    D) 아무것도 안 함
 ```
-
-<br>
 
 > 정답: Q1 → **B**, Q2 → **B**, Q3 → **C** 🎉
 
@@ -1439,10 +1295,6 @@ C) 이전 세이브 불러오기 (롤백)    D) 아무것도 안 함
   │ 📝  │ ───> │  🔍🔍🔍  │ ──> │  📤  │
   │코드  │       │ 자동 검사 │      │ 출하! │
   └─────┘       └─────────┘      └──────┘
-                     │
-                ❌ 불량 발견!
-                → 🚨 알림 + 출하 중단
-                → 이전 정상 제품 유지
 ```
 
 **사람이 일일이 검사하지 않아도, 컨베이어 벨트가 자동으로!** 🤖
@@ -1451,14 +1303,12 @@ C) 이전 세이브 불러오기 (롤백)    D) 아무것도 안 함
 
 # 🔗 이것이 코딩에서는... CI/CD!
 
-## CI/CD = 🏭 자동 품질검사 컨베이어 벨트
+## CI = 지속적 통합 🔍 / CD = 지속적 배포 📤
 
 <div class="columns">
 <div class="col">
 
-### CI (지속적 통합) 🔍
-
-**Continuous Integration**
+### CI (Continuous Integration)
 
 1. 개발자가 코드 변경
 2. `git push`
@@ -1470,9 +1320,7 @@ C) 이전 세이브 불러오기 (롤백)    D) 아무것도 안 함
 </div>
 <div class="col">
 
-### CD (지속적 배포) 📤
-
-**Continuous Deployment**
+### CD (Continuous Deployment)
 
 1. CI 통과 (검사 합격!) ✅
 2. **자동으로 배포** 🚀
@@ -1482,12 +1330,6 @@ C) 이전 세이브 불러오기 (롤백)    D) 아무것도 안 함
 
 </div>
 </div>
-
-```
-코드 작성 → git push → 🔍 자동 검사 → 📤 자동 배포 → 🌐 서비스!
-              ~~~~~~~~   ~~~~~~~~~~~    ~~~~~~~~~~~
-                Git          CI             CD
-```
 
 ---
 
@@ -1500,28 +1342,16 @@ C) 이전 세이브 불러오기 (롤백)    D) 아무것도 안 함
                                               │
                                     ┌─────────┴─────────┐
                                     │ 1️⃣ npm install     │
-                                    │    (재료 준비)      │
                                     │ 2️⃣ npm run build   │
-                                    │    (레고 조립)      │
                                     │ 3️⃣ TypeScript 검증  │
-                                    │    (품질 검사)      │
                                     │ 4️⃣ CDN 배포        │
-                                    │    (전 세계 배달)   │
                                     └─────────┬─────────┘
                                               │
                                     ✅ 성공 → 자동 배포! 🎉
                                     ❌ 실패 → 이전 버전 유지
-                                              + 🚨 에러 알림
 ```
 
 > 💡 `git push`만 하면 **나머지는 전부 자동!** 🤖
-
----
-
-# ✅ 정리: CI/CD = 자동 품질검사 컨베이어 벨트
-
-> 💡 **CI/CD는 공장의 자동 품질검사 컨베이어 벨트입니다.**
-> 코드를 제출하면 자동으로 검사하고, 통과하면 자동으로 배포해요!
 
 ---
 
@@ -1539,14 +1369,11 @@ C) 이전 세이브 불러오기 (롤백)    D) 아무것도 안 함
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-### 해결 전략 🔧
-
 ```bash
 # 배포 전에 반드시 로컬에서 먼저 조립 테스트!
 npm run build
-
-# ✅ 성공하면 → git push → Vercel 배포 OK!
-# ❌ 실패하면 → 에러 메시지 확인 → 수정 → 다시 빌드
+# ✅ 성공 → git push → Vercel 배포 OK!
+# ❌ 실패 → 에러 메시지 확인 → 수정 → 다시 빌드
 ```
 
 ---
@@ -1555,20 +1382,13 @@ npm run build
 
 | 에러 메시지 | 레고 비유 | 해결 방법 |
 |------------|---------|----------|
-| `Type error in route.ts` | 🧩 부품 모양 안 맞음 | 타입 수정 |
+| `Type error` | 🧩 부품 모양 안 맞음 | 타입 수정 |
 | `Module not found` | 📦 부품 누락 | `npm install 패키지명` |
 | `FUNCTION_INVOCATION_TIMEOUT` | ⏱️ 조립 시간 초과 | `maxDuration` 값 증가 |
 | `500 Internal Server Error` | 🔑 열쇠 분실 | 환경변수 확인 |
-| `Build failed` | 🏗️ 설명서 오류 | `npm run build`로 로컬에서 먼저 확인 |
+| `Build failed` | 🏗️ 설명서 오류 | `npm run build`로 로컬 확인 |
 
 > 💡 **이상한 에러가 나면?** Vercel 대시보드에서 **"캐시 없이 재배포"**를 먼저 시도!
-
----
-
-# ✅ 정리: 빌드 에러 = 레고 부품 불량
-
-> 💡 **빌드 에러는 레고 조립 중 부품이 안 맞는 것입니다.**
-> 로컬에서 `npm run build`로 먼저 확인하고 배포하세요!
 
 ---
 
@@ -1589,11 +1409,9 @@ export const maxDuration = 120;      // ⏱️ 최대 실행 시간 (120초)
 🤖 AI 채팅 응답 과정:
    1️⃣ 사용자 질문 수신
    2️⃣ Claude API 호출 (생각 중...)
-   3️⃣ 금융 데이터 도구 호출
-   4️⃣ 최대 10번 반복!
-   5️⃣ 최종 답변 전달
-
-→ 복잡한 질문은 60초로 부족! → 120초로 넉넉하게 설정 ✅
+   3️⃣ 금융 데이터 도구 호출 (최대 10번 반복!)
+   4️⃣ 최종 답변 전달
+→ 복잡한 질문은 60초로 부족! → 120초로 설정 ✅
 ```
 
 ---
@@ -1610,10 +1428,20 @@ export const maxDuration = 120;      // ⏱️ 최대 실행 시간 (120초)
       $ npm run build → "Build completed" ✅
 
 [ ] 2️⃣ 환경변수 설정 확인 (Vercel 대시보드)
-      → 🔑 ANTHROPIC_API_KEY 설정됨?
-      → 🔑 UPSTASH_REDIS_REST_URL 설정됨?
-      → 🔑 UPSTASH_REDIS_REST_TOKEN 설정됨?
+      → 🔑 ANTHROPIC_API_KEY
+      → 🔑 UPSTASH_REDIS_REST_URL
+      → 🔑 UPSTASH_REDIS_REST_TOKEN
+```
 
+> 💡 배포 전에 반드시 로컬 빌드와 환경변수를 확인하세요!
+
+---
+
+# 📋 배포 전 체크리스트 (계속)
+
+## 추가 점검 항목
+
+```
 [ ] 3️⃣ .gitignore 확인
       → 🚫 .env.local 포함되어 있는지?
       → 🚫 node_modules 포함되어 있는지?
@@ -1625,6 +1453,8 @@ export const maxDuration = 120;      // ⏱️ 최대 실행 시간 (120초)
       → 💬 채팅이 작동하는지?
       → 📊 금융 데이터가 조회되는지?
 ```
+
+> 💡 체크리스트를 하나씩 확인하면 배포 실패를 예방할 수 있어요!
 
 ---
 
@@ -1640,6 +1470,14 @@ export const maxDuration = 120;      // ⏱️ 최대 실행 시간 (120초)
 | [ ] | route.ts에서만 환경변수 접근 | 🔒 서버 전용 확인 |
 | [ ] | 에러 메시지에 민감 정보 없음 | 🛡️ 내부 정보 보호 |
 
+> 💡 보안 체크리스트를 꼭 확인하고 배포하세요!
+
+---
+
+# 🔐 우리 프로젝트 보안 구조
+
+## 브라우저에서는 API 키를 절대 알 수 없음!
+
 ```
 🔒 우리 프로젝트 보안 구조:
   서버 (안전): route.ts → ANTHROPIC_API_KEY (자동 읽기)
@@ -1647,6 +1485,8 @@ export const maxDuration = 120;      // ⏱️ 최대 실행 시간 (120초)
   브라우저: chat.tsx → fetch("/api/chat") (API 키 없이 호출!)
   → 브라우저에서는 API 키를 절대 알 수 없음! 🔒
 ```
+
+> 💡 클라이언트는 `/api/chat`만 호출하고, 실제 API 키는 서버에만 존재합니다.
 
 ---
 
@@ -1664,7 +1504,15 @@ export const maxDuration = 120;      // ⏱️ 최대 실행 시간 (120초)
          │
 [4] ☁️ 클라우드 업로드 (GitHub Push)
     git push → GitHub에 업로드
-         │
+```
+
+> 💡 로컬 개발 → 세이브 → 빌드 검증 → 클라우드 업로드 순서를 기억하세요!
+
+---
+
+# 🌐 전체 배포 파이프라인 (계속)
+
+```
 [5] 🏭 자동 품질검사 (Vercel CI/CD)
     GitHub 감지 → 자동 빌드 → 자동 검사
          │
@@ -1675,9 +1523,11 @@ export const maxDuration = 120;      // ⏱️ 최대 실행 시간 (120초)
     https://01stockhackathon.vercel.app
 ```
 
+> 💡 `git push` 이후는 Vercel이 자동으로 처리합니다!
+
 ---
 
-# 📝 핵심 명령어 모음 — 비유와 함께!
+# 📝 핵심 명령어 모음 — Git 기본 🎮
 
 ```bash
 # ── 🎮 게임 세이브 (Git 기본) ──
@@ -1686,7 +1536,15 @@ git add app/ components/        # 🎒 세이브할 아이템 선택
 git commit -m "채팅 UI 개선"     # 💾 세이브! (메모 포함)
 git log --oneline               # 📜 세이브 기록 보기
 git diff                        # 🔍 변경사항 확인
+```
 
+> 💡 `git status` → `git add` → `git commit` 이 흐름을 습관화하세요!
+
+---
+
+# 📝 핵심 명령어 모음 — GitHub & 브랜치 ☁️🌌
+
+```bash
 # ── ☁️ 클라우드 세이브 (GitHub) ──
 git push origin main            # 📤 클라우드에 업로드
 git pull origin main            # 📥 클라우드에서 다운로드
@@ -1696,11 +1554,9 @@ git clone <URL>                 # 📦 통째로 가져오기
 git checkout -b feature/xxx     # 🌌 새 평행 우주 만들기
 git checkout main               # 🌍 메인 세계로 돌아가기
 git merge feature/xxx           # 🔀 평행 우주 합치기
-
-# ── 🍽️ 신메뉴 출시 (Vercel) ──
-npm run build                   # 🧱 레고 조립 테스트
-# git push → Vercel 자동 배포!   # 🚀 자동 출시!
 ```
+
+> 💡 `npm run build` 성공 확인 후 `git push` → Vercel 자동 배포! 🚀
 
 ---
 
@@ -1713,11 +1569,8 @@ npm run build                   # 🧱 레고 조립 테스트
 | **git commit** | 💾 게임 세이브 + 메모 | 현재 상태 저장 |
 | **git log** | 📜 세이브 기록 보기 | 지금까지의 기록 확인 |
 | **Branch** | 🌌 평행 우주 | 메인을 안전하게 유지하며 실험 |
-| **Merge** | 🔀 우주 합치기 | 실험 성공한 것을 메인에 합침 |
-| **GitHub** | ☁️ 클라우드 세이브 | 온라인 백업 + 팀 공유 |
-| **Push/Pull** | 📤📥 업로드/다운로드 | 클라우드와 동기화 |
-| **.gitignore** | 🚫 세이브 제외 목록 | 비밀번호, 큰 파일 제외 |
-| **환경변수** | 🔐 금고 비밀번호 | 코드에 직접 쓰지 않음 |
+
+> 💡 Git = 게임 세이브, GitHub = 클라우드 세이브로 기억하세요!
 
 ---
 
@@ -1725,20 +1578,31 @@ npm run build                   # 🧱 레고 조립 테스트
 
 | 기술 개념 | 일상 비유 | 핵심 |
 |----------|---------|------|
+| **GitHub** | ☁️ 클라우드 세이브 | 온라인 백업 + 팀 공유 |
+| **Push/Pull** | 📤📥 업로드/다운로드 | 클라우드와 동기화 |
+| **.gitignore** | 🚫 세이브 제외 목록 | 비밀번호, 큰 파일 제외 |
+| **환경변수** | 🔐 금고 비밀번호 | 코드에 직접 쓰지 않음 |
 | **Pull Request** | 📋 검토 요청서 | 코드 리뷰 후 승인 |
+
+> 💡 이 비유들을 기억하면, Git과 배포가 더 이상 무섭지 않아요!
+
+---
+
+# 🗺️ 오늘 배운 비유 총정리 (완료)
+
+| 기술 개념 | 일상 비유 | 핵심 |
+|----------|---------|------|
 | **Vercel 배포** | 🍽️ 신메뉴 출시 | 전 세계에 서비스 공개 |
 | **빌드** | 🧱 레고 조립 | 설명서대로 완성품 만들기 |
 | **프리뷰 배포** | 🍴 시식 코너 | 정식 출시 전 테스트 |
 | **롤백** | ⏪ 이전 세이브 불러오기 | 문제 시 즉시 복원 |
 | **CI/CD** | 🏭 자동 품질검사 벨트 | 자동 검사 + 자동 배포 |
 
-<br>
-
 > 🎉 **이 비유들을 기억하면, Git과 배포가 더 이상 무섭지 않아요!**
 
 ---
 
-# ❓ 자주 묻는 질문 (FAQ)
+# ❓ 자주 묻는 질문 (FAQ) — Part 1
 
 ### Q1: GitHub에 올린 코드를 누구나 볼 수 있나요?
 
@@ -1748,6 +1612,12 @@ Public Repository는 누구나 볼 수 있지만, **Private으로 설정하면 �
 
 학습/데모/소규모에는 충분해요! 대규모 트래픽에는 Pro Plan이 필요합니다.
 
+> 💡 우리 프로젝트처럼 학습 목적이라면 무료 티어로 충분합니다!
+
+---
+
+# ❓ 자주 묻는 질문 (FAQ) — Part 2
+
 ### Q3: 환경변수를 변경하면 바로 반영되나요?
 
 아니요! **재배포(Redeploy)** 해야 반영돼요. 🔄
@@ -1755,6 +1625,8 @@ Public Repository는 누구나 볼 수 있지만, **Private으로 설정하면 �
 ### Q4: 빌드가 실패하면 기존 배포는 어떻게 되나요?
 
 **기존 배포는 그대로 유지**돼요! Vercel은 빌드 성공 시에만 교체합니다. (안전!) 🛡️
+
+> 💡 Vercel은 빌드 실패 시 이전 버전을 유지하므로 안심하세요!
 
 ---
 
@@ -1770,8 +1642,6 @@ D) 코드 작성 (파일 수정)
 E) git commit -m "새 기능 추가"
 F) Vercel이 자동으로 배포!
 ```
-
-<br>
 
 ### 정답:
 
@@ -1798,11 +1668,5 @@ D → C → E → B → A → F
 🍽️ **Vercel**로 전 세계에 출시하고
 🏭 **CI/CD**로 자동 품질검사한다!
 
-<br>
-
 🌐 배포 URL: https://01stockhackathon.vercel.app
 📂 GitHub: https://github.com/ppink-purin/01_stock_hackathon
-
-<br>
-
-<span class="small">주식내비 키우Me — Git, GitHub & Vercel 배포 강의 🎮💾☁️🚀</span>

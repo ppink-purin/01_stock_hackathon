@@ -2,61 +2,35 @@
 marp: true
 theme: default
 paginate: true
-backgroundColor: "#FFF8E7"
 style: |
   @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
   section {
-    font-family: 'Comic Neue', 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
-    padding: 40px 60px;
-    font-size: 24px;
-    color: #222;
+    font-family: 'Comic Neue', 'Apple SD Gothic Neo', 'Malgun Gothic', cursive, sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-size: 28px;
   }
-  section.lead {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(135deg, #E8452E 0%, #C93A25 100%);
-    color: white;
-  }
-  section.lead h1 {
-    font-size: 2.6em;
-    color: white;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
-    margin-bottom: 0.2em;
-  }
-  section.lead h2 {
-    color: #FFDD44;
-    font-size: 1.4em;
-    font-weight: 700;
-  }
-  section.lead h3 {
-    color: rgba(255,255,255,0.9);
-    font-weight: 400;
-  }
-  h1 { color: #E8452E; font-size: 1.8em; border-bottom: 3px solid #E8452E; padding-bottom: 8px; }
-  h2 { color: #222; font-size: 1.3em; }
-  h3 { color: #444; font-size: 1.1em; }
-  code { background: #FFF0E0; padding: 2px 6px; border-radius: 4px; font-size: 0.85em; color: #C93A25; }
-  pre { font-size: 0.68em; border-radius: 12px; border: 2.5px solid #222; box-shadow: 3px 3px 0 #E8D5A3; }
-  pre code { background: none; color: inherit; }
-  table { font-size: 0.78em; border-collapse: collapse; width: 100%; }
-  th { background: #FFDD44; color: #222; font-weight: 700; border: 2px solid #222; padding: 8px 12px; }
-  td { border: 2px solid #E8D5A3; padding: 8px 12px; }
-  tr:nth-child(even) { background: rgba(255,221,68,0.1); }
-  .columns { display: flex; gap: 30px; }
-  .col { flex: 1; }
-  blockquote { border-left: 5px solid #E8452E; padding-left: 16px; color: #555; background: rgba(232,69,46,0.05); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; }
-  strong { color: #E8452E; }
-  em { color: #888; }
-  .small { font-size: 0.7em; color: #888; }
-  .badge { display: inline-block; background: #E8452E; color: white; padding: 2px 10px; border-radius: 99px; font-size: 0.75em; font-weight: 700; }
-  .badge-green { background: #4CAF50; }
-  .badge-blue { background: #2196F3; }
-  .badge-orange { background: #FF9800; }
-  a { color: #E8452E; }
-  footer { font-size: 0.6em; color: #aaa; }
+  h1 { color: #FF6B6B; border-bottom: 3px solid #4ECDC4; padding-bottom: 8px; font-size: 1.6em; }
+  h2 { color: #c8c8d4; font-size: 1.25em; }
+  h3 { color: #4ECDC4; font-size: 1.05em; }
+  code { background: #2d2d44; border: 1px solid #444466; border-radius: 4px; padding: 2px 6px; font-size: 0.82em; color: #FF6B6B; }
+  pre { background: #0d0d1a !important; border-radius: 12px; border: 2px solid #333355; box-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+  pre code { background: transparent !important; border: none !important; color: #d4d4d4 !important; font-size: 0.78em; }
+  a { color: #4ECDC4; text-decoration: underline; }
+  table { font-size: 0.82em; border-collapse: collapse; }
+  th { background: #2d2d44; color: #4ECDC4; border: 2px solid #444466; padding: 6px 10px; }
+  td { border: 2px solid #333355; padding: 6px 10px; color: #d0d0d0; }
+  blockquote { border-left: 4px solid #FF6B6B; background: #16162a; padding: 8px 16px; font-size: 0.92em; border-radius: 0 8px 8px 0; color: #c8c8d4; }
+  section.lead { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #16213e; color: #e0e0e0; }
+  section.lead h1 { color: #FF6B6B; border-bottom: 3px solid #4ECDC4; font-size: 2em; }
+  section.lead h2 { color: #e0e0e0; font-size: 1.3em; }
+  section.lead h3 { color: #4ECDC4; font-size: 1.1em; }
+  section.lead blockquote { border-left-color: #4ECDC4; background: rgba(255,255,255,0.05); color: #e0e0e0; }
+  .columns { display: flex; gap: 24px; }
+  .columns > * { flex: 1; }
+  footer { color: #666680; font-size: 0.55em; }
+  strong { color: #FF6B6B; }
+  em { color: #4ECDC4; }
 ---
 
 <!-- _class: lead -->
@@ -105,7 +79,7 @@ style: |
 
 ---
 
-# 📋 오늘 배울 것 — 목차
+# 📋 오늘 배울 것 — 목차 (1/2)
 
 | 파트 | 주제 | 카페 비유 |
 |:----:|------|:--------:|
@@ -114,6 +88,13 @@ style: |
 | **Part 3** | 이벤트 타입 설계 | 🔔 어떤 센서를 달 것인가? |
 | **Part 4** | 클라이언트 수집 | 📡 센서가 데이터를 보내는 방법 |
 | **Part 5** | 서버 사이드 수집 | 👨‍🍳 주방에서 기록하는 것들 |
+
+---
+
+# 📋 오늘 배울 것 — 목차 (2/2)
+
+| 파트 | 주제 | 카페 비유 |
+|:----:|------|:--------:|
 | **Part 6** | Upstash Redis 저장소 | 📝 메모판에 기록하기 |
 | **Part 7** | KPI 설계 및 계산 | 💊 건강검진 수치 계산 |
 | **Part 8** | 대시보드 구현 | 🚗 자동차 계기판 만들기 |
@@ -169,10 +150,8 @@ style: |
 | 평균 체류 시간 | 평균 세션 지속 시간 |
 | 메뉴 추천 성공률 | 후속 질문 클릭률 |
 | POS 오류 횟수 | 도구 호출 실패율 |
-| 객단가 | 세션당 API 비용 |
 
 > 💡 **핵심 한마디**: "측정할 수 없으면 개선할 수 없다!"
-> *— You can't improve what you can't measure*
 
 ---
 
@@ -187,13 +166,10 @@ style: |
 | **후속 질문** 클릭하나? | 대화 유도 기능 효과 | 추천 메뉴를 시켜보나? |
 | **도구 호출** 성공하나? | 외부 API 안정성 | 에스프레소 머신 고장 안 나나? |
 | 세션이 **얼마나 오래**? | 사용자 참여도 | 매장에 얼마나 오래 있나? |
-| **API 비용**은? | 운영 비용 관리 | 원두 얼마나 쓰나? |
 
 ---
 
 # ✅ Part 1 정리 — 한 줄 요약
-
-<br>
 
 ## 📹 CCTV 없는 매장 = Analytics 없는 앱
 
@@ -236,7 +212,7 @@ style: |
 
 ---
 
-# 🔗 이것이 Analytics에서는...
+# 🔗 이것이 Analytics에서는... (구조도)
 
 ```
 🌐 React 브라우저                ⚡ Next.js 서버               ☁️ Upstash Redis
@@ -246,12 +222,13 @@ style: |
 | 📡 sendBeacon()   |          | 🔧 도구 호출 추적 |          | 📊 LPUSH/LTRIM   |
 |                   |          |                  |          |                  |
 +-------------------+          +------------------+          +------------------+
-
-고객(사용자)의 행동을             서버에서 받아서                Redis에 저장하고
-감지하고 전송                     추가 정보도 기록               대시보드에서 조회
 ```
 
-### 카페 비유와 1:1 대응! 🎯
+> 🎯 카페 비유와 1:1 대응!
+
+---
+
+# 🔗 이것이 Analytics에서는... (매핑표)
 
 | 카페 🏪 | 코드 💻 |
 |---------|---------|
@@ -259,6 +236,8 @@ style: |
 | 출입문 센서 | `sendBeacon()` 전송 |
 | 녹화 저장소 | Upstash Redis |
 | 관제 모니터 | Analytics 대시보드 |
+
+> 고객(사용자)의 행동을 감지하고 전송 → 서버에서 받아서 추가 정보도 기록 → Redis에 저장하고 대시보드에서 조회
 
 ---
 
@@ -276,12 +255,22 @@ lib/analytics/
 app/api/analytics/
   events/route.ts  ← 📨 "센서 데이터 접수 창구"        (관제 센터 입구)
   stats/route.ts   ← 📊 "분석 결과 조회 창구"          (보고서 출력기)
+```
+
+> 약 **850줄의 코드**로 완전한 분석 시스템이 만들어져요! ✨
+
+---
+
+# 📁 파일 구조 — 대시보드 파일
+
+```
+🏪 카페 비유로 보는 파일 구조 (계속):
 
 app/analytics/
   page.tsx         ← 🖥️ "관제 모니터 화면"             (대시보드)
 ```
 
-> 약 **850줄의 코드**로 완전한 분석 시스템이 만들어져요! ✨
+> 총 7개 파일로 이벤트 설계 → 수집 → 저장 → 계산 → 시각화 파이프라인 완성!
 
 ---
 
@@ -296,7 +285,16 @@ app/analytics/
 | **3단계** | 관제실에서 데이터 접수 📨 | API Route에서 JSON 파싱 |
 | **4단계** | 녹화 저장소에 보관 💾 | Redis에 LPUSH로 저장 |
 | **5단계** | 월말 분석 보고서 작성 📋 | computeStats()로 KPI 계산 |
+
+---
+
+# 📊 데이터가 흐르는 6단계 (계속)
+
+| 단계 | 카페 🏪 | 우리 앱 💻 |
+|:----:|---------|----------|
 | **6단계** | 사장님이 모니터로 확인 🖥️ | 대시보드에서 30초마다 확인 |
+
+> 🎯 1~5단계에서 모은 데이터를 6단계에서 시각화!
 
 ---
 
@@ -314,8 +312,6 @@ app/analytics/
 | ② | **Upstash Redis** |
 | ③ | TypeScript |
 | ④ | 대시보드 |
-
-<br>
 
 > 💡 정답: ② Upstash Redis — 모든 이벤트 데이터를 보관하는 저장소예요!
 
@@ -344,15 +340,13 @@ app/analytics/
   ☕ 에스프레소 머신 센서   → 커피가 잘 나왔는지 / 고장났는지
   ✅ 주문 완료 센서         → 주문이 성공적으로 완료됐는지
   ❌ 에러 알람              → 뭔가 잘못됐을 때
-  🧹 테이블 정리 센서       → 손님이 자리를 치웠는지
-  🥚 이스터에그 센서        → 숨겨진 장식을 발견했는지!
 ```
 
 > **총 10개의 센서** = 매장에서 일어나는 모든 일을 파악!
 
 ---
 
-# 🔗 이것이 Analytics에서는... 10개 이벤트!
+# 🔗 10개 이벤트 — 센서 1~5
 
 | # | 센서 (카페) 🏪 | 이벤트 (앱) 💻 | 뭘 감지하나요? |
 |---|-------------|------------|-------------|
@@ -361,6 +355,13 @@ app/analytics/
 | 3 | 💬 주문 카운터 | `message_send` | 사용자가 직접 메시지 입력 |
 | 4 | 📋 메뉴판 터치 | `example_click` | 예시 질문 클릭 |
 | 5 | 👆 추천메뉴 터치 | `followup_click` | 후속 질문 클릭 |
+
+---
+
+# 🔗 10개 이벤트 — 센서 6~10
+
+| # | 센서 (카페) 🏪 | 이벤트 (앱) 💻 | 뭘 감지하나요? |
+|---|-------------|------------|-------------|
 | 6 | ☕ 에스프레소 머신 | `tool_call` | 도구(API) 호출 결과 |
 | 7 | ✅ 주문 완료 벨 | `response_complete` | AI 응답 완료 |
 | 8 | ❌ 에러 알람 | `response_error` | 오류 발생 |
@@ -384,7 +385,7 @@ app/analytics/
 └─────────────────────────────────────────┘
 ```
 
-이 3가지만 있으면 **누가, 언제, 무엇을** 했는지 알 수 있어요!
+> 이 3가지만 있으면 **누가, 언제, 무엇을** 했는지 알 수 있어요!
 
 ---
 
@@ -406,8 +407,6 @@ export interface BaseEvent {
 | 방문 번호표 | `sessionId` | `"a1b2c3d4-..."` |
 | 시간 도장 | `timestamp` | `"2025-01-15T09:30:00Z"` |
 
-> ✅ **정리**: 이 3개 필드만으로 모든 기록을 **손님별로 묶고**, **시간순으로 정렬**할 수 있어요!
-
 ---
 
 # 🚪 센서 1-2: 출입문 센서 (세션 시작/종료)
@@ -417,14 +416,11 @@ export interface BaseEvent {
 손님이 **문을 열고 들어오면** 번호표 발급! 🎫
 **나갈 때** 체류 시간과 주문 수 기록! ⏱️
 
-### 코드 💻
-
 ```typescript
 // 들어올 때 — 딩동! 🔔
 interface SessionStartEvent extends BaseEvent {
   event: "session_start";
 }
-
 // 나갈 때 — 안녕히 가세요! 👋
 interface SessionEndEvent extends BaseEvent {
   event: "session_end";
@@ -442,8 +438,6 @@ interface SessionEndEvent extends BaseEvent {
 ### 카페 비유 🏪
 
 손님이 직접 입으로 **"아메리카노 한 잔이요!"** 라고 주문한 순간을 기록!
-
-### 코드 💻
 
 ```typescript
 interface MessageSendEvent extends BaseEvent {
@@ -467,8 +461,6 @@ interface MessageSendEvent extends BaseEvent {
 - **메뉴판 터치** 📋 = 벽에 붙은 인기메뉴를 손가락으로 가리키며 "이거 주세요!"
 - **추천메뉴 터치** 👆 = 직원이 "이것도 드셔보세요" 했더니 실제로 선택!
 
-### 코드 💻
-
 ```typescript
 interface ExampleClickEvent extends BaseEvent {
   event: "example_click";
@@ -490,24 +482,19 @@ interface FollowupClickEvent extends BaseEvent {
 ### 카페 비유 🏪
 
 에스프레소 머신이 **잘 작동하는지** 체크하는 센서!
-- 커피가 잘 나왔나? ✅
-- 기계가 고장 났나? ❌
-- 추출에 몇 초 걸렸나? ⏱️
-
-### 코드 💻
+- 커피가 잘 나왔나? ✅ / 기계가 고장 났나? ❌ / 추출에 몇 초 걸렸나? ⏱️
 
 ```typescript
 interface ToolCallEvent extends BaseEvent {
   event: "tool_call";
-  toolName: string;      // ☕ 어떤 도구를 사용했나 (예: "searchStock")
+  toolName: string;      // ☕ 어떤 도구를 사용했나
   success: boolean;      // ✅/❌ 성공했나 실패했나
   durationMs: number;    // ⏱️ 몇 밀리초 걸렸나
   error?: string;        // 📝 실패했으면 왜? (선택사항)
 }
 ```
 
-> ☕ 에스프레소 머신이 고장 나면 카페 운영이 안 되듯,
-> 🔧 도구가 실패하면 AI가 답변을 못 해요!
+> ☕ 에스프레소 머신이 고장 나면 카페 운영이 안 되듯, 🔧 도구가 실패하면 AI가 답변을 못 해요!
 
 ---
 
@@ -517,15 +504,12 @@ interface ToolCallEvent extends BaseEvent {
 
 | 센서 | 이벤트 | 카페 비유 🏪 |
 |------|--------|------------|
-| ✅ 주문 완료 벨 | `response_complete` | "주문하신 커피 나왔습니다~" (소요시간, 도구 사용 횟수 포함) |
-| ❌ 에러 알람 | `response_error` | "죄송합니다, 재료가 떨어졌습니다..." (에러 내용 기록) |
-| 🧹 테이블 리셋 | `chat_reset` | 손님이 테이블 정리 후 새로 시작 (몇 잔 마셨는지 기록) |
-| 🥚 이스터에그 | `easter_egg_click` | 매장 구석 숨겨진 장식 발견! (재미 요소 효과 측정) |
-
-<br>
+| ✅ 주문 완료 벨 | `response_complete` | "주문하신 커피 나왔습니다~" |
+| ❌ 에러 알람 | `response_error` | "죄송합니다, 재료가 떨어졌습니다..." |
+| 🧹 테이블 리셋 | `chat_reset` | 손님이 테이블 정리 후 새로 시작 |
+| 🥚 이스터에그 | `easter_egg_click` | 매장 구석 숨겨진 장식 발견! |
 
 > 💡 `chat_reset`은 "얼마나 대화 후 리셋하는가?"를 분석할 수 있어요
-> "이거 커피 5잔째인데 리셋하고 새로 주문하겠습니다" 같은 패턴!
 
 ---
 
@@ -550,8 +534,7 @@ export type AnalyticsEvent =
   | EasterEggClickEvent;   // 🥚 이스터에그
 ```
 
-> ✅ **정리**: TypeScript가 "이 센서 목록에 없는 건 인정하지 않겠다!" 고 지켜줘요!
-> (잘못된 이벤트를 보내면 코드 작성 시점에 빨간 밑줄 등장! 🔴)
+> ✅ TypeScript가 "이 센서 목록에 없는 건 인정하지 않겠다!" 고 지켜줘요!
 
 ---
 
@@ -559,16 +542,12 @@ export type AnalyticsEvent =
 
 ### Q: 사용자가 AI의 후속 질문 "삼성전자 배당금은?"을 클릭했어요. 어떤 이벤트가 발생할까요?
 
-<br>
-
 | 보기 | |
 |:----:|---|
 | ① | `message_send` — 메시지를 보냈으니까 |
 | ② | `example_click` — 예시 질문이니까 |
 | ③ | **`followup_click`** — AI가 추천한 후속 질문이니까 |
 | ④ | `tool_call` — 도구가 호출될 거니까 |
-
-<br>
 
 > 💡 **정답**: ③ `followup_click`!
 > 예시 질문은 처음 화면의 추천, 후속 질문은 AI가 대화 중에 제안한 것이에요!
@@ -594,7 +573,6 @@ export type AnalyticsEvent =
   손님 A가 주문함 → 번호표 "A-001" 로 기록
   손님 A가 또 주문 → 번호표 "A-001" 로 기록 (같은 번호!)
   손님 A가 나감   → 번호표 "A-001" 반납
-
   손님 B가 들어옴 → 번호표 "B-002" 발급! (다른 번호)
 ```
 
@@ -625,9 +603,6 @@ export function getSessionId(): string {
 |---------|---------|------|
 | 번호표 보관함 | `_sessionId` 변수 | 한 번 발급하면 계속 사용 |
 | 번호표 발급 | `crypto.randomUUID()` | 랜덤 고유 번호 생성 |
-| 새 방문 시 리셋 | 페이지 새로고침 | 변수가 초기화됨 = 새 번호표 |
-
-> ✅ **정리**: 한 탭에서는 항상 같은 번호표, 새로고침하면 새 번호표! 🎫
 
 ---
 
@@ -649,7 +624,6 @@ export function getSessionId(): string {
   ┌──────────────────────────────────────────────┐
   │  택배 기사를 불러서 직접 보낸다               │
   │  → 배달 완료 확인 가능 (Promise)              │
-  │  → 근데 퇴근하면 택배 기사가 중간에 멈출 수도 │
   └──────────────────────────────────────────────┘
 ```
 
@@ -665,12 +639,20 @@ export function getSessionId(): string {
 function trackEvent(event: string, metadata?: Record<string, unknown>) {
   const payload = JSON.stringify({
     event,
-    sessionId: getSessionId(),       // 🎫 번호표 포함
-    timestamp: new Date().toISOString(), // 🕐 시간 도장
+    sessionId: getSessionId(),
+    timestamp: new Date().toISOString(),
     ...metadata,
   });
-
   try {
+```
+
+> 📮 먼저 sendBeacon(우체통)으로 시도!
+
+---
+
+# 🔗 sendBeacon + fetch (계속)
+
+```typescript
     // 1️⃣ 먼저 우체통에 넣기 시도! 📮
     if (navigator.sendBeacon) {
       const sent = navigator.sendBeacon("/api/analytics/events", payload);
@@ -681,9 +663,11 @@ function trackEvent(event: string, metadata?: Record<string, unknown>) {
   // 2️⃣ 안 되면 택배로 보내기 📦
   fetch("/api/analytics/events", {
     method: "POST", body: payload, keepalive: true,
-  }).catch(() => {});  // 3️⃣ 그마저도 실패? 그냥 포기 (앱은 계속 동작!)
+  }).catch(() => {});  // 3️⃣ 그마저도 실패? 그냥 포기!
 }
 ```
+
+> ✅ **핵심 원칙**: Analytics가 실패해도 커피(앱)는 맛있어야 해요! ☕
 
 ---
 
@@ -702,8 +686,6 @@ function trackEvent(event: string, metadata?: Record<string, unknown>) {
 2. 📦 **fetch** + `keepalive` → 대안!
 3. 🤷 **실패해도 OK** → `.catch(() => {})` 로 앱은 절대 멈추지 않음!
 
-> ✅ **핵심 원칙**: Analytics가 실패해도 커피(앱)는 맛있어야 해요! ☕
-
 ---
 
 # 🎯 비유: 카페 직원의 하루 (useAnalytics 훅)
@@ -720,11 +702,9 @@ function trackEvent(event: string, metadata?: Record<string, unknown>) {
   ☀️ 근무 중
      → 손님이 주문할 때마다 기록 (message_send)
      → 추천 메뉴 선택하면 기록 (followup_click)
-     → 대화 리셋하면 기록 (chat_reset)
 
   🌙 퇴근 (페이지 닫기 / 컴포넌트 언마운트)
-     → "퇴근합니다! 오늘 X시간 일하고 Y건 처리했습니다" (session_end)
-     → 퇴근길에 우체통에 보고서 투입 📮
+     → "퇴근합니다!" (session_end)
 ```
 
 ---
@@ -735,26 +715,37 @@ function trackEvent(event: string, metadata?: Record<string, unknown>) {
 // lib/analytics/tracker.ts — 직원의 출퇴근 관리
 
 export function useAnalytics() {
-  const sessionStart = useRef<number>(Date.now());  // ⏱️ 스톱워치
-  const messageCount = useRef(0);                    // 📊 주문 카운터
+  const sessionStart = useRef<number>(Date.now());
+  const messageCount = useRef(0);
 
   useEffect(() => {
     sessionStart.current = Date.now();
     trackEvent("session_start");  // 🌅 "출근했습니다!"
 
     const handleUnload = () => {
+```
+
+> ⏱️ 스톱워치 시작 + 출근 기록!
+
+---
+
+# 🔗 useAnalytics 훅 (계속)
+
+```typescript
       trackEvent("session_end", {  // 🌙 "퇴근합니다!"
-        durationMs: Date.now() - sessionStart.current,  // ⏱️ 근무 시간
-        messageCount: messageCount.current,              // 📊 처리 건수
+        durationMs: Date.now() - sessionStart.current,
+        messageCount: messageCount.current,
       });
     };
 
     window.addEventListener("beforeunload", handleUnload);
-    return () => { handleUnload(); };  // React 정리 시에도 퇴근 보고!
+    return () => { handleUnload(); };
   }, []);
   // ...
 }
 ```
+
+> ✅ React 정리 시에도 퇴근 보고! `beforeunload`와 cleanup 양쪽에서 안전하게!
 
 ---
 
@@ -775,10 +766,7 @@ return {
 };
 ```
 
-> 💡 카페 직원(useAnalytics 훅)을 불러놓으면,
-> **어떤 일이든 1줄로 기록**할 수 있어요!
->
-> `analytics.trackMessageSend(...)` ← 이 한 줄이면 끝! ✨
+> 💡 `analytics.trackMessageSend(...)` ← 이 한 줄이면 끝! ✨
 
 ---
 
@@ -788,8 +776,7 @@ return {
 // components/chat.tsx — 매장 운영 코드
 
 export function Chat() {
-  // 👨‍💼 직원(analytics) 배치! 한 줄이면 준비 완료
-  const analytics = useAnalytics();
+  const analytics = useAnalytics();  // 👨‍💼 직원 배치!
 
   // 💬 손님이 직접 말로 주문할 때
   const handleSubmit = (e) => {
@@ -797,7 +784,15 @@ export function Chat() {
     analytics.trackMessageSend(text.length, messages.length === 0);
     sendMessage(text);
   };
+```
 
+> 핵심 코드에 1줄만 추가하면 기록 완료!
+
+---
+
+# 🏪 실제 매장에서 사용하기 (계속)
+
+```typescript
   // 📋 메뉴판에서 골라 주문할 때
   const handleExampleClick = (question: string) => {
     analytics.trackExampleClick(question);
@@ -811,6 +806,8 @@ export function Chat() {
   };
 }
 ```
+
+> ✅ 모든 사용자 행동을 **1줄씩** 추가해서 기록!
 
 ---
 
@@ -830,11 +827,11 @@ export function Chat() {
 
 ### 이게 바로 **비침투적(Non-Intrusive)** 설계!
 
-| 원칙 | 설명 | 카페 비유 🏪 |
-|------|------|------------|
-| 1줄 추가 | 핵심 코드에 1줄만 추가 | CCTV 때문에 커피 레시피 안 바뀜 |
-| 실패해도 OK | Analytics 에러 → 무시 | CCTV 고장나도 커피는 팔 수 있음 |
-| 자동 세션관리 | 마운트/언마운트로 자동 | 직원이 알아서 출퇴근 기록 |
+| 원칙 | 설명 |
+|------|------|
+| 1줄 추가 | 핵심 코드에 1줄만 추가 |
+| 실패해도 OK | Analytics 에러 → 무시 |
+| 자동 세션관리 | 마운트/언마운트로 자동 |
 
 ---
 
@@ -842,16 +839,12 @@ export function Chat() {
 
 ### Q: 사용자가 앱을 사용하다가 브라우저 탭을 닫았어요. session_end 이벤트가 전송될까요?
 
-<br>
-
 | 보기 | |
 |:----:|---|
 | ① | 아니요, 탭을 닫으면 모든 게 사라져요 |
 | ② | **네! sendBeacon이 퇴근길 우체통처럼 전달해요** |
 | ③ | 서버에서 알아서 감지해요 |
 | ④ | 새로고침해야만 전송돼요 |
-
-<br>
 
 > 💡 **정답**: ② sendBeacon은 **페이지가 닫혀도** 데이터를 전송해요!
 > 퇴근길에 우체통에 편지 넣는 것처럼요! 📮✨
@@ -915,20 +908,15 @@ export function Chat() {
 export async function POST(req: Request) {
   const contentType = req.headers.get("content-type") || "";
 
-  // 📮 우체통(sendBeacon)으로 온 편지 = text/plain
   if (contentType.includes("application/json")) {
     event = await req.json();
   } else {
     const text = await req.text();   // sendBeacon은 text/plain!
     event = JSON.parse(text);
   }
-
   await appendEvent(event);          // 📝 메모판에 기록!
 }
 ```
-
-> 💡 sendBeacon은 편지를 **text/plain** 봉투에 넣어서 보내요.
-> 그래서 **두 종류의 봉투**를 모두 열 수 있어야 해요! 📨
 
 ---
 
@@ -937,16 +925,13 @@ export async function POST(req: Request) {
 ### 카페 비유 🏪
 
 주방장이 에스프레소를 추출할 때마다 **기록일지**를 써요:
-- ☕ 어떤 머신을 썼나? (toolName)
-- ✅/❌ 잘 나왔나? (success)
-- ⏱️ 몇 초 걸렸나? (durationMs)
-- 📝 실패하면 왜? (error)
+- ☕ 어떤 머신을 썼나? / ✅❌ 잘 나왔나? / ⏱️ 몇 초 걸렸나?
 
 ### 2단계 성공/실패 판정
 
 | 단계 | 카페 🏪 | 코드 💻 |
 |:----:|---------|---------|
-| 1단계 | 머신이 아예 작동 안 함 (전원 꺼짐) | try-catch 에러 (네트워크 실패) |
+| 1단계 | 머신이 아예 작동 안 함 | try-catch 에러 (네트워크 실패) |
 | 2단계 | 머신은 작동했지만 맛이 이상함 | API는 응답했지만 데이터 없음 |
 
 > 🎯 에스프레소가 안 나와도, 맛이 이상해도, **둘 다 감지**해야 해요!
@@ -973,7 +958,6 @@ export async function POST(req: Request) {
 
   입력 토큰 비용 = (토큰 수 / 1,000,000) × $1.00 × 1,450원
   출력 토큰 비용 = (토큰 수 / 1,000,000) × $5.00 × 1,450원
-  총 비용 = 입력 비용 + 출력 비용
 ```
 
 > 💡 원두 사용량을 추적하듯, **API 토큰 사용량**을 추적해서 운영 비용을 관리해요!
@@ -987,13 +971,11 @@ export async function POST(req: Request) {
 | **기록하는 사람** | 센서 (sendBeacon) | 주방장 (직접 호출) |
 | **기록 방법** | 우체통 → 관제실 | 주방에서 직접 메모 |
 | **신뢰도** | 네트워크에 의존 | 서버 안에서 직접 = 높음 |
-| **기록 내용** | 손님 행동 | 기계 작동, 비용 |
 | **비용 데이터** | 접근 불가 ❌ | 직접 계산 가능 ✅ |
 
 ### 둘을 연결하는 것은? 🎫 **번호표 (sessionId)**!
 
-> 손님이 홀에서 주문한 것(클라이언트)과 주방에서 만든 것(서버)을
-> **같은 번호표**로 연결하면 전체 그림이 완성돼요! 🧩
+> 같은 번호표로 연결하면 전체 그림이 완성돼요! 🧩
 
 ---
 
@@ -1012,23 +994,17 @@ export async function POST(req: Request) {
 ```
 📝 포스트잇 메모판 (Redis)
 ┌─────────────────────────────────────────────────┐
-│                                                 │
 │  📌 10:03 — 손님A 아메리카노 주문    [최신]      │
 │  📌 10:02 — 에스프레소 머신 정상 작동            │
 │  📌 10:01 — 손님A 메뉴판 터치                    │
 │  📌 10:00 — 손님A 입장                           │
 │  ...                                            │
 │  📌 09:00 — 손님Z 퇴장              [가장 오래됨] │
-│                                                 │
 │  최대 10,000장! 넘치면 아래부터 떼어냄 🗑️        │
-│                                                 │
 └─────────────────────────────────────────────────┘
 ```
 
-### 특징
-- 📌 **빠르게 붙이기** — 새 메모를 위에 슥! (LPUSH)
-- 👀 **빠르게 읽기** — 전체 메모를 한 번에 쭉!
-- 🗑️ **오래된 건 떼기** — 10,000장 넘으면 자동 정리 (LTRIM)
+> 📌 **빠르게 붙이기** (LPUSH), 👀 **빠르게 읽기**, 🗑️ **오래된 건 떼기** (LTRIM)
 
 ---
 
@@ -1038,8 +1014,8 @@ export async function POST(req: Request) {
 
 | 문제 | 카페 비유 🏪 | 해결 |
 |------|------------|------|
-| 파일에 못 씀 | 매장이 매번 리모델링됨 (서버 재시작) | **메모판(Redis)**은 벽에 고정! |
-| 매번 새 연결 | 매번 전화해서 녹화실에 접속해야 함 | **HTTP 한 줄이면 OK** (REST API) |
+| 파일에 못 씀 | 매장이 매번 리모델링됨 | **메모판(Redis)**은 벽에 고정! |
+| 매번 새 연결 | 매번 전화해서 녹화실에 접속 | **HTTP 한 줄이면 OK** |
 | 비용 | 녹화실 24시간 운영 비용 | **쓸 때만 비용**, 안 쓰면 무료 |
 
 ### Upstash Redis의 장점 ✨
@@ -1048,8 +1024,6 @@ export async function POST(req: Request) {
 |------|------|
 | 🌐 HTTP 기반 | 커넥션 풀 불필요, 간편 접속 |
 | 💰 무료 티어 | 하루 10,000 요청 무료 |
-| ⚡ 초고속 | 포스트잇 붙이기/읽기가 밀리초 단위 |
-| 🔧 관리 불필요 | 인프라 운영 부담 제로 |
 
 ---
 
@@ -1061,27 +1035,23 @@ export async function POST(req: Request) {
 const REDIS_KEY = "analytics:events";  // 📝 메모판 이름
 const MAX_EVENTS = 10_000;              // 📌 최대 메모 수
 
-let redis: Redis | null = null;  // 📝 메모판 연결 상태
+let redis: Redis | null = null;
 
 function getRedis(): Redis | null {
-  if (redis) return redis;                         // 이미 연결됨? 재사용!
+  if (redis) return redis;
   const url = process.env.UPSTASH_REDIS_REST_URL;
   const token = process.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token) return null;                  // 주소/열쇠 없으면 포기
+  if (!url || !token) return null;
   redis = new Redis({ url, token });
   return redis;
 }
 ```
 
-### 카페 비유 🏪
-
-- `REDIS_KEY` = 메모판의 **이름표** ("분석 이벤트 메모판")
-- `MAX_EVENTS` = 메모판에 붙일 수 있는 **최대 포스트잇 수**
-- `getRedis()` = **메모판에 접근하기** (처음 한 번만 연결, 이후 재사용)
+> 💡 `getRedis()` = 처음 한 번만 연결, 이후 재사용!
 
 ---
 
-# 🎯 비유: 새 메모 붙이고, 오래된 건 떼기!
+# 🎯 비유: 새 메모 붙이기 (LPUSH)
 
 ```
 📝 LPUSH = 새 메모를 맨 위에 슥! 붙이기
@@ -1100,6 +1070,10 @@ function getRedis(): Redis | null {
   └──────────┘
 ```
 
+---
+
+# 🎯 비유: 오래된 메모 떼기 (LTRIM)
+
 ```
 🗑️ LTRIM = 메모판이 꽉 차면 아래부터 떼기!
 
@@ -1111,6 +1085,8 @@ function getRedis(): Redis | null {
   └──────────┘               └──────────┘
                                1번은 자동 삭제! 🗑️
 ```
+
+> 💡 10,000장 넘으면 자동으로 오래된 메모부터 떼어냄!
 
 ---
 
@@ -1124,13 +1100,10 @@ export async function appendEvent(
 ): Promise<void> {
   try {
     const r = getRedis();
-    if (!r) return;                     // 📝 메모판 없으면 조용히 포기
-
+    if (!r) return;
     const line = JSON.stringify(event);
-    await r.lpush(REDIS_KEY, line);     // 📌 맨 위에 새 메모 붙이기!
-
-    // 🗑️ 10,000장 넘으면 오래된 것부터 떼기!
-    await r.ltrim(REDIS_KEY, 0, MAX_EVENTS - 1);
+    await r.lpush(REDIS_KEY, line);     // 📌 맨 위에 새 메모!
+    await r.ltrim(REDIS_KEY, 0, MAX_EVENTS - 1);  // 🗑️ 초과분 삭제
   } catch {
     // 🤷 실패해도 OK — 앱은 계속 동작!
   }
@@ -1152,21 +1125,29 @@ export async function appendEvent(
 export async function readAllEvents(): Promise<RawEvent[]> {
   try {
     const r = getRedis();
-    if (!r) return [];                              // 메모판 없으면 빈 목록
+    if (!r) return [];
 
-    const items = await r.lrange(REDIS_KEY, 0, -1); // 📖 전체 메모 읽기
-
+    const items = await r.lrange(REDIS_KEY, 0, -1);
     const events = items
-      .reverse()                                     // 🔄 시간순으로 뒤집기
+      .reverse()                        // 🔄 시간순으로 뒤집기
       .map((line) => {
-        try { return JSON.parse(line); }             // 📝 메모 해석
-        catch { return null; }                       // ❌ 못 읽으면 버리기
+```
+
+> 📖 전체 메모를 한 번에 읽고 시간순 정렬!
+
+---
+
+# 📖 readAllEvents (계속)
+
+```typescript
+        try { return JSON.parse(line); }  // 📝 메모 해석
+        catch { return null; }             // ❌ 못 읽으면 버리기
       })
-      .filter((e) => e !== null);                    // 🧹 버린 것 정리
+      .filter((e) => e !== null);          // 🧹 정리
 
     return events;
   } catch {
-    return [];                                       // 🤷 실패? 빈 목록!
+    return [];                             // 🤷 실패? 빈 목록!
   }
 }
 ```
@@ -1189,22 +1170,16 @@ export async function readAllEvents(): Promise<RawEvent[]> {
      → 메모판이 없으면? 빈 결과 반환! if (!r) return [];
 
   🛡️ 방어 3: Defensive Parsing (방어적 해석)
-     → 메모가 찢어져서 못 읽겠으면? 그 메모만 버리기! catch { return null; }
+     → 메모가 찢어져서 못 읽겠으면? 그 메모만 버리기!
 ```
 
-### 결과
-
-> 📝 메모판(Redis) 연결 실패 → 앱 정상 ✅
-> 📌 메모 붙이기 실패 → 앱 정상 ✅
-> 📖 메모 읽기 실패 → 빈 결과 반환, 앱 정상 ✅
+> 📝 메모판(Redis) 연결 실패 → 앱 정상 ✅ / 메모 읽기 실패 → 빈 결과 반환, 앱 정상 ✅
 
 ---
 
 # 🤔 퀴즈 타임! — Part 6
 
 ### Q: Redis에 이벤트가 10,001개 쌓이면 어떻게 될까요?
-
-<br>
 
 | 보기 | |
 |:----:|---|
@@ -1263,13 +1238,13 @@ export async function readAllEvents(): Promise<RawEvent[]> {
   📋 예시 질문 사용률:        65.0%   ✅ 온보딩 효과적
 ```
 
-| KPI | 건강검진 비유 💊 | 무엇을 알 수 있나요? |
-|-----|----------------|-------------------|
-| 세션당 대화 횟수 | 하루 식사 횟수 🍽️ | 서비스를 잘 활용하고 있나? |
-| 후속질문 클릭률 | 약 복용 준수율 💊 | AI 추천을 신뢰하는가? |
-| 도구 호출 성공률 | 장기 기능 검사 🫀 | 핵심 기능이 건강한가? |
-| 세션 지속 시간 | 수면 시간 💤 | 충분히 참여하는가? |
-| 예시 사용률 | 운동 빈도 🏃 | 온보딩이 효과적인가? |
+| KPI | 건강검진 비유 💊 |
+|-----|----------------|
+| 세션당 대화 횟수 | 하루 식사 횟수 🍽️ |
+| 후속질문 클릭률 | 약 복용 준수율 💊 |
+| 도구 호출 성공률 | 장기 기능 검사 🫀 |
+| 세션 지속 시간 | 수면 시간 💤 |
+| 예시 사용률 | 운동 빈도 🏃 |
 
 ---
 
@@ -1282,8 +1257,8 @@ export async function readAllEvents(): Promise<RawEvent[]> {
 ```
 📂 환자(세션)별 기록 분류
 
-  🎫 손님 A (abc-123): [입장, 주문, 에스프레소, 주문완료, ...]
-  🎫 손님 B (def-456): [입장, 메뉴터치, 에스프레소, 퇴장, ...]
+  🎫 손님 A (abc-123): [입장, 주문, 에스프레소, ...]
+  🎫 손님 B (def-456): [입장, 메뉴터치, 에스프레소, ...]
   🎫 손님 C (ghi-789): [입장, 주문, 추천선택, ...]
 ```
 
@@ -1299,8 +1274,6 @@ for (const e of events) {
 }
 ```
 
-> 💡 **Map**: 번호표(sessionId) → 그 손님의 기록 목록 으로 정리!
-
 ---
 
 # 📊 KPI 1: 세션당 대화 횟수 (messagesPerSession)
@@ -1313,8 +1286,6 @@ for (const e of events) {
 📊 계산 방법
 
   총 주문 수 = 직접 주문 + 메뉴판 주문 + 추천 메뉴 선택
-              (message_send + example_click + followup_click)
-
   세션당 대화 횟수 = 총 주문 수 / 총 방문 횟수
 ```
 
@@ -1338,7 +1309,6 @@ for (const e of events) {
 👆 계산 방법
 
   클릭률(%) = (추천메뉴 선택 수 / 추천메뉴 제안 횟수) × 100
-             (followup_click / 후속질문이 있는 response_complete)
 ```
 
 ### 왜 중요한가요? 🤔
@@ -1366,13 +1336,11 @@ for (const e of events) {
 
 ### 도구별 성공률 = 기계별 점검표 🔍
 
-| 도구 (기계) | 성공 | 전체 | 성공률 | 상태 |
-|-----------|:----:|:----:|:-----:|:----:|
-| 종목 검색 (커피 머신) | 45 | 45 | 100% | ✅ 정상 |
-| 현재가 조회 (에스프레소) | 36 | 38 | 94.7% | ✅ 양호 |
-| 뉴스 검색 (블렌더) | 20 | 22 | 90.9% | ✅ 주시 |
-
-> 💡 **도구별로 분리**하면 "어떤 기계가 고장 나기 시작했는지" 바로 알 수 있어요!
+| 도구 (기계) | 성공률 | 상태 |
+|-----------|:-----:|:----:|
+| 종목 검색 (커피 머신) | 100% | ✅ 정상 |
+| 현재가 조회 (에스프레소) | 94.7% | ✅ 양호 |
+| 뉴스 검색 (블렌더) | 90.9% | ✅ 주시 |
 
 ---
 
@@ -1386,13 +1354,7 @@ for (const e of events) {
 ⏱️ 계산 방법
 
   평균 체류 시간 = sum(퇴장 시 기록된 체류 시간) / 퇴장 기록 수
-                  (session_end.durationMs 들의 합 / session_end 수)
 ```
-
-### 주의사항 ⚠️
-
-> 브라우저를 **강제 종료**하면 session_end가 전송 안 될 수도 있어요!
-> 이 수치는 **최소한 이만큼은 머물렀다**는 의미예요 (하한값)
 
 ### 해석 가이드 📖
 
@@ -1401,6 +1363,8 @@ for (const e of events) {
 | < 1분 | 들어왔다 바로 나감 😟 → 첫인상 개선 필요 |
 | 2~5분 | 적당한 이용 😊 → 적정 수준 |
 | > 10분 | 깊이 있는 대화 🌟 → 높은 참여도! |
+
+> ⚠️ 브라우저를 **강제 종료**하면 session_end가 전송 안 될 수도 있어요!
 
 ---
 
@@ -1414,7 +1378,6 @@ for (const e of events) {
 📋 계산 방법
 
   예시 사용률(%) = (메뉴판 터치한 손님 수 / 실제 주문한 손님 수) × 100
-                  (example_click 한 세션 수 / 활성 세션 수)
 ```
 
 ### 왜 중요한가요? 🤔
@@ -1425,7 +1388,6 @@ for (const e of events) {
 | → 온보딩 UX가 효과적 🎉 | → 예시 질문 개선 필요 🔧 |
 
 > 💡 **활성 세션** = 최소 1번이라도 대화한 세션만 카운트!
-> (들어와서 아무것도 안 하고 나간 세션은 제외)
 
 ---
 
@@ -1435,25 +1397,18 @@ for (const e of events) {
 // lib/analytics/stats.ts — 건강검진 결과표 작성
 
 return {
-  messagesPerSession:  Math.round(값 * 100) / 100,  // 3.25
-  followupClickRate:   Math.round(값 * 100) / 100,  // 42.50
+  messagesPerSession:  Math.round(값 * 100) / 100,
+  followupClickRate:   Math.round(값 * 100) / 100,
   toolCallSuccessRate: { overall: {...}, byTool: {...} },
-  avgSessionDurationMs: Math.round(값),              // 225000 (ms)
-  exampleUsageRate:    Math.round(값 * 100) / 100,  // 65.00
-  totalSessions:       sessions.size,                // 총 방문자 수
-  totalEvents:         events.length,                // 총 이벤트 수
-  recentEvents:        events.slice(-20),            // 최근 기록 20개
+  avgSessionDurationMs: Math.round(값),
+  exampleUsageRate:    Math.round(값 * 100) / 100,
+  totalSessions:       sessions.size,
+  totalEvents:         events.length,
+  recentEvents:        events.slice(-20),
 };
 ```
 
-### `Math.round(x * 100) / 100` 패턴 🧮
-
-```
-Math.round(94.6666 * 100) / 100
-  = Math.round(9466.66) / 100
-  = 9467 / 100
-  = 94.67   ← 소수점 2자리까지!
-```
+> 💡 `Math.round(94.6666 * 100) / 100` = 94.67 ← 소수점 2자리까지!
 
 ---
 
@@ -1472,21 +1427,16 @@ export async function GET() {
 ### 3단계 파이프라인 🏭
 
 ```
-📝 Redis         →     📖 readAllEvents()    →    🧮 computeStats()    →    📋 결과!
-(메모판)                 (전체 메모 읽기)           (건강 수치 계산)          (JSON 응답)
+📝 Redis → 📖 readAllEvents() → 🧮 computeStats() → 📋 결과!
 ```
 
-> 💡 **왜 캐싱이 없나요?**
-> 10,000건 이하 데이터는 밀리초 단위로 처리 가능!
-> 카페 손님 100명분 기록 분석하는 건 순식간이에요! ⚡
+> 💡 10,000건 이하 데이터는 밀리초 단위로 처리 가능! ⚡
 
 ---
 
 # 🤔 퀴즈 타임! — Part 7
 
 ### Q: 세션당 대화 횟수가 1.2회로 나왔어요. 카페로 비유하면?
-
-<br>
 
 | 보기 | |
 |:----:|---|
@@ -1518,13 +1468,9 @@ export async function GET() {
 🚗 자동차 계기판
 
   ┌───────────────────────────────────────────┐
-  │                                           │
   │   ⛽ 연료: 75%    🏎️ 속도: 80km/h         │
-  │                                           │
   │   🌡️ 온도: 정상    🔧 엔진: OK             │
-  │                                           │
   │   📏 주행거리: 1,234km                     │
-  │                                           │
   └───────────────────────────────────────────┘
 ```
 
@@ -1549,8 +1495,6 @@ export async function GET() {
 | 🔧 엔진 상태 | 🔧 도구 호출 성공률 카드 |
 | 🌡️ 온도계 | ⏱️ 평균 세션 시간 카드 |
 | 📏 주행거리 | 📋 예시 사용률 카드 |
-| 🔴 경고등 | 🔴 성공률 < 70% → 빨간색! |
-| 주행 기록 | 📋 최근 이벤트 로그 |
 
 ---
 
@@ -1561,10 +1505,9 @@ export async function GET() {
 ```
 📬 폴링(Polling) = 정기적으로 우편함 확인!
 
-  5분마다 우편함 확인하러 나감 📬
+  30초마다 우편함 확인하러 나감 📬
   → 새 편지(데이터)가 있으면 읽음
-  → 없으면 돌아감
-  → 5분 후 다시 확인...
+  → 없으면 돌아감 → 30초 후 다시 확인...
 
   VS
 
@@ -1574,39 +1517,47 @@ export async function GET() {
 
 ### 왜 폴링을 선택했나요?
 
-| 이유 | 설명 |
-|------|------|
-| 💰 비용 절약 | 30초마다 = 하루 약 2,880 요청 (무료 티어 충분!) |
-| 🎯 용도에 맞음 | 관리자 대시보드에 실시간(초 단위)은 불필요 |
-| ⚡ 구현 간단 | `setInterval` 한 줄이면 끝! |
+- 💰 30초마다 = 하루 약 2,880 요청 (무료 티어 충분!)
+- 🎯 관리자 대시보드에 실시간(초 단위)은 불필요
+- ⚡ `setInterval` 한 줄이면 끝!
 
 ---
 
-# 🔗 이것이 코드에서는... 30초 폴링
+# 🔗 이것이 코드에서는... 30초 폴링 (1/2)
 
 ```typescript
 // app/analytics/page.tsx — 30초마다 우편함 확인!
 
-const POLL_INTERVAL = 30_000;  // ⏱️ 30초 (= 30,000 밀리초)
+const POLL_INTERVAL = 30_000;  // ⏱️ 30초
 
 // 📬 우편함 확인 함수
 const fetchData = useCallback(async () => {
-  const res = await fetch("/api/analytics/stats");  // 📡 서버에 요청
-  const json = await res.json();                    // 📨 결과 받기
-  setData(json);                                    // 📊 대시보드 갱신!
-  setLastUpdated(new Date());                       // 🕐 시간 기록
+  const res = await fetch("/api/analytics/stats");
+  const json = await res.json();
+  setData(json);
+  setLastUpdated(new Date());
 }, []);
+```
 
+> 📡 서버에 요청 → 결과 받기 → 대시보드 갱신!
+
+---
+
+# 🔗 이것이 코드에서는... 30초 폴링 (2/2)
+
+```typescript
 // ⏰ 처음에 한 번 확인
 useEffect(() => { fetchData(); }, [fetchData]);
 
 // 🔄 30초마다 자동 확인
 useEffect(() => {
-  if (!autoRefresh) return;                         // OFF면 안 감
-  const id = setInterval(fetchData, POLL_INTERVAL); // ⏰ 타이머 설정
-  return () => clearInterval(id);                   // 🧹 정리!
+  if (!autoRefresh) return;
+  const id = setInterval(fetchData, POLL_INTERVAL);
+  return () => clearInterval(id);  // 🧹 정리!
 }, [autoRefresh, fetchData]);
 ```
+
+> ✅ autoRefresh OFF면 멈추고, ON이면 30초마다 자동!
 
 ---
 
@@ -1624,7 +1575,9 @@ useEffect(() => {
 | ⏱️ 세션 시간 | `03:45` | 🌡️ 온도계 |
 | 📋 예시 사용률 | `65.0%` | 📏 주행거리 |
 
-### 경고등 시스템 🚦 (Traffic Light Pattern)
+---
+
+# 📊 경고등 시스템 🚦 (Traffic Light Pattern)
 
 ```
 성공률 ≥ 90%  →  🟢 초록 (정상!)
@@ -1632,9 +1585,11 @@ useEffect(() => {
 성공률 < 70%  →  🔴 빨강 (위험!)
 ```
 
+> 🔴 경고등이 켜지면 즉시 확인! 자동차 계기판의 빨간 불처럼!
+
 ---
 
-# 📋 이벤트 로그 — 주행 기록
+# 📋 이벤트 로그 — 주행 기록 (1/2)
 
 ### 최근 이벤트 20개를 **기록표**로 보여줘요!
 
@@ -1645,6 +1600,13 @@ useEffect(() => {
 | `message_send` | 💬 | 파랑 | 직접 주문! |
 | `example_click` | 💡 | 주황 | 메뉴판 터치! |
 | `followup_click` | 👆 | 보라 | 추천메뉴 선택! |
+
+---
+
+# 📋 이벤트 로그 — 주행 기록 (2/2)
+
+| 이벤트 | 이모지 | 색상 | 카페 비유 🏪 |
+|--------|:------:|:----:|------------|
 | `tool_call` | 🔧 | 회색 | 기계 작동! |
 | `response_complete` | ✅ | 초록 | 주문 완성! |
 | `response_error` | ❌ | 빨강 | 에러 발생! |
@@ -1661,11 +1623,9 @@ useEffect(() => {
 🖥️ 대시보드 상단 영역
 
   ┌────────────────────────────────────────────────────────┐
-  │                                                        │
   │  📊 Analytics Dashboard          [⏱ 자동 갱신 ON]     │
   │  주식내비 사용 통계 대시보드       [🔄 새로고침]        │
   │                                   [💬 챗봇으로]        │
-  │                                                        │
   └────────────────────────────────────────────────────────┘
 ```
 
@@ -1679,8 +1639,6 @@ useEffect(() => {
 
 # ✅ Part 8 정리 — 대시보드 = 자동차 계기판
 
-<br>
-
 ### 한눈에 보는 대시보드 구조
 
 ```
@@ -1690,11 +1648,10 @@ useEffect(() => {
   2️⃣  KPI 카드  → 5개 건강검진 수치 (3열 그리드)
   3️⃣  도구 테이블 → 기계별 성공률 (Traffic Light 🚦)
   4️⃣  이벤트 로그 → 최근 20개 기록 (이모지 배지)
-  5️⃣  통계 요약  → 총 세션 수, 총 이벤트 수, 마지막 업데이트
+  5️⃣  통계 요약  → 총 세션 수, 총 이벤트 수
 ```
 
-> 🚗 **자동차 계기판**처럼 — 운전 중에 **한눈에** 차 상태를 파악하듯,
-> 📊 **대시보드**로 — 서비스 운영 중에 **한눈에** 앱 상태를 파악! ✨
+> 🚗 **자동차 계기판**처럼 — 운전 중에 **한눈에** 차 상태를 파악! ✨
 
 ---
 
@@ -1702,16 +1659,12 @@ useEffect(() => {
 
 ### Q: 대시보드에서 도구 성공률이 60%로 빨간색이에요. 카페로 비유하면?
 
-<br>
-
 | 보기 | |
 |:----:|---|
 | ① | 오늘 손님이 많다는 뜻 |
 | ② | 메뉴판이 잘 디자인되었다는 뜻 |
 | ③ | **에스프레소 머신이 고장 나기 시작했다는 뜻!** 🔴 |
 | ④ | 직원이 친절하다는 뜻 |
-
-<br>
 
 > 💡 **정답**: ③ 60%는 빨간 경고등! 🔴
 > 외부 API에 문제가 있거나 네트워크 장애일 수 있어요.
@@ -1727,7 +1680,7 @@ useEffect(() => {
 
 ---
 
-# 📖 전체 이야기 복습 — 카페 사장님의 여정
+# 📖 전체 이야기 복습 — 카페 사장님의 여정 (1/2)
 
 ```
 ☕ 카페 사장님(여러분!)의 성장 스토리
@@ -1739,8 +1692,16 @@ useEffect(() => {
   3️⃣  "어떤 센서를 달까?"        → 🔔 10개 이벤트 타입 설계
 
   4️⃣  "센서 데이터 보내기"       → 📡 sendBeacon + useAnalytics
+```
 
-  5️⃣  "주방 기록도 중요해!"      → 👨‍🍳 서버 사이드 이벤트 (도구, 비용, 에러)
+---
+
+# 📖 전체 이야기 복습 — 카페 사장님의 여정 (2/2)
+
+```
+☕ 카페 사장님(여러분!)의 성장 스토리 (계속)
+
+  5️⃣  "주방 기록도 중요해!"      → 👨‍🍳 서버 사이드 이벤트
 
   6️⃣  "메모판에 기록!"          → 📝 Redis LPUSH/LTRIM
 
@@ -1751,7 +1712,7 @@ useEffect(() => {
 
 ---
 
-# 🗺️ 전체 지도 — 파일과 비유 매핑
+# 🗺️ 전체 지도 — 파일과 비유 매핑 (1/2)
 
 ```
 🏪 카페                          💻 코드
@@ -1765,7 +1726,15 @@ CCTV + 센서                      lib/analytics/tracker.ts
 관제실 접수                       app/api/analytics/events/route.ts
    ↓                                ↓
 주방 기록                         app/api/chat/route.ts
-   ↓                                ↓
+```
+
+---
+
+# 🗺️ 전체 지도 — 파일과 비유 매핑 (2/2)
+
+```
+🏪 카페                          💻 코드
+
 메모판                            lib/analytics/logger.ts
    ↓                                ↓
 건강검진                          lib/analytics/stats.ts
@@ -1777,7 +1746,7 @@ CCTV + 센서                      lib/analytics/tracker.ts
 
 ---
 
-# 🏆 핵심 설계 원칙 4가지
+# 🏆 핵심 설계 원칙 4가지 (1/2)
 
 ### 1. 🏷️ 타입 안전성 — 센서 목록표
 
@@ -1787,6 +1756,10 @@ CCTV + 센서                      lib/analytics/tracker.ts
 ### 2. 🤫 비침투적 수집 — CCTV 때문에 커피맛이 변하면 안 됨
 
 **fire-and-forget** + **sendBeacon** = Analytics 실패해도 앱은 정상!
+
+---
+
+# 🏆 핵심 설계 원칙 4가지 (2/2)
 
 ### 3. ☁️ Serverless 최적화 — 메모판은 벽에 고정
 
@@ -1798,7 +1771,7 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 
 ---
 
-# 🌟 비유 총정리 표
+# 🌟 비유 총정리 표 (1/2)
 
 | 기술 용어 | 일상 비유 | 이모지 |
 |----------|----------|:------:|
@@ -1807,13 +1780,19 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 | 세션 | 한 번의 매장 방문 | 🎫 |
 | sendBeacon | 퇴근길 우체통에 편지 넣기 | 📮 |
 | Redis | 포스트잇 메모판 | 📝 |
+
+---
+
+# 🌟 비유 총정리 표 (2/2)
+
+| 기술 용어 | 일상 비유 | 이모지 |
+|----------|----------|:------:|
 | LPUSH/LTRIM | 새 메모 붙이고 오래된 건 떼기 | 📌🗑️ |
 | KPI | 건강검진 수치표 | 💊 |
 | 대시보드 | 자동차 계기판 | 🚗 |
 | 폴링 (Polling) | 5분마다 우편함 확인 | 📬 |
 | messagesPerSession | 한 번 올 때 평균 몇 잔 시키는지 | ☕ |
 | followupClickRate | 추천 메뉴를 실제로 주문한 비율 | 👆 |
-| toolCallSuccessRate | 직원이 요청을 성공 처리한 비율 | 🔧 |
 
 ---
 
@@ -1825,11 +1804,8 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 ### 🚀 성능 개선
 
 - Redis **Sorted Set** 도입
-  (메모판을 **날짜별 서랍장**으로!)
 - API 응답 **캐싱**
-  (같은 보고서 반복 출력 방지)
 - 이벤트 **배치 전송**
-  (편지 모아서 한꺼번에 우체통에!)
 
 ### 📊 분석 고도화
 
@@ -1843,11 +1819,8 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 ### 🏗️ 인프라 확장
 
 - 이벤트 스트림 → **Kafka**
-  (메모판 → 전문 기록 시스템)
-- Data Warehouse
-  (장기 보관 창고)
+- Data Warehouse (장기 보관 창고)
 - Grafana/Datadog 연동
-  (전문 모니터링 업그레이드)
 
 ### 🔒 개인정보 보호
 
@@ -1860,7 +1833,7 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 
 ---
 
-# 📏 우리가 만든 것 — 숫자로 보기
+# 📏 우리가 만든 것 — 숫자로 보기 (1/2)
 
 | 파일 | 줄 수 | 역할 (카페 비유 🏪) |
 |------|:-----:|---------------------|
@@ -1868,6 +1841,13 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 | `tracker.ts` | 124줄 | 📡 CCTV + 센서 시스템 |
 | `logger.ts` | 53줄 | 📝 메모판 읽기/쓰기 |
 | `stats.ts` | 150줄 | 💊 건강검진 수치 계산기 |
+
+---
+
+# 📏 우리가 만든 것 — 숫자로 보기 (2/2)
+
+| 파일 | 줄 수 | 역할 (카페 비유 🏪) |
+|------|:-----:|---------------------|
 | `events/route.ts` | 22줄 | 📨 관제실 접수 창구 |
 | `stats/route.ts` | 8줄 | 📋 건강검진 결과 출력기 |
 | `page.tsx` | 424줄 | 🚗 자동차 계기판 |
@@ -1877,7 +1857,7 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 
 ---
 
-# ❓ Q&A — 자주 묻는 질문
+# ❓ Q&A — 자주 묻는 질문 (1/2)
 
 ### Q1: sendBeacon이 실패하면? 📮
 
@@ -1891,6 +1871,10 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 
 → LTRIM이 **자동으로** 오래된 것부터 삭제! (롤링 윈도우) 🗑️
 
+---
+
+# ❓ Q&A — 자주 묻는 질문 (2/2)
+
 ### Q4: 개인정보는 안전한가요? 🔒
 
 → sessionId = **랜덤 UUID** (이름, 전화번호 등 개인정보 미수집!)
@@ -1901,7 +1885,7 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 
 ---
 
-# 🎯 최종 퀴즈 — 전체 복습!
+# 🎯 최종 퀴즈 — 전체 복습! (1/2)
 
 ### 빈칸을 채워보세요!
 
@@ -1911,6 +1895,13 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 | 2 | 이벤트 = 매장 내 _____ | 🔔 센서 |
 | 3 | 세션 = 한 번의 매장 _____ | 🚪 방문 |
 | 4 | sendBeacon = 퇴근길 _____ 에 편지 넣기 | 📮 우체통 |
+
+---
+
+# 🎯 최종 퀴즈 — 전체 복습! (2/2)
+
+| # | 문제 | 정답 |
+|---|------|------|
 | 5 | Redis = _____ 메모판 | 📝 포스트잇 |
 | 6 | KPI = _____ 수치표 | 💊 건강검진 |
 | 7 | 대시보드 = 자동차 _____ | 🚗 계기판 |
@@ -1931,12 +1922,8 @@ Upstash Redis **HTTP 기반** + **LPUSH/LTRIM** 자동 롤링 (10,000건)
 💊 **5개 KPI** — 서비스 건강검진
 🚗 **대시보드** — 자동차 계기판
 
-<br>
-
 > ☕ "CCTV 없는 매장은 감으로 운영하는 것이고,
 > 📊 Analytics 없는 앱은 데이터 없이 개발하는 것이다."
-
-<br>
 
 ### 💡 "측정할 수 없으면 개선할 수 없다"
 *"What gets measured gets managed" — Peter Drucker*

@@ -60,6 +60,14 @@
 │   ├── daum-finance.ts           # 금융 데이터 API 클라이언트
 │   ├── tools.ts                  # AI 도구 정의 및 실행기
 │   └── types.ts                  # TypeScript 타입 정의
+├── lectures/
+│   ├── AGENT_SPEC.md             # 강의 슬라이드 제작 에이전트 사양서
+│   ├── 01_coding.md              # 1강: 웹 코딩 기초 (Marp 슬라이드)
+│   ├── 02_ai_llm.md              # 2강: AI와 LLM 이해하기
+│   ├── 03_agent.md               # 3강: AI 에이전트 개념
+│   ├── 04_tool_calling.md        # 4강: Tool Calling 이해하기
+│   ├── 05_user_analytics.md      # 5강: 사용자 분석과 KPI
+│   └── 06_github_deploy.md       # 6강: GitHub와 배포
 ├── package.json
 └── tsconfig.json
 ```
@@ -495,7 +503,43 @@ npm start
 
 ---
 
-## 13. 개발 히스토리
+## 13. 강의 교안 (Marp 슬라이드)
+
+### 13.1 개요
+
+비개발자 출신 신입직원을 대상으로 프로젝트의 기술 스택과 개념을 쉽게 설명하는 6개 강의 교안.
+
+- **포맷**: Marp 마크다운 → PPTX / PDF 변환
+- **디자인**: 다크 모드 테마 (배경 `#1a1a2e`, 액센트 `#FF6B6B` / `#4ECDC4`)
+- **폰트**: Comic Neue + Apple SD Gothic Neo
+- **핵심 원칙**: 일상생활 비유 → 기술 개념 연결 → 실제 코드 예시 (3단계 구조)
+
+### 13.2 강의 목록
+
+| # | 파일명 | 주제 | 주요 비유 |
+|---|--------|------|-----------|
+| 1 | `01_coding.md` | 웹 코딩 기초 | 레고 블록(컴포넌트), 택배 송장(JSON) |
+| 2 | `02_ai_llm.md` | AI와 LLM 이해하기 | 앵무새→비서(AI 진화), 택시 미터기(토큰) |
+| 3 | `03_agent.md` | AI 에이전트 개념 | 요리사의 레시피 루프(에이전트 루프) |
+| 4 | `04_tool_calling.md` | Tool Calling 이해하기 | 비서에게 업무 지시(도구 호출) |
+| 5 | `05_user_analytics.md` | 사용자 분석과 KPI | 건강검진 수치표(KPI), 포스트잇(Redis) |
+| 6 | `06_github_deploy.md` | GitHub와 배포 | 게임 세이브(Git), 신메뉴 출시(배포) |
+
+### 13.3 슬라이드 변환
+
+```bash
+# Marp CLI로 PPTX/PDF 변환
+npx @marp-team/marp-cli --no-stdin --pptx lectures/01_coding.md -o lectures/01_coding.pptx
+npx @marp-team/marp-cli --no-stdin --pdf lectures/01_coding.md -o lectures/01_coding.pdf
+```
+
+### 13.4 에이전트 사양
+
+슬라이드 제작에 사용된 서브에이전트 사양은 `lectures/AGENT_SPEC.md` 참조.
+
+---
+
+## 14. 개발 히스토리
 
 | 순서 | 작업 내용 |
 |------|----------|
@@ -519,3 +563,5 @@ npm start
 | 18 | 매 답변에 API 토큰 사용량 + 원화 비용 표시 기능 추가 |
 | 19 | 비용 표시와 추천질문 버블 공존 파싱 수정 |
 | 20 | 예시 질문 마키 스크롤 (CSS 애니메이션 무한 좌측 롤링) |
+| 21 | 6개 강의 교안 추가 (비개발자 친화적 비유 버전, Marp 슬라이드) |
+| 22 | 강의 교안 테마 다크 모드 전환 + 내용 대폭 개선 (비유 중심 리라이팅) |

@@ -119,7 +119,7 @@ export async function POST(req: Request) {
             send({ type: "text_delta", text: costText });
             fullText += costText;
 
-            const followupMatch = /\[추천질문:\s*(.+?)\]\s*$/.exec(fullText);
+            const followupMatch = /\[추천질문:\s*(.+?)\]/.exec(fullText);
             const followupCount = followupMatch
               ? followupMatch[1].split("|").filter(Boolean).length
               : 0;

@@ -105,7 +105,7 @@ function useAgentChat(sessionId: string, onResponseComplete?: (durationMs: numbe
               });
               // Count followup questions from final text
               const finalText = data.text || "";
-              const followupMatch = /\[추천질문:\s*(.+?)\]\s*$/.exec(finalText);
+              const followupMatch = /\[추천질문:\s*(.+?)\]/.exec(finalText);
               const followupCount = followupMatch
                 ? followupMatch[1].split("|").filter(Boolean).length
                 : 0;

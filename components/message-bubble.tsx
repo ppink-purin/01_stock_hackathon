@@ -48,12 +48,13 @@ function parseFollowUpQuestions(text: string): {
   cleanText: string;
   questions: string[];
 } {
-  const match = /\[추천질문:\s*(.+?)\]\s*$/.exec(text);
+  const match = /\[추천질문:\s*(.+?)\]/.exec(text);
   if (!match) return { cleanText: text, questions: [] };
   const questions = match[1]
     .split("|")
     .map((q) => q.trim())
     .filter(Boolean);
+  // Remove follow-up tag and everything after it (e.g. cost info)
   const cleanText = text.slice(0, match.index).trimEnd();
   return { cleanText, questions };
 }

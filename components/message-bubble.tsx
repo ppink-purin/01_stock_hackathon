@@ -54,8 +54,10 @@ function parseFollowUpQuestions(text: string): {
     .split("|")
     .map((q) => q.trim())
     .filter(Boolean);
-  // Remove follow-up tag and everything after it (e.g. cost info)
-  const cleanText = text.slice(0, match.index).trimEnd();
+  // Remove only the follow-up tag, keep text before and after
+  const before = text.slice(0, match.index).trimEnd();
+  const after = text.slice(match.index + match[0].length).trim();
+  const cleanText = after ? `${before}\n\n${after}` : before;
   return { cleanText, questions };
 }
 

@@ -169,7 +169,7 @@ export default function AnalyticsPage() {
               📊 Analytics Dashboard
             </h1>
             <p className="text-sm text-[#888] mt-1">
-              주식도령 사용 통계 대시보드
+              주식내비 사용 통계 대시보드
             </p>
           </div>
 

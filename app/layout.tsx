@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "주식도령 키우Me — AI 주식 길잡이",
+  title: "주식내비 키우Me — AI 주식 길잡이",
   description:
     "AI 주식 상담 서비스. 초보 투자자를 위한 친절한 주식 정보 안내. 피넛츠 만화 스타일로 즐겁게 배우자!",
 };

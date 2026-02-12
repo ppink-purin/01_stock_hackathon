@@ -110,14 +110,14 @@ export function MessageBubble({ message, isStreaming, isLast, onFollowUpClick }:
   return (
     <div className="flex justify-start items-start gap-2 mb-3">
       {/* AI Avatar - Snoopy style */}
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#222] bg-[#FFDD44] text-sm mt-5" role="img" aria-label="주식도령">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#222] bg-[#FFDD44] text-sm mt-5" role="img" aria-label="주식내비">
         🐶
       </span>
 
       <div className="max-w-[88%]">
         {/* Avatar label */}
         <div className="mb-1 ml-1">
-          <span className="text-xs font-bold text-[#222]">주식도령</span>
+          <span className="text-xs font-bold text-[#222]">주식내비</span>
         </div>
 
         {/* Thinking steps (collapsible) */}

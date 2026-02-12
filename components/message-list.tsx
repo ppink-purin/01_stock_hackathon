@@ -72,19 +72,18 @@ export function MessageList({ messages, isLoading, onFollowUpClick, onEasterEggC
     return (
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
         <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full border-[3px] border-[#222] bg-[#FFDD44] text-4xl shadow-[3px_3px_0_#E8D5A3]">
-          <span role="img" aria-label="주식도령">🐶</span>
+          <span role="img" aria-label="주식내비">🐶</span>
         </div>
-        <h1 className="mb-2 text-xl font-bold text-[#222]">주식도령 키우Me</h1>
+        <h1 className="mb-2 text-xl font-bold text-[#222]">주식내비 키우Me</h1>
         <p className="mb-1 text-sm text-[#8B7355] font-medium">
           AI 주식 길잡이에게 무엇이든 물어보세요!
         </p>
-        <button
+        <p
+          className="text-xs text-[#A0906B] cursor-pointer hover:text-[#8B7355] transition-colors mt-1"
           onClick={() => { setShowApiInfo(true); onEasterEggClick?.(); }}
-          className="text-xs text-[#A0906B] comic-bubble-ai inline-block px-4 py-2 mt-2 cursor-pointer hover:bg-[#FFF3CD] active:bg-[#FFDD44] transition-colors"
-          style={{ fontSize: '0.75rem' }}
         >
-          다음 금융 데이터를 기반으로 답변합니다
-        </button>
+          ※ 다음 금융 데이터를 기반으로 답변합니다
+        </p>
         {showApiInfo && <ApiInfoModal onClose={() => setShowApiInfo(false)} />}
       </div>
     );

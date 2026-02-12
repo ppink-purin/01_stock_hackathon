@@ -7,7 +7,7 @@ export const maxDuration = 120;
 
 const anthropic = new Anthropic();
 
-const systemPrompt = `당신은 '주식도령 키우Me'입니다. 주식 초보 투자자의 질문에 친절하고 이해하기 쉽게 답변합니다.
+const systemPrompt = `당신은 '주식내비 키우Me'입니다. 주식 초보 투자자의 질문에 친절하고 이해하기 쉽게 답변합니다.
 다음 금융(finance.daum.net) 데이터를 주로 활용하고, 뉴스는 네이버 금융을 활용하여 실시간 정보를 제공합니다.
 
 반드시 다음 4단계로 사고하고, 각 단계를 마크다운 형식으로 표시하세요:

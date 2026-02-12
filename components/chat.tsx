@@ -194,13 +194,15 @@ export function Chat() {
     <div className="flex h-dvh flex-col bg-surface">
       {/* Header — comic panel style */}
       <header className="shrink-0 border-b-[3px] border-[#222] bg-[#FFF8E7] pt-[env(safe-area-inset-top)]" style={{ boxShadow: '0 2px 0 #E8D5A3' }}>
-        <div className="flex items-center justify-center px-4 py-3">
+        <div className="flex items-center justify-between px-4 py-3">
+          <div className="w-9" />
           <div className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#222] bg-[#FFDD44] text-lg" role="img" aria-label="도령">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#222] bg-[#FFDD44] text-lg" role="img" aria-label="내비">
               🐶
             </span>
-            <h1 className="text-lg font-bold text-[#222]">주식도령 키우Me</h1>
+            <h1 className="text-lg font-bold text-[#222]">주식내비 키우Me</h1>
           </div>
+          <a href="/analytics" className="block h-9 w-9 opacity-0" aria-label="Analytics" />
         </div>
       </header>
 

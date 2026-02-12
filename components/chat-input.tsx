@@ -105,16 +105,21 @@ export function ChatInput({
   return (
     <div className="shrink-0 border-t-[3px] border-[#222] bg-[#FFF8E7] pb-[env(safe-area-inset-bottom)]">
       {showExamples && (
-        <div className="flex gap-2 overflow-x-auto px-4 pt-3 pb-1 scrollbar-hide">
-          {examples.map((q) => (
-            <button
-              key={q}
-              onClick={() => onExampleClick(q)}
-              className="shrink-0 rounded-full border-2 border-[#222] bg-[#FFDD44] px-3 py-1.5 text-sm font-bold text-[#222] shadow-[1px_1px_0_#C93A25] active:shadow-none active:translate-x-[1px] active:translate-y-[1px] transition-all"
-            >
-              {q}
-            </button>
-          ))}
+        <div className="overflow-hidden pt-3 pb-1">
+          <div
+            className="flex gap-2 w-max animate-marquee hover:[animation-play-state:paused]"
+          >
+            {/* 원본 + 복제본으로 이음새 없는 무한 루프 */}
+            {[...examples, ...examples].map((q, i) => (
+              <button
+                key={`${q}-${i}`}
+                onClick={() => onExampleClick(q)}
+                className="shrink-0 rounded-full border-2 border-[#222] bg-[#FFDD44] px-3 py-1.5 text-sm font-bold text-[#222] shadow-[1px_1px_0_#C93A25] active:shadow-none active:translate-x-[1px] active:translate-y-[1px] transition-all"
+              >
+                {q}
+              </button>
+            ))}
+          </div>
         </div>
       )}
       <form onSubmit={handleSubmit} className="flex items-center gap-2 p-3">

@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       event = JSON.parse(text);
     }
 
-    appendEvent(event);
+    await appendEvent(event);
     return new Response("ok", { status: 200 });
   } catch {
     return new Response("bad request", { status: 400 });

@@ -49,6 +49,8 @@ export async function POST(req: Request) {
 
       const responseStart = Date.now();
       let totalToolCalls = 0;
+      let totalInputTokens = 0;
+      let totalOutputTokens = 0;
 
       try {
         // Build conversation messages for Anthropic API
@@ -88,6 +90,12 @@ export async function POST(req: Request) {
           // Wait for the full message
           const response = await stream.finalMessage();
 
+          // Accumulate token usage
+          if (response.usage) {
+            totalInputTokens += response.usage.input_tokens;
+            totalOutputTokens += response.usage.output_tokens;
+          }
+
           // Collect tool_use blocks from the final message
           for (const block of response.content) {
             if (block.type === "tool_use") {
@@ -101,6 +109,16 @@ export async function POST(req: Request) {
 
           // If no tool calls, we're done
           if (toolUseBlocks.length === 0 || response.stop_reason === "end_turn") {
+            // Calculate cost in KRW
+            // Claude Haiku 4.5: Input $1.00/MTok, Output $5.00/MTok
+            const USD_TO_KRW = 1450;
+            const inputCostKRW = (totalInputTokens / 1_000_000) * 1.0 * USD_TO_KRW;
+            const outputCostKRW = (totalOutputTokens / 1_000_000) * 5.0 * USD_TO_KRW;
+            const totalCostKRW = inputCostKRW + outputCostKRW;
+            const costText = `\n\n---\n💰 API 비용: 입력 ${totalInputTokens.toLocaleString()}토큰 + 출력 ${totalOutputTokens.toLocaleString()}토큰 = **${totalCostKRW.toFixed(2)}원**`;
+            send({ type: "text_delta", text: costText });
+            fullText += costText;
+
             const followupMatch = /\[추천질문:\s*(.+?)\]\s*$/.exec(fullText);
             const followupCount = followupMatch
               ? followupMatch[1].split("|").filter(Boolean).length
@@ -112,6 +130,9 @@ export async function POST(req: Request) {
               durationMs: Date.now() - responseStart,
               toolCallCount: totalToolCalls,
               followupCount,
+              inputTokens: totalInputTokens,
+              outputTokens: totalOutputTokens,
+              costKRW: Math.round(totalCostKRW * 100) / 100,
             });
             send({ type: "done", text: fullText });
             break;
